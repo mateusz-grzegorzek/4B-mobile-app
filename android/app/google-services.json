@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "469359398467",
+    "firebase_url": "https://business-mobile-app-afe2b.firebaseio.com",
+    "project_id": "business-mobile-app-afe2b",
+    "storage_bucket": "business-mobile-app-afe2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469359398467:android:346da0151d4b229b",
+        "android_client_info": {
+          "package_name": "com.businessmobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469359398467-0uvu4grvg0jb1k9ko9asd1oqdl3etok1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVludGDpDgg3mxXe7EiOk9z0YiPUdtoBc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

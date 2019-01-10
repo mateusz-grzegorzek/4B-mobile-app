@@ -31,13 +31,13 @@ void fAddContactToList(aContactId, aContactInfo) {
 }
 
 class ContactPageWidget extends StatefulWidget {
-  static const String Id = "ContactPageWidget";
-  const ContactPageWidget({Key aKey}) : super(key: aKey);
   @override
   ContactPage createState() => new ContactPage();
 }
 
 class ContactPage extends State<ContactPageWidget> {
+  static const String Id = "ContactPage";
+
   StreamSubscription<bool> mStreamSub;
 
   @override

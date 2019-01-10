@@ -1,18 +1,19 @@
 import 'dart:async';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:flutter/material.dart';
-import '../../utils/firebase_data.dart';
+import '../offer/offer_page.dart';
+import '../welcome/welcome_page.dart';
 import '../map/map_page.dart';
 import '../schedule/schedule_page.dart';
 import '../contact/contact_page.dart';
 import '../news/news_page.dart';
 import '../about_us/about_us_page.dart';
-import '../team/team_page.dart';
-import '../trips/trips_page.dart';
 import '../login/login_page.dart';
 import '../about_country/about_country_page.dart';
 import '../about_city/about_city_page.dart';
 
 HomePage gHomePage = new HomePage();
+Color gGoldColor = Color(0xffffd700);
 
 class MenuItem extends StatelessWidget {
   MenuItem(this.mId, this.mTitle, this.mPage, this.mVisibleWhenLogged);
@@ -38,8 +39,6 @@ class MenuItem extends StatelessWidget {
 }
 
 class HomePageWidget extends StatefulWidget {
-  HomePageWidget({Key aKey}) : super(key: aKey);
-
   @override
   HomePage createState() => gHomePage;
 }
@@ -56,14 +55,16 @@ class HomePage extends State<HomePageWidget> {
     print("HomePage:initState");
     super.initState();
 
-    mPageWidgetsMapAll[LoginPageWidget.Id] = new MenuItem(
-        LoginPageWidget.Id, "Zaloguj się", new LoginPageWidget(), false);
-    mPageWidgetsMapAll[AboutUsPageWidget.Id] = new MenuItem(
-        AboutUsPageWidget.Id, "O nas", new AboutUsPageWidget(), false);
-    mPageWidgetsMapAll[TeamPageWidget.Id] =
-        new MenuItem(TeamPageWidget.Id, "Zespół", new TeamPageWidget(), false);
-    mPageWidgetsMapAll[TripsPageWidget.Id] = new MenuItem(
-        TripsPageWidget.Id, "Polecane wyjazdy", new TripsPageWidget(), false);
+    mPageWidgetsMapAll[WelcomePage.Id] = new MenuItem(
+        WelcomePage.Id, "4Business Team", new WelcomePageWidget(), false);
+    mPageWidgetsMapAll[AboutUsPage.Id] = new MenuItem(
+        AboutUsPage.Id, "O 4Business", new AboutUsPageWidget(), false);
+    mPageWidgetsMapAll[OfferPage.Id] =
+        new MenuItem(OfferPage.Id, "Oferta", new OfferPageWidget(), false);
+    mPageWidgetsMapAll[ContactPage.Id] =
+        new MenuItem(ContactPage.Id, "Kontakt", new ContactPageWidget(), false);
+    mPageWidgetsMapAll[LoginPage.Id] =
+        new MenuItem(LoginPage.Id, "Zaloguj się", new LoginPageWidget(), false);
 
     mPageWidgetsMapAll[SchedulePageWidget.Id] = new MenuItem(
         SchedulePageWidget.Id,
@@ -83,9 +84,7 @@ class HomePage extends State<HomePageWidget> {
         NewsPageWidget.Id, "Aktualności", new NewsPageWidget(), true);
     mPageWidgetsMapAll[MapPageWidget.Id] =
         new MenuItem(MapPageWidget.Id, "Mapa", new MapPageWidget(), true);
-    mPageWidgetsMapAll[ContactPageWidget.Id] = new MenuItem(
-        ContactPageWidget.Id, "Kontakt", new ContactPageWidget(), true);
-    fSetPage(LoginPageWidget.Id);
+    fSetPage(WelcomePage.Id);
   }
 
   @override
@@ -125,21 +124,11 @@ class HomePage extends State<HomePageWidget> {
     print("HomePage:build:mIsLogged=" + mIsLogged.toString());
     mPageWidgetsMapVisible.clear();
     mPageWidgetsMapAll.forEach((id, menuItem) {
-      if (mIsLogged == menuItem.mVisibleWhenLogged) {
+      if (mIsLogged == menuItem.mVisibleWhenLogged &&
+          mPageWidgetsMapAll[id].mId != WelcomePage.Id) {
         mPageWidgetsMapVisible[id] = menuItem;
       }
     });
-    /*
-      w = [
-        new MenuItem("Program wyjazdu", mSchedulePageWidget),
-        new MenuItem("O kraju", mAboutUsPageWidget),
-        new MenuItem("O mieście", mAboutUsPageWidget),
-        new MenuItem("Ważne informacje przed wyjazdem", mAboutUsPageWidget),
-        new MenuItem("Aktualności", mNewsPageWidget),
-        new MenuItem("Mapa", mMapPageWidget),
-        new MenuItem("Kontakt", mContactPageWidget),
-      ];
-      */
 
     return new Scaffold(
         appBar: new AppBar(
@@ -168,6 +157,6 @@ class HomePage extends State<HomePageWidget> {
     print("HomePage:fOnLoginSuccess");
     mIsLogged = true;
     fShowAlert(context, "Sukces!", "Zalogowano pomyślnie!");
-    fChangePage(SchedulePageWidget.Id);
+    fChangePage(TripsPage.Id);
   }
 }

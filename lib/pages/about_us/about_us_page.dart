@@ -1,67 +1,62 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../utils/firebase_data.dart';
-import '../../utils/shared_preferences.dart';
+import '../home/home_page.dart';
 
-final List<String> gAboutUsList = new List<String>();
+String gAbout4Business =
+    "Firma 4Business została założona w 2005 roku w Krakowie przez dwójkę przyjaciół, "
+    "którzy swoją pasją do sportu postanowili zarażać innych. Z początku agencja koncentrowała "
+    "się na organizacji wyjazdów sportowych dla mniejszych grup, jednak w krótkim czasie dzięki "
+    "wysokiej jakości usług oraz oferowaniu unikalnych i ambitnych programów 4Business "
+    "przerodziło się w profesjonalną firmę MICE. Determinacja oraz kreatywność w realizacji "
+    "poszczególnych projektów dała możliwość nawiązania współpracy z wieloma firmami, "
+    "co zaowocowało licznymi wyjazdami incentive.\n\n";
 
-void fGetAboutUsFromMemory() {
-  String aboutUsJson = gPrefs.getString(gAboutUsDatabaseKey);
-  if (aboutUsJson != null) {
-    dynamic tmp = json.decode(aboutUsJson);
-    for (var name in tmp) {
-      gAboutUsList.add(name);
-    }
-  }
-}
+String gAbout4BusinessTeam =
+    "Zespół 4Business zajmuje się kompleksową organizacją wyjazdów firmowych takich jak:\n"
+    "- wyjazdy motywacyjne dla pracowników,\n"
+    "- firmowe wyjazdy integracyjne,\n"
+    "- wyjazdy incentive,\n"
+    "- konferencje,\n"
+    "- szkolenia\n\n"
+    "Gwarantujemy doskonałą obsługę i satysfakcję z powierzonych nam zadań!";
 
 class AboutUsPageWidget extends StatefulWidget {
-  static const String Id = "AboutUsPageWidget";
-  const AboutUsPageWidget({Key aKey}) : super(key: aKey);
   @override
   AboutUsPage createState() => new AboutUsPage();
 }
 
-void fAddAboutUsToList(aAboutUsId, aAboutUsInfo) {
-  print("FirebaseData:fAddAboutUsToList");
-  gAboutUsList.add(aAboutUsInfo);
-}
-
 class AboutUsPage extends State<AboutUsPageWidget> {
-  StreamSubscription<bool> mStreamSub;
-
-  @override
-  void initState() {
-    print("AboutUs:initState");
-    super.initState();
-    mStreamSub = fGetStream(gAboutUsDatabaseKey).listen((aContactInfo) {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    print("AboutUs:dispose");
-    super.dispose();
-    mStreamSub.cancel();
-  }
+  static const String Id = "AboutUsPage";
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) => new ListTile(
-                title: new Text(
-              gAboutUsList[index],
-              textAlign: TextAlign.center,
-              style: new TextStyle(
-                  color: Colors.blue,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
-            )),
-        itemCount: gAboutUsList.length,
-      ),
-    );
+        backgroundColor: Colors.black,
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: new Center(
+              child: Column(
+                children: <Widget>[
+                  new Padding(padding: EdgeInsets.all(10)),
+                  new Text("O 4Business\n",
+                      style: new TextStyle(
+                          color: gGoldColor,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold)),
+                  new Text(gAbout4Business,
+                      style: new TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold)),
+                  new Text(gAbout4BusinessTeam,
+                      style: new TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold)),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

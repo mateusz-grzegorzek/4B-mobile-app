@@ -8,7 +8,6 @@ import '../pages/map/map_page.dart';
 import '../pages/schedule/day_events_info.dart';
 import '../pages/news/news_page.dart';
 import '../pages/schedule/schedule_page.dart';
-import '../pages/about_us/about_us_page.dart';
 import '../pages/trips/trips_page.dart';
 import '../pages/about_city/about_city_page.dart';
 
@@ -17,7 +16,6 @@ const String gScheduleDatabaseKey = "schedule";
 const String gPlacesDatabaseKey = "places";
 const String gContactsDatabaseKey = "contacts";
 const String gLinksDatabaseKey = "links";
-const String gAboutUsDatabaseKey = "about_us";
 const String gTeamDatabaseKey = "team";
 const String gTripsDatabaseKey = "trips";
 const String gAboutCountryDatabaseKey = "about_country";
@@ -64,8 +62,6 @@ void fInitFirebaseData() {
       new FirebaseData(gPlacesDatabaseKey, fAddPlaceToList, gPlacesList);
   gFirebaseDataMap[gContactsDatabaseKey] =
       new FirebaseData(gContactsDatabaseKey, fAddContactToList, gContactsList);
-  gFirebaseDataMap[gAboutUsDatabaseKey] =
-      new FirebaseData(gAboutUsDatabaseKey, fAddAboutUsToList, gAboutUsList);
   gFirebaseDataMap[gTripsDatabaseKey] =
       new FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
   gFirebaseDataMap[gAboutCountryDatabaseKey] = new FirebaseData(

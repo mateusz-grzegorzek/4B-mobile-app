@@ -37,32 +37,12 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
 }
 
 class TripsPageWidget extends StatefulWidget {
-  static const String Id = "TripsPageWidget";
-  const TripsPageWidget({Key aKey}) : super(key: aKey);
   @override
   TripsPage createState() => new TripsPage();
 }
 
 class TripsPage extends State<TripsPageWidget> {
-  StreamSubscription<bool> mTripsStreamSubscription;
-
-  @override
-  void initState() {
-    print("TripsPage:initState");
-    super.initState();
-    mTripsStreamSubscription =
-        fGetStream(gTripsDatabaseKey).listen((aTeamInfo) {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    print("TripsPage:dispose");
-    super.dispose();
-    mTripsStreamSubscription.cancel();
-    fCloseStream(gTripsDatabaseKey);
-  }
+  static const String Id = "TripsPageWidget";
 
   @override
   Widget build(BuildContext context) {

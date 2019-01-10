@@ -13,3 +13,4 @@ build/
 test/
 
 *.lock
+android/.gradle/*

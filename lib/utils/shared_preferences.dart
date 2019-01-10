@@ -4,7 +4,6 @@ import '../pages/contact/contact_page.dart';
 import '../pages/map/map_page.dart';
 import '../pages/news/news_page.dart';
 import '../pages/schedule/schedule_page.dart';
-import '../pages/about_us/about_us_page.dart';
 import '../pages/trips/trips_page.dart';
 
 SharedPreferences gPrefs;
@@ -15,6 +14,5 @@ Future fInitSharedPreferences() async {
   fGetPlacesFromMemory();
   fGetScheduleFromMemory();
   fGetContactsFromMemory();
-  fGetAboutUsFromMemory();
   fGetTripsFromMemory();
 }

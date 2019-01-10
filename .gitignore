@@ -13,3 +13,6 @@ build/
 test/
 
 *.lock
+
+ios/Runner.xcworkspace/xcuserdata/
+ios/Pods/

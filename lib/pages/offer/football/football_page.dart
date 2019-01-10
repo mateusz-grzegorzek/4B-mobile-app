@@ -1,6 +1,7 @@
+import 'package:business_mobile_app/utils/connectivity.dart';
 import 'package:flutter/material.dart';
 
-String gAboutFootball_1 =
+String gAboutFootball1 =
     "Piłka nożna jest niewątpliwie najpopularniejszym sportem na świecie, "
     "więc nasza oferta dotyczącą tej dyscypliny jest niezwykle szeroka. "
     "Oferujemy Państwu obecność na najlepszych światowych stadionach – "
@@ -9,7 +10,7 @@ String gAboutFootball_1 =
     "niesamowitych wrażeń, niepowtarzalną atmosferę i przeżycia, które pozostaną "
     "w pamięci przez długie lata!\n";
 
-String gAboutFootball_2 =
+String gAboutFootball2 =
     "Organizujemy również wyjazdy na wydarzenia związane z innymi "
     "dyscyplinami sportowymi, jak: \n"
     "- Formuła 1\n"
@@ -17,10 +18,10 @@ String gAboutFootball_2 =
     "- NBA / HNL / NFL\n"
     "- Boks\n"
     "- Rugby\n"
-    "- Siatkówka\n";
+    "- Siatkówka\n"
+    "Więcej informacji na stronie internetowej: ";
 
-String gAboutFootball_3 =
-    "Więcej informacji na stronie internetowej: odnośnik pod hasłem strona internetowa "
+String gAboutFootballUrlLink = ""
     "http://www.4b.com.pl/uslugi/wydarzenia-sportowe/#tab1";
 
 class FootballPageWidget extends StatefulWidget {
@@ -45,21 +46,27 @@ class FootballPage extends State<FootballPageWidget> {
               child: Column(
                 children: <Widget>[
                   new Padding(padding: EdgeInsets.all(10)),
-                  new Text(gAboutFootball_1,
+                  new Text(gAboutFootball1,
                       style: new TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold)),
-                  new Text(gAboutFootball_2,
+                  new Text(gAboutFootball2,
                       style: new TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold)),
-                  new Text(gAboutFootball_3,
-                      style: new TextStyle(
+                  new InkWell(
+                      child: new Text(
+                        'Wydarzenia sportowe',
+                        style: new TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
-                          fontWeight: FontWeight.bold)),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                      onTap: () => fLaunchURL(gAboutFootballUrlLink)),
                 ],
               ),
             ),

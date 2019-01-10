@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
-import '../pages/about_country/about_country_page.dart';
 import '../pages/contact/contact_page.dart';
 import '../pages/map/map_page.dart';
 import '../pages/schedule/day_events_info.dart';
@@ -18,7 +17,6 @@ const String gContactsDatabaseKey = "contacts";
 const String gLinksDatabaseKey = "links";
 const String gTeamDatabaseKey = "team";
 const String gTripsDatabaseKey = "trips";
-const String gAboutCountryDatabaseKey = "about_country";
 const String gVisitedPlacesDatabaseKey = "about_city";
 
 class FirebaseData {
@@ -64,8 +62,6 @@ void fInitFirebaseData() {
       new FirebaseData(gContactsDatabaseKey, fAddContactToList, gContactsList);
   gFirebaseDataMap[gTripsDatabaseKey] =
       new FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
-  gFirebaseDataMap[gAboutCountryDatabaseKey] = new FirebaseData(
-      gAboutCountryDatabaseKey, fAddAboutCountryToList, gAboutCountryList);
   gFirebaseDataMap[gVisitedPlacesDatabaseKey] = new FirebaseData(
       gVisitedPlacesDatabaseKey, fAddVisitedPlaceToList, gVisitedPlacesList);
 }

@@ -134,10 +134,29 @@ class HomePage extends State<HomePageWidget> {
       }
     });
 
+    PreferredSizeWidget appBar;
+    if (mTitle == mPageWidgetsMapAll[WelcomePage.Id].mTitle) {
+      appBar = new PreferredSize(
+          preferredSize: Size.fromHeight(150.0), // here the desired height
+          child: Container(
+            decoration: new BoxDecoration(
+                image: new DecorationImage(
+              image: new AssetImage("assets/images/app_bar_image.png"),
+              fit: BoxFit.cover,
+            )),
+            child: AppBar(
+              title: new Text(mTitle, style: new TextStyle(color: gGoldColor)),
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+            ),
+          ));
+    } else {
+      appBar = new AppBar(
+          title: new Text(mTitle, style: new TextStyle(color: gGoldColor)));
+    }
+
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text(mTitle),
-        ),
+        appBar: appBar,
         drawer: new Drawer(
           child: new ListView(
               padding: new EdgeInsets.fromLTRB(15.0, 50.0, 50.0, 0.0),

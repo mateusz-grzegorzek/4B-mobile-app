@@ -10,7 +10,7 @@ import '../news/news_page.dart';
 import '../about_us/about_us_page.dart';
 import '../login/login_page.dart';
 import '../about_country/about_country_page.dart';
-import '../about_city/about_city_page.dart';
+import '../visited_places/visited_places_page.dart';
 
 HomePage gHomePage = new HomePage();
 Color gGoldColor = Color(0xffffd700);

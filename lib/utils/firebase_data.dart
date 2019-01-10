@@ -8,7 +8,6 @@ import '../pages/schedule/day_events_info.dart';
 import '../pages/news/news_page.dart';
 import '../pages/schedule/schedule_page.dart';
 import '../pages/trips/trips_page.dart';
-import '../pages/about_city/about_city_page.dart';
 
 const String gNewsDatabaseKey = "news";
 const String gScheduleDatabaseKey = "schedule";
@@ -17,7 +16,6 @@ const String gContactsDatabaseKey = "contacts";
 const String gLinksDatabaseKey = "links";
 const String gTeamDatabaseKey = "team";
 const String gTripsDatabaseKey = "trips";
-const String gVisitedPlacesDatabaseKey = "about_city";
 
 class FirebaseData {
   StreamController<bool> mStreamController;
@@ -62,8 +60,6 @@ void fInitFirebaseData() {
       new FirebaseData(gContactsDatabaseKey, fAddContactToList, gContactsList);
   gFirebaseDataMap[gTripsDatabaseKey] =
       new FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
-  gFirebaseDataMap[gVisitedPlacesDatabaseKey] = new FirebaseData(
-      gVisitedPlacesDatabaseKey, fAddVisitedPlaceToList, gVisitedPlacesList);
 }
 
 Stream<bool> fGetStream(String key) {

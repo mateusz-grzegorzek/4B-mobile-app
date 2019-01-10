@@ -5,7 +5,7 @@ part 'trip_info.g.dart';
 @JsonSerializable()
 class TripInfo extends Object with _$TripInfoSerializerMixin {
   TripInfo(this.mId, this.mTitle, this.mBody, this.mUserName, this.mPassword,
-      this.mAboutCountry);
+      this.mAboutCountry, this.mVisitedPlaces);
 
   int mId;
   String mTitle;
@@ -13,6 +13,7 @@ class TripInfo extends Object with _$TripInfoSerializerMixin {
   String mUserName;
   String mPassword;
   String mAboutCountry;
+  List<String> mVisitedPlaces;
 
   TripInfo.fromTripInfo(TripInfo aNewsInfo) {
     this.mId = aNewsInfo.mId;
@@ -21,11 +22,12 @@ class TripInfo extends Object with _$TripInfoSerializerMixin {
     this.mUserName = aNewsInfo.mUserName;
     this.mPassword = aNewsInfo.mPassword;
     this.mAboutCountry = aNewsInfo.mAboutCountry;
+    this.mVisitedPlaces = aNewsInfo.mVisitedPlaces;
   }
 
   void fLog() {
     print(
-        "TripInfo:mId=$mId,mTitle=$mTitle,mBody=$mBody,mUserName=$mUserName,mPassword=$mPassword,mAboutCountry=$mAboutCountry");
+        "TripInfo:mId=$mId,mTitle=$mTitle,mBody=$mBody,mUserName=$mUserName,mPassword=$mPassword,mAboutCountry=$mAboutCountry,mVisitedPlaces=$mVisitedPlaces");
   }
 
   factory TripInfo.fromJson(Map<String, dynamic> json) =>

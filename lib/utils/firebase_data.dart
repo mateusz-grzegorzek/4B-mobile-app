@@ -19,7 +19,7 @@ const String gLinksDatabaseKey = "links";
 const String gTeamDatabaseKey = "team";
 const String gTripsDatabaseKey = "trips";
 const String gAboutCountryDatabaseKey = "about_country";
-const String gAboutCityDatabaseKey = "about_city";
+const String gVisitedPlacesDatabaseKey = "about_city";
 
 class FirebaseData {
   StreamController<bool> mStreamController;
@@ -66,8 +66,8 @@ void fInitFirebaseData() {
       new FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
   gFirebaseDataMap[gAboutCountryDatabaseKey] = new FirebaseData(
       gAboutCountryDatabaseKey, fAddAboutCountryToList, gAboutCountryList);
-  gFirebaseDataMap[gAboutCityDatabaseKey] = new FirebaseData(
-      gAboutCityDatabaseKey, fAddAboutCityToList, gAboutCityList);
+  gFirebaseDataMap[gVisitedPlacesDatabaseKey] = new FirebaseData(
+      gVisitedPlacesDatabaseKey, fAddVisitedPlaceToList, gVisitedPlacesList);
 }
 
 Stream<bool> fGetStream(String key) {

@@ -21,14 +21,14 @@ void fAddAboutCountryToList(aAboutCountryId, aAboutCountryInfo) {
   gAboutCountryList.add(aAboutCountryInfo);
 }
 
-class AboutCountryPageWidget extends StatefulWidget {
-  static const String Id = "AboutCountryPageWidget";
-  const AboutCountryPageWidget({Key aKey}) : super(key: aKey);
+class AboutCountryWidget extends StatefulWidget {
   @override
   AboutCountryPage createState() => new AboutCountryPage();
 }
 
-class AboutCountryPage extends State<AboutCountryPageWidget> {
+class AboutCountryPage extends State<AboutCountryWidget> {
+  static const String Id = "AboutCountryPage";
+
   StreamSubscription<bool> mStreamSub;
 
   @override

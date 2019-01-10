@@ -4,48 +4,47 @@ import 'package:flutter/material.dart';
 import '../../utils/firebase_data.dart';
 import '../../utils/shared_preferences.dart';
 
-final List<String> gAboutCityList = new List<String>();
+final List<String> gVisitedPlacesList = new List<String>();
 
-void fGetAboutCityFromMemory() {
-  String aboutCityJson = gPrefs.getString(gAboutCityDatabaseKey);
-  if (aboutCityJson != null) {
-    dynamic tmp = json.decode(aboutCityJson);
+void fGetVisitedPlacesFromMemory() {
+  String visitedPlacesJson = gPrefs.getString(gVisitedPlacesDatabaseKey);
+  if (visitedPlacesJson != null) {
+    dynamic tmp = json.decode(visitedPlacesJson);
     for (var name in tmp) {
-      gAboutCityList.add(name);
+      gVisitedPlacesList.add(name);
     }
   }
 }
 
-void fAddAboutCityToList(aAboutCityId, aAboutCityInfo) {
-  print("FirebaseData:fAddAboutCityToList");
-  gAboutCityList.add(aAboutCityInfo);
+void fAddVisitedPlaceToList(aVisitedPlaceId, aVisitedPlaceInfo) {
+  print("FirebaseData:fAddVisitedPlaceToList");
+  gVisitedPlacesList.add(aVisitedPlaceInfo);
 }
 
-class AboutCityPageWidget extends StatefulWidget {
-  static const String Id = "AboutCityPageWidget";
-  const AboutCityPageWidget({Key aKey}) : super(key: aKey);
+class VisitedPlacesWidget extends StatefulWidget {
   @override
-  AboutCityPage createState() => new AboutCityPage();
+  VisitedPlacesPage createState() => new VisitedPlacesPage();
 }
 
-class AboutCityPage extends State<AboutCityPageWidget> {
+class VisitedPlacesPage extends State<VisitedPlacesWidget> {
+  static const String Id = "VisitedPlacesPage";
   StreamSubscription<bool> mStreamSub;
 
   @override
   void initState() {
-    print("AboutCity:initState");
+    print("VisitedPlacesPage:initState");
     super.initState();
-    mStreamSub = fGetStream(gAboutCityDatabaseKey).listen((aContactInfo) {
+    mStreamSub = fGetStream(gVisitedPlacesDatabaseKey).listen((aArg) {
       setState(() {});
     });
   }
 
   @override
   void dispose() {
-    print("AboutCity:dispose");
+    print("VisitedPlacesPage:dispose");
     super.dispose();
     mStreamSub.cancel();
-    fCloseStream(gAboutCityDatabaseKey);
+    fCloseStream(gVisitedPlacesDatabaseKey);
   }
 
   @override
@@ -54,14 +53,14 @@ class AboutCityPage extends State<AboutCityPageWidget> {
       body: ListView.builder(
         itemBuilder: (BuildContext context, int index) => new ListTile(
                 title: new Text(
-              gAboutCityList[index],
+              gVisitedPlacesList[index],
               textAlign: TextAlign.center,
               style: new TextStyle(
                   color: Colors.blue,
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold),
             )),
-        itemCount: gAboutCityList.length,
+        itemCount: gVisitedPlacesList.length,
       ),
     );
   }

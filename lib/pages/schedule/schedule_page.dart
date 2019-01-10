@@ -102,15 +102,13 @@ void fAddEventToList(aEventId, aEventInfo) {
   }
 }
 
-class SchedulePageWidget extends StatefulWidget {
-  static const String Id = "SchedulePageWidget";
-  const SchedulePageWidget({Key aKey}) : super(key: aKey);
+class ScheduleWidget extends StatefulWidget {
   @override
   SchedulePage createState() => new SchedulePage();
 }
 
-class SchedulePage extends State<SchedulePageWidget>
-    with TickerProviderStateMixin {
+class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
+  static const String Id = "SchedulePage";
   TabController mTabController;
   StreamSubscription<bool> mStreamSub;
 

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import '../trips/trip_info.dart';
@@ -36,13 +35,13 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
   return false;
 }
 
-class TripsPageWidget extends StatefulWidget {
+class TripsWidget extends StatefulWidget {
   @override
   TripsPage createState() => new TripsPage();
 }
 
-class TripsPage extends State<TripsPageWidget> {
-  static const String Id = "TripsPageWidget";
+class TripsPage extends State<TripsWidget> {
+  static const String Id = "TripsPage";
 
   @override
   Widget build(BuildContext context) {

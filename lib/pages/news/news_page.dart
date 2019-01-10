@@ -26,15 +26,15 @@ void fAddNewsToList(aNewsId, aNewsInfo) {
   gNewsList.add(newsInfo);
 }
 
-class NewsPageWidget extends StatefulWidget {
-  static const String Id = "NewsPageWidget";
-  static const String ImpId = "ImpNewsPageWidget"; // Temporary
-  const NewsPageWidget({Key aKey}) : super(key: aKey);
+class NewsWidget extends StatefulWidget {
   @override
   NewsPage createState() => new NewsPage();
 }
 
-class NewsPage extends State<NewsPageWidget> {
+class NewsPage extends State<NewsWidget> {
+  static const String Id = "NewsPageWidget";
+  static const String ImpId = "ImpNewsPageWidget"; // Temporary
+
   StreamSubscription<bool> mNewsStreamSubscription;
 
   @override

@@ -3,12 +3,12 @@ import '../home/home_page.dart';
 import '../../utils/shared_preferences.dart';
 import '../trips/trips_page.dart';
 
-class LoginPageWidget extends StatefulWidget {
+class LoginWidget extends StatefulWidget {
   @override
   LoginPage createState() => new LoginPage();
 }
 
-class LoginPage extends State<LoginPageWidget> {
+class LoginPage extends State<LoginWidget> {
   static const String Id = "LoginPage";
   TextEditingController mUserNameTextEditingController =
       TextEditingController();

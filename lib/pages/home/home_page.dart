@@ -57,33 +57,34 @@ class HomePage extends State<HomePageWidget> {
 
     mPageWidgetsMapAll[WelcomePage.Id] = new MenuItem(
         WelcomePage.Id, "4Business Team", new WelcomePageWidget(), false);
-    mPageWidgetsMapAll[AboutUsPage.Id] = new MenuItem(
-        AboutUsPage.Id, "O 4Business", new AboutUsPageWidget(), false);
+    mPageWidgetsMapAll[AboutUsPage.Id] =
+        new MenuItem(AboutUsPage.Id, "O 4Business", new AboutUsWidget(), false);
     mPageWidgetsMapAll[OfferPage.Id] =
-        new MenuItem(OfferPage.Id, "Oferta", new OfferPageWidget(), false);
-    mPageWidgetsMapAll[ContactPage.Id] =
-        new MenuItem(ContactPage.Id, "Kontakt", new ContactPageWidget(), false);
-    mPageWidgetsMapAll[LoginPage.Id] =
-        new MenuItem(LoginPage.Id, "Zaloguj się", new LoginPageWidget(), false);
+        new MenuItem(OfferPage.Id, "Oferta", new OfferWidget(), false);
 
-    mPageWidgetsMapAll[SchedulePageWidget.Id] = new MenuItem(
-        SchedulePageWidget.Id,
-        "Program wyjazdu",
-        new SchedulePageWidget(),
+    mPageWidgetsMapAll[TripsPage.Id] = new MenuItem(TripsPage.Id,
+        "Drogi uczestniku, witamy w aplikacji!", new TripsWidget(), true);
+    mPageWidgetsMapAll[AboutCountryPage.Id] = new MenuItem(
+        AboutCountryPage.Id, "O kraju", new AboutCountryWidget(), true);
+    mPageWidgetsMapAll[VisitedPlacesPage.Id] = new MenuItem(
+        VisitedPlacesPage.Id,
+        "Odwiedzane miejsca",
+        new VisitedPlacesWidget(),
         true);
-    mPageWidgetsMapAll[AboutCountryPageWidget.Id] = new MenuItem(
-        AboutCountryPageWidget.Id,
-        "O kraju",
-        new AboutCountryPageWidget(),
-        true);
-    mPageWidgetsMapAll[AboutCityPageWidget.Id] = new MenuItem(
-        AboutCityPageWidget.Id, "O mieście", new AboutCityPageWidget(), true);
-    mPageWidgetsMapAll[NewsPageWidget.ImpId] = new MenuItem(
-        NewsPageWidget.ImpId, "Ważne informacje", new NewsPageWidget(), true);
-    mPageWidgetsMapAll[NewsPageWidget.Id] = new MenuItem(
-        NewsPageWidget.Id, "Aktualności", new NewsPageWidget(), true);
-    mPageWidgetsMapAll[MapPageWidget.Id] =
-        new MenuItem(MapPageWidget.Id, "Mapa", new MapPageWidget(), true);
+    mPageWidgetsMapAll[SchedulePage.Id] = new MenuItem(
+        SchedulePage.Id, "Agenda wyjazdu", new ScheduleWidget(), true);
+    mPageWidgetsMapAll[NewsPage.ImpId] = new MenuItem(NewsPage.ImpId,
+        "Ważne informacje przed wyjazdem", new NewsWidget(), true);
+    mPageWidgetsMapAll[NewsPage.Id] =
+        new MenuItem(NewsPage.Id, "Aktualności", new NewsWidget(), true);
+    mPageWidgetsMapAll[MapPage.Id] =
+        new MenuItem(MapPage.Id, "Mapa", new MapWidget(), true);
+// ToDo: Implement better way to order MenuItems
+    mPageWidgetsMapAll[ContactPage.Id] =
+        new MenuItem(ContactPage.Id, "Kontakt", new ContactWidget(), true);
+    mPageWidgetsMapAll[LoginPage.Id] =
+        new MenuItem(LoginPage.Id, "Zaloguj się", new LoginWidget(), false);
+
     fSetPage(WelcomePage.Id);
   }
 
@@ -123,9 +124,12 @@ class HomePage extends State<HomePageWidget> {
   Widget build(BuildContext aContext) {
     print("HomePage:build:mIsLogged=" + mIsLogged.toString());
     mPageWidgetsMapVisible.clear();
+    // ToDo: Refactor this
     mPageWidgetsMapAll.forEach((id, menuItem) {
-      if (mIsLogged == menuItem.mVisibleWhenLogged &&
-          mPageWidgetsMapAll[id].mId != WelcomePage.Id) {
+      if (mPageWidgetsMapAll[id].mId == ContactPage.Id ||
+          (mIsLogged == menuItem.mVisibleWhenLogged &&
+              mPageWidgetsMapAll[id].mId != WelcomePage.Id &&
+              mPageWidgetsMapAll[id].mId != TripsPage.Id)) {
         mPageWidgetsMapVisible[id] = menuItem;
       }
     });

@@ -19,12 +19,12 @@ String gAbout4BusinessTeam =
     "- szkolenia\n\n"
     "Gwarantujemy doskonałą obsługę i satysfakcję z powierzonych nam zadań!";
 
-class AboutUsPageWidget extends StatefulWidget {
+class AboutUsWidget extends StatefulWidget {
   @override
   AboutUsPage createState() => new AboutUsPage();
 }
 
-class AboutUsPage extends State<AboutUsPageWidget> {
+class AboutUsPage extends State<AboutUsWidget> {
   static const String Id = "AboutUsPage";
 
   @override

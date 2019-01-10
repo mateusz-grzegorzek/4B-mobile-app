@@ -38,14 +38,13 @@ MapPlace fGetPlaceById(int aId) {
   return mapPlace;
 }
 
-class MapPageWidget extends StatefulWidget {
-  static const String Id = "MapPageWidget";
-  const MapPageWidget({Key aKey}) : super(key: aKey);
+class MapWidget extends StatefulWidget {
   @override
   MapPage createState() => new MapPage();
 }
 
-class MapPage extends State<MapPageWidget> {
+class MapPage extends State<MapWidget> {
+  static const String Id = "MapPage";
   StreamSubscription<bool> mStreamSub;
 
   static void fNavigateTo(double aCoordX, double aCoordY) async {

@@ -30,12 +30,12 @@ void fAddContactToList(aContactId, aContactInfo) {
   gContactsList.add(contactInfo);
 }
 
-class ContactPageWidget extends StatefulWidget {
+class ContactWidget extends StatefulWidget {
   @override
   ContactPage createState() => new ContactPage();
 }
 
-class ContactPage extends State<ContactPageWidget> {
+class ContactPage extends State<ContactWidget> {
   static const String Id = "ContactPage";
 
   StreamSubscription<bool> mStreamSub;

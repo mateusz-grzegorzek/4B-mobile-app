@@ -13,7 +13,8 @@ TripInfo _$TripInfoFromJson(Map<String, dynamic> json) => new TripInfo(
     json['mUserName'] as String,
     json['mPassword'] as String,
     json['mAboutCountry'] as String,
-    json['mVisitedPlaces'] as List<String>);
+    json['mVisitedPlaces'] as List<String>,
+    json['mImportantInfo'] as List<String>);
 
 abstract class _$TripInfoSerializerMixin {
   int get mId;
@@ -23,6 +24,8 @@ abstract class _$TripInfoSerializerMixin {
   String get mPassword;
   String get mAboutCountry;
   List<String> get mVisitedPlaces;
+  List<String> get mImportantInfo;
+
   Map<String, dynamic> toJson() => <String, dynamic>{
         'mId': mId,
         'mTitle': mTitle,
@@ -30,6 +33,7 @@ abstract class _$TripInfoSerializerMixin {
         'mUserName': mUserName,
         'mPassword': mPassword,
         'mAboutCountry': mAboutCountry,
-        'mVisitedPlaces': mVisitedPlaces
+        'mVisitedPlaces': mVisitedPlaces,
+        'mImportantInfo': mImportantInfo
       };
 }

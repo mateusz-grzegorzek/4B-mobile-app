@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:flutter/material.dart';
 import '../offer/offer_page.dart';
 import '../welcome/welcome_page.dart';
@@ -11,6 +10,8 @@ import '../about_us/about_us_page.dart';
 import '../login/login_page.dart';
 import '../about_country/about_country_page.dart';
 import '../visited_places/visited_places_page.dart';
+import '../important_info/important_info_page.dart';
+import '../trips/trips_page.dart';
 
 HomePage gHomePage = new HomePage();
 Color gGoldColor = Color(0xffffd700);
@@ -73,8 +74,11 @@ class HomePage extends State<HomePageWidget> {
         true);
     mPageWidgetsMapAll[SchedulePage.Id] = new MenuItem(
         SchedulePage.Id, "Agenda wyjazdu", new ScheduleWidget(), true);
-    mPageWidgetsMapAll[NewsPage.ImpId] = new MenuItem(NewsPage.ImpId,
-        "Ważne informacje przed wyjazdem", new NewsWidget(), true);
+    mPageWidgetsMapAll[ImporatantInfoPage.Id] = new MenuItem(
+        ImporatantInfoPage.Id,
+        "Ważne informacje przed wyjazdem",
+        new ImporatantInfoWidget(),
+        true);
     mPageWidgetsMapAll[NewsPage.Id] =
         new MenuItem(NewsPage.Id, "Aktualności", new NewsWidget(), true);
     mPageWidgetsMapAll[MapPage.Id] =

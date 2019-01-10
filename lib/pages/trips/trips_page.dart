@@ -8,23 +8,35 @@ import '../../utils/shared_preferences.dart';
 final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;
 List<String> gVisitedPlaces;
+List<String> gImportantInfo;
 
 void fGetTripsFromMemory() {
-  /*
   String tripsJson = gPrefs.getString(gTripsDatabaseKey);
   if (tripsJson != null) {
-    gTripsList.addAll(json.decode(tripsJson).map<TripInfo>((tripInfo) {
+    gTripsList.addAll(json.decode(tripsJson).map<TripInfo>((aTripInfo) {
+      List<String> visitedPlaces = new List<String>();
+      if (aTripInfo['mVisitedPlaces'] != null) {
+        aTripInfo['mVisitedPlaces'].forEach((aVisitedPlace) {
+          visitedPlaces.add(aVisitedPlace);
+        });
+      }
+      List<String> importantInfo = new List<String>();
+      if (aTripInfo['mVisitedPlaces'] != null) {
+        aTripInfo['mImportantInfo'].forEach((aImportantInfo) {
+          importantInfo.add(aImportantInfo);
+        });
+      }
       return new TripInfo(
-          tripInfo['mId'],
-          tripInfo['mTitle'],
-          tripInfo['mBody'],
-          tripInfo['mUserName'],
-          tripInfo['mPassword'],
-          tripInfo['mAboutCountry'],
-          tripInfo['mVisitedPlaces']);
+          aTripInfo['mId'],
+          aTripInfo['mTitle'],
+          aTripInfo['mBody'],
+          aTripInfo['mUserName'],
+          aTripInfo['mPassword'],
+          aTripInfo['mAboutCountry'],
+          visitedPlaces,
+          importantInfo);
     }).toList());
   }
-  */
 }
 
 void fAddTripToList(aTripId, aTripInfo) {
@@ -34,6 +46,10 @@ void fAddTripToList(aTripId, aTripInfo) {
   aTripInfo["visited_places"].forEach((aCountry, aPlaceText) {
     visitedPlaces.add(aPlaceText);
   });
+  List<String> importantInfo = new List<String>();
+  aTripInfo["important_info"].forEach((aCountry, aInfoText) {
+    importantInfo.add(aInfoText);
+  });
   TripInfo tripInfo = new TripInfo(
       tripId,
       aTripInfo["title"],
@@ -41,7 +57,8 @@ void fAddTripToList(aTripId, aTripInfo) {
       aTripInfo["user_name"],
       aTripInfo["password"],
       aTripInfo["about_country"],
-      visitedPlaces);
+      visitedPlaces,
+      importantInfo);
   tripInfo.fLog();
   gTripsList.add(tripInfo);
 }
@@ -51,6 +68,7 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
     if (tripInfo.mUserName == aUserName && tripInfo.mPassword == aPassword) {
       gAboutCountry = tripInfo.mAboutCountry; // ToDo: Do it better
       gVisitedPlaces = tripInfo.mVisitedPlaces;
+      gImportantInfo = tripInfo.mImportantInfo;
       return true;
     }
   }

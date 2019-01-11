@@ -17,7 +17,7 @@ class OfferPage extends State<OfferWidget> {
 
   List<Event> mEventImagePathList = [
     new Event(
-        new FootballPageWidget(), "assets/images/wydarzenia_sportowe.png"),
+        new FootballPageWidget(), "assets/images/sport_events.png"),
     new Event(new FootballPageWidget(), "assets/images/incentive.png")
   ];
 

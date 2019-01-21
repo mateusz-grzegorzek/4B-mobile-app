@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../utils/firebase_data.dart';
 import '../../utils/shared_preferences.dart';
-import 'news_info.dart';
+import '../../utils/tile_info.dart';
 
-final List<NewsInfo> gNewsList = new List<NewsInfo>();
+final List<TileInfo> gNewsList = new List<TileInfo>();
 
 void fGetNewsFromMemory() {
   String newsJson = gPrefs.getString(gNewsDatabaseKey);
   if (newsJson != null) {
-    gNewsList.addAll(json.decode(newsJson).map<NewsInfo>((newsInfo) {
-      return new NewsInfo(
-          newsInfo['mId'], newsInfo['mTitle'], newsInfo['mBody']);
+    gNewsList.addAll(json.decode(newsJson).map<TileInfo>((newsInfo) {
+      return new TileInfo(
+          newsInfo['mId'], "news_info", newsInfo['mTitle'], newsInfo['mBody']);
     }).toList());
   }
 }
@@ -20,8 +20,8 @@ void fGetNewsFromMemory() {
 void fAddNewsToList(aNewsId, aNewsInfo) {
   int newsId = fGetDatabaseId(aNewsId, 3);
   print("FirebaseData:fAddNewsToList");
-  NewsInfo newsInfo =
-      new NewsInfo(newsId, aNewsInfo["title"], aNewsInfo["body"]);
+  TileInfo newsInfo =
+      new TileInfo(newsId, "news_info", aNewsInfo["title"], aNewsInfo["body"]);
   newsInfo.fLog();
   gNewsList.add(newsInfo);
 }

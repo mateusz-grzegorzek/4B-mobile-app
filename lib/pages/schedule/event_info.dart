@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'event_info.g.dart';
 
 @JsonSerializable()
-class EventInfo extends Object with _$EventInfoSerializerMixin {
+class EventInfo extends Object {
   EventInfo(this.mId, this.mTitle, this.mBody, this.mPlaceId, this.mStartTime,
       this.mEndTime);
 

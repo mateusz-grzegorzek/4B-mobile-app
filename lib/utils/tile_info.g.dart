@@ -1,18 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'news_info.dart';
+part of 'tile_info.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-NewsInfo _$NewsInfoFromJson(Map<String, dynamic> json) {
-  return NewsInfo(
-      json['mId'] as int, json['mTitle'] as String, json['mBody'] as String);
+TileInfo _$TileInfoFromJson(Map<String, dynamic> json) {
+  return TileInfo(json['mId'] as int, json['mFamily'] as String,
+      json['mTitle'] as String, json['mBody'] as String);
 }
 
-Map<String, dynamic> _$NewsInfoToJson(NewsInfo instance) => <String, dynamic>{
+Map<String, dynamic> _$TileInfoToJson(TileInfo instance) => <String, dynamic>{
       'mId': instance.mId,
+      'mFamily': instance.mFamily,
       'mTitle': instance.mTitle,
       'mBody': instance.mBody
     };

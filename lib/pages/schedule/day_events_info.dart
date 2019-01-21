@@ -6,7 +6,7 @@ import 'schedule_page.dart';
 part 'day_events_info.g.dart';
 
 @JsonSerializable()
-class DayEventsInfo extends Object with _$DayEventsInfoSerializerMixin {
+class DayEventsInfo extends Object {
   DayEventsInfo(this.mDateTime, this.mTitle, this.mEventInfoList);
 
   DateTime mDateTime;

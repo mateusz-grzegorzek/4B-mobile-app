@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'news_info.g.dart';
 
 @JsonSerializable()
-class NewsInfo extends Object with _$NewsInfoSerializerMixin {
+class NewsInfo extends Object {
   NewsInfo(this.mId, this.mTitle, this.mBody);
 
   int mId;

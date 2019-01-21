@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'map_place.g.dart';
 
 @JsonSerializable()
-class MapPlace extends Object with _$MapPlaceSerializerMixin {
+class MapPlace extends Object {
   MapPlace(this.mId, this.mAddress, this.mName, this.mCoordX, this.mCoordY);
 
   int mId;

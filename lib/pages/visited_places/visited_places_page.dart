@@ -13,17 +13,21 @@ class VisitedPlacesPage extends State<VisitedPlacesWidget> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) => new ListTile(
-                title: new Text(
-              gVisitedPlaces[index],
-              textAlign: TextAlign.center,
-              style: new TextStyle(
+        itemCount: gVisitedPlaces.length,
+        padding: const EdgeInsets.all(6.0),
+        itemBuilder: (context, index) {
+          return new Card(
+            child: new ListTile(
+              title: new Text(
+                gVisitedPlaces[index].mTitle,
+                style: new TextStyle(
                   color: Colors.blue,
                   fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
-            )),
-        itemCount: gVisitedPlaces.length,
-      ),
+                  fontWeight: FontWeight.bold)),
+              subtitle: new Text(gVisitedPlaces[index].mBody)
+            ));
+        }
+      )
     );
   }
 }

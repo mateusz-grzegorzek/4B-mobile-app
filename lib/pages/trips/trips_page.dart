@@ -4,19 +4,21 @@ import '../trips/trip_info.dart';
 import 'package:flutter/material.dart';
 import '../../utils/firebase_data.dart';
 import '../../utils/shared_preferences.dart';
+import '../../utils/tile_info.dart';
 
 final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;
-List<String> gVisitedPlaces;
+List<TileInfo> gVisitedPlaces;
 List<String> gImportantInfo;
 
 void fGetTripsFromMemory() {
   String tripsJson = gPrefs.getString(gTripsDatabaseKey);
   if (tripsJson != null) {
     gTripsList.addAll(json.decode(tripsJson).map<TripInfo>((aTripInfo) {
-      List<String> visitedPlaces = new List<String>();
+      List<TileInfo> visitedPlaces = new List<TileInfo>();
       if (aTripInfo['mVisitedPlaces'] != null) {
         aTripInfo['mVisitedPlaces'].forEach((aVisitedPlace) {
+          print(aVisitedPlace.toString());
           visitedPlaces.add(aVisitedPlace);
         });
       }
@@ -42,9 +44,10 @@ void fGetTripsFromMemory() {
 void fAddTripToList(aTripId, aTripInfo) {
   int tripId = fGetDatabaseId(aTripId, 2);
   print("FirebaseData:fAddTripToList");
-  List<String> visitedPlaces = new List<String>();
+  List<TileInfo> visitedPlaces = new List<TileInfo>();
   aTripInfo["visited_places"].forEach((aCountry, aPlaceText) {
-    visitedPlaces.add(aPlaceText);
+    visitedPlaces.add(new TileInfo(0, "visited_places", aPlaceText["title"],
+        aPlaceText["body"])); // #TODO Id to fix
   });
   List<String> importantInfo = new List<String>();
   aTripInfo["important_info"].forEach((aCountry, aInfoText) {

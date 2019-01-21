@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'contact_info.g.dart';
 
 @JsonSerializable()
-class ContactInfo extends Object with _$ContactInfoSerializerMixin {
+class ContactInfo extends Object {
   ContactInfo(this.mId, this.mName, this.mDescription, this.mPhoneNumber);
 
   int mId;

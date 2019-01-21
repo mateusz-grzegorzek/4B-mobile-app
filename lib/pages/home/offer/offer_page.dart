@@ -1,4 +1,4 @@
-import 'package:business_mobile_app/pages/offer/football/football_page.dart';
+import 'package:business_mobile_app/pages/home/offer/football/football_page.dart';
 import 'package:flutter/material.dart';
 
 class OfferWidget extends StatefulWidget {

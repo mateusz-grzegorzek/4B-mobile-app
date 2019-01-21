@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../home/home_page.dart';
-import '../../utils/shared_preferences.dart';
-import '../trips/trips_page.dart';
+import '../../home/home_page.dart';
+import '../../trips/trips_page.dart';
+import '../../../utils/shared_preferences.dart';
+
 
 class LoginWidget extends StatefulWidget {
   @override

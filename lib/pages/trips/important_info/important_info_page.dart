@@ -1,4 +1,4 @@
-import '../trips/trips_page.dart';
+import '../trips_page.dart';
 import 'package:flutter/material.dart';
 
 class ImporatantInfoWidget extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../../utils/firebase_data.dart';
-import '../../utils/shared_preferences.dart';
-import '../../utils/tile_info.dart';
+import '../../../utils/firebase_data.dart';
+import '../../../utils/shared_preferences.dart';
+import '../../../utils/tile_info.dart';
 
 final List<TileInfo> gNewsList = new List<TileInfo>();
 

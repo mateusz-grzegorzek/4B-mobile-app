@@ -1,17 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../offer/offer_page.dart';
-import '../welcome/welcome_page.dart';
-import '../map/map_page.dart';
-import '../schedule/schedule_page.dart';
-import '../contact/contact_page.dart';
-import '../news/news_page.dart';
-import '../about_us/about_us_page.dart';
-import '../login/login_page.dart';
-import '../about_country/about_country_page.dart';
-import '../visited_places/visited_places_page.dart';
-import '../important_info/important_info_page.dart';
+
+import 'offer/offer_page.dart';
+import 'welcome/welcome_page.dart';
+import 'about_us/about_us_page.dart';
+import 'login/login_page.dart';
+
 import '../trips/trips_page.dart';
+import '../trips/map/map_page.dart';
+import '../trips/schedule/schedule_page.dart';
+import '../trips/news/news_page.dart';
+import '../trips/about_country/about_country_page.dart';
+import '../trips/visited_places/visited_places_page.dart';
+import '../trips/important_info/important_info_page.dart';
+
+import '../generic/contact/contact_page.dart';
 
 HomePage gHomePage = new HomePage();
 Color gGoldColor = Color(0xffffd700);

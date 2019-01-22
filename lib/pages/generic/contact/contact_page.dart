@@ -13,8 +13,12 @@ void fGetContactsFromMemory() {
   if (contactsJson != null) {
     gContactsList
         .addAll(json.decode(contactsJson).map<ContactInfo>((contactInfo) {
-      return new ContactInfo(contactInfo['mId'], contactInfo['mName'],
-          contactInfo['mDescription'], contactInfo['mPhoneNumber']);
+      return new ContactInfo(
+          contactInfo['mId'],
+          contactInfo['mName'],
+          contactInfo['mDescription'],
+          contactInfo['mPhoneNumber'],
+          contactInfo['mEmail']);
     }).toList());
   }
 }
@@ -25,7 +29,8 @@ void fAddContactToList(aContactId, aContactInfo) {
       fGetDatabaseId(aContactId, 2),
       aContactInfo["name"],
       aContactInfo["description"],
-      aContactInfo['phone_number']);
+      aContactInfo['phone_number'],
+      aContactInfo['email']);
   contactInfo.log();
   gContactsList.add(contactInfo);
 }
@@ -57,10 +62,7 @@ class ContactPage extends State<ContactWidget> {
     fCloseStream(gContactsDatabaseKey);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    print("ContactPage:build:gContactsList.length=" +
-        gContactsList.length.toString());
+  void sortContactList() {
     gContactsList.sort((firstContact, secondContact) {
       if (firstContact.mId > secondContact.mId) {
         return 1;
@@ -68,44 +70,59 @@ class ContactPage extends State<ContactWidget> {
         return -1;
       }
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    print("ContactPage:build:gContactsList.length=" +
+        gContactsList.length.toString());
+    this.sortContactList();
     return new Scaffold(
         body: new ListView.builder(
             itemCount: gContactsList.length,
             padding: const EdgeInsets.all(6.0),
             itemBuilder: (context, index) {
               return new Card(
-                child: new ListTile(
-                  leading: new Icon(Icons.person),
-                  title: new Column(
-                    children: <Widget>[
-                      new Padding(padding: EdgeInsets.all(5.0)),
-                      new Text(
-                        gContactsList[index].mName,
-                        style: new TextStyle(
-                            color: Colors.blue,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  subtitle: new Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      new Padding(padding: EdgeInsets.all(5.0)),
-                      new Text(
-                        gContactsList[index].mDescription,
-                        style: new TextStyle(color: Colors.blueAccent),
-                      ),
-                      new Padding(padding: EdgeInsets.all(5.0)),
-                      new Text(gContactsList[index].mPhoneNumber),
-                      new Padding(padding: EdgeInsets.all(5.0)),
-                    ],
-                  ),
-                  trailing: new Icon(Icons.phone),
-                  onTap: () =>
-                      launch("tel://" + gContactsList[index].mPhoneNumber),
-                ),
-              );
+                  child: new _ContactListItem(gContactsList[index]));
             }));
   }
+}
+
+class _ContactListItem extends ListTile {
+  _ContactListItem(ContactInfo contactInfo)
+      : super(
+          leading: new Container(child: new Icon(Icons.person)),
+          title: new Container(
+              child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              new Text(contactInfo.mName,
+                  style: new TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18.0))
+            ],
+          )),
+          subtitle: new Container(
+              child: new Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[new Text(contactInfo.mDescription)],
+          )),
+          trailing: new Container(
+            child: new Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                new IconButton(
+                    icon: Icon(Icons.email),
+                    onPressed: () => launch("mailto://" + contactInfo.mEmail)),
+                new IconButton(
+                    icon: Icon(Icons.phone),
+                    padding: new EdgeInsets.all(1.0),
+                    onPressed: () => launch("tel://" + contactInfo.mPhoneNumber))
+              ],
+            ),
+          ),
+        );
 }

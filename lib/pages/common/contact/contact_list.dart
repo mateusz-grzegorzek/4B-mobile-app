@@ -1,41 +1,18 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../utils/firebase_data.dart';
-import '../../../utils/shared_preferences.dart';
+
 import 'contact_info.dart';
 
-List<ContactInfo> gContactsList = new List<ContactInfo>();
+import '../../../utils/firebase_data.dart';
 
-void fGetContactsFromMemory() {
-  String contactsJson = gPrefs.getString(gContactsDatabaseKey);
-  if (contactsJson != null) {
-    gContactsList
-        .addAll(json.decode(contactsJson).map<ContactInfo>((contactInfo) {
-      return new ContactInfo(
-          contactInfo['mId'],
-          contactInfo['mName'],
-          contactInfo['mDescription'],
-          contactInfo['mPhoneNumber'],
-          contactInfo['mEmail']);
-    }).toList());
-  }
-}
-
-void fAddContactToList(aContactId, aContactInfo) {
-  print("fAddContactToList");
-  ContactInfo contactInfo = new ContactInfo(
-      fGetDatabaseId(aContactId, 2),
-      aContactInfo["name"],
-      aContactInfo["description"],
-      aContactInfo['phone_number'],
-      aContactInfo['email']);
-  contactInfo.log();
-  gContactsList.add(contactInfo);
-}
 
 class ContactWidget extends StatefulWidget {
+  final List<ContactInfo> mContactsList;
+  final String mDatabaseKey;
+
+  const ContactWidget({Key key, this.mContactsList, this.mDatabaseKey}): super(key: key);
+
   @override
   ContactPage createState() => new ContactPage();
 }
@@ -49,7 +26,7 @@ class ContactPage extends State<ContactWidget> {
   void initState() {
     print("ContactPage:initState");
     super.initState();
-    mStreamSub = fGetStream(gContactsDatabaseKey).listen((aContactInfo) {
+    mStreamSub = fGetStream(widget.mDatabaseKey).listen((aContactInfo) {
       setState(() {});
     });
   }
@@ -59,11 +36,11 @@ class ContactPage extends State<ContactWidget> {
     print("ContactPage:dispose");
     super.dispose();
     mStreamSub.cancel();
-    fCloseStream(gContactsDatabaseKey);
+    fCloseStream(widget.mDatabaseKey);
   }
 
   void sortContactList() {
-    gContactsList.sort((firstContact, secondContact) {
+    widget.mContactsList.sort((firstContact, secondContact) {
       if (firstContact.mId > secondContact.mId) {
         return 1;
       } else {
@@ -74,16 +51,16 @@ class ContactPage extends State<ContactWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("ContactPage:build:gContactsList.length=" +
-        gContactsList.length.toString());
+    print("ContactPage:build:mContactsList.length=" +
+        widget.mContactsList.length.toString());
     this.sortContactList();
     return new Scaffold(
         body: new ListView.builder(
-            itemCount: gContactsList.length,
+            itemCount: widget.mContactsList.length,
             padding: const EdgeInsets.all(6.0),
             itemBuilder: (context, index) {
               return new Card(
-                  child: new _ContactListItem(gContactsList[index]));
+                  child: new _ContactListItem(widget.mContactsList[index]));
             }));
   }
 }
@@ -112,11 +89,13 @@ class _ContactListItem extends ListTile {
           )),
           trailing: new Container(
             child: new Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                new IconButton(
-                    icon: Icon(Icons.email),
-                    onPressed: () => launch("mailto://" + contactInfo.mEmail)),
+                (contactInfo.mEmail != "") ? new IconButton(
+                  icon: Icon(Icons.email),
+                  onPressed: () => launch("mailto://" + contactInfo.mEmail)
+                ) : new Container(width: 0, height: 0),
                 new IconButton(
                     icon: Icon(Icons.phone),
                     padding: new EdgeInsets.all(1.0),
@@ -124,5 +103,5 @@ class _ContactListItem extends ListTile {
               ],
             ),
           ),
-        );
+        );    
 }

@@ -4,7 +4,7 @@ part 'contact_info.g.dart';
 
 @JsonSerializable()
 class ContactInfo extends Object {
-  ContactInfo(this.mId, this.mName, this.mDescription, this.mPhoneNumber, this.mEmail);
+  ContactInfo(this.mId, this.mName, this.mDescription, this.mPhoneNumber, [this.mEmail=""]);
 
   int mId;
   String mName;

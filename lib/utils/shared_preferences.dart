@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../pages/common/contact/contact_page.dart';
+import '../pages/home/contact/contact_page.dart';
 import '../pages/trips/map/map_page.dart';
 import '../pages/trips/news/news_page.dart';
 import '../pages/trips/schedule/schedule_page.dart';

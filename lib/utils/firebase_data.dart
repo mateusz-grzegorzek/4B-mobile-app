@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
-import '../pages/generic/contact/contact_page.dart';
+import '../pages/common/contact/contact_page.dart';
 import '../pages/trips/map/map_page.dart';
 import '../pages/trips/schedule/day_events_info.dart';
 import '../pages/trips/news/news_page.dart';

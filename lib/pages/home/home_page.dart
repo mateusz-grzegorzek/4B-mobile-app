@@ -14,7 +14,7 @@ import '../trips/about_country/about_country_page.dart';
 import '../trips/visited_places/visited_places_page.dart';
 import '../trips/important_info/important_info_page.dart';
 
-import '../generic/contact/contact_page.dart';
+import '../common/contact/contact_page.dart';
 
 HomePage gHomePage = new HomePage();
 Color gGoldColor = Color(0xffffd700);

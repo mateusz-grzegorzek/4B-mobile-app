@@ -46,6 +46,6 @@ class MainContactPage extends State<MainContactWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new ContactWidget(mDatabaseKey: gContactsDatabaseKey,mContactsList: gContactsList);
+    return new ContactListWidget(mDatabaseKey: gContactsDatabaseKey,mContactsList: gContactsList);
   }
 }

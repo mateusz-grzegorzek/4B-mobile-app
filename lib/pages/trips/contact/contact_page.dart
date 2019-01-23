@@ -14,7 +14,7 @@ class TripContactPage extends State<TripContactWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new ContactWidget(
+    return new ContactListWidget(
       mDatabaseKey: gTripsDatabaseKey,
       mContactsList: gTripContacts,
     );

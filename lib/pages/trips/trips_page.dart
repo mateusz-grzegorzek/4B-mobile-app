@@ -54,18 +54,18 @@ void fAddTripToList(aTripId, aTripInfo) {
   int tripId = fGetDatabaseId(aTripId, 2);
   print("FirebaseData:fAddTripToList");
   List<TileInfo> visitedPlaces = new List<TileInfo>();
-  aTripInfo["visited_places"].forEach((aCountry, aPlaceText) {
-    visitedPlaces.add(new TileInfo(0, "visited_places", aPlaceText["title"],
-        aPlaceText["body"])); // #TODO Id to fix
+  aTripInfo["visited_places"].forEach((aPlaceId, aPlaceText) {
+    visitedPlaces.add(new TileInfo(int.parse(aPlaceId), "visited_places", aPlaceText["title"],
+        aPlaceText["body"]));
   });
   List<String> importantInfo = new List<String>();
-  aTripInfo["important_info"].forEach((aCountry, aInfoText) {
+  aTripInfo["important_info"].forEach((aInfoId, aInfoText) {
     importantInfo.add(aInfoText);
   });
   List<ContactInfo> tripContacts = new List<ContactInfo>();
-  aTripInfo["contacts"].forEach((aCountry, aContactInfo) {
-    tripContacts.add(new ContactInfo(0, aContactInfo['name'],
-        aContactInfo['description'], aContactInfo['phone_number'])); // #TODO Id to fix
+  aTripInfo["contacts"].forEach((aContactInfoId, aContactInfo) {
+    tripContacts.add(new ContactInfo(int.parse(aContactInfoId), aContactInfo['name'],
+        aContactInfo['description'], aContactInfo['phone_number']));
   });
   TripInfo tripInfo = new TripInfo(
       tripId,

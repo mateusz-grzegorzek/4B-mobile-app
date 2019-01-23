@@ -7,24 +7,24 @@ import 'contact_info.dart';
 import '../../../utils/firebase_data.dart';
 
 
-class ContactWidget extends StatefulWidget {
+class ContactListWidget extends StatefulWidget {
   final List<ContactInfo> mContactsList;
   final String mDatabaseKey;
 
-  const ContactWidget({Key key, this.mContactsList, this.mDatabaseKey}): super(key: key);
+  const ContactListWidget({Key key, this.mContactsList, this.mDatabaseKey}): super(key: key);
 
   @override
-  ContactPage createState() => new ContactPage();
+  ContactListPage createState() => new ContactListPage();
 }
 
-class ContactPage extends State<ContactWidget> {
-  static const String Id = "ContactPage";
+class ContactListPage extends State<ContactListWidget> {
+  static const String Id = "ContactListPage";
 
   StreamSubscription<bool> mStreamSub;
 
   @override
   void initState() {
-    print("ContactPage:initState");
+    print("ContactListPage:initState");
     super.initState();
     mStreamSub = fGetStream(widget.mDatabaseKey).listen((aContactInfo) {
       setState(() {});
@@ -33,13 +33,13 @@ class ContactPage extends State<ContactWidget> {
 
   @override
   void dispose() {
-    print("ContactPage:dispose");
+    print("ContactListPage:dispose");
     super.dispose();
     mStreamSub.cancel();
     fCloseStream(widget.mDatabaseKey);
   }
 
-  void sortContactList() {
+  void fsortContactList() {
     widget.mContactsList.sort((firstContact, secondContact) {
       if (firstContact.mId > secondContact.mId) {
         return 1;
@@ -51,9 +51,9 @@ class ContactPage extends State<ContactWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("ContactPage:build:mContactsList.length=" +
+    print("ContactListPage:build:mContactsList.length=" +
         widget.mContactsList.length.toString());
-    this.sortContactList();
+    fsortContactList();
     return new Scaffold(
         body: new ListView.builder(
             itemCount: widget.mContactsList.length,

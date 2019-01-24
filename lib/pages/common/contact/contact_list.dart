@@ -6,12 +6,12 @@ import 'contact_info.dart';
 
 import '../../../utils/firebase_data.dart';
 
-
 class ContactListWidget extends StatefulWidget {
   final List<ContactInfo> mContactsList;
   final String mDatabaseKey;
 
-  const ContactListWidget({Key key, this.mContactsList, this.mDatabaseKey}): super(key: key);
+  const ContactListWidget({Key key, this.mContactsList, this.mDatabaseKey})
+      : super(key: key);
 
   @override
   ContactListPage createState() => new ContactListPage();
@@ -54,14 +54,14 @@ class ContactListPage extends State<ContactListWidget> {
     print("ContactListPage:build:mContactsList.length=" +
         widget.mContactsList.length.toString());
     fsortContactList();
-    return new Scaffold(
-        body: new ListView.builder(
-            itemCount: widget.mContactsList.length,
-            padding: const EdgeInsets.all(6.0),
-            itemBuilder: (context, index) {
-              return new Card(
-                  child: new _ContactListItem(widget.mContactsList[index]));
-            }));
+    return new ListView.builder(
+        itemCount: widget.mContactsList.length,
+        padding: const EdgeInsets.all(6.0),
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return new Card(
+              child: new _ContactListItem(widget.mContactsList[index]));
+        });
   }
 }
 
@@ -92,16 +92,19 @@ class _ContactListItem extends ListTile {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                (contactInfo.mEmail != "") ? new IconButton(
-                  icon: Icon(Icons.email),
-                  onPressed: () => launch("mailto://" + contactInfo.mEmail)
-                ) : new Container(width: 0, height: 0),
+                (contactInfo.mEmail != "")
+                    ? new IconButton(
+                        icon: Icon(Icons.email),
+                        onPressed: () =>
+                            launch("mailto://" + contactInfo.mEmail))
+                    : new Container(width: 0, height: 0),
                 new IconButton(
                     icon: Icon(Icons.phone),
                     padding: new EdgeInsets.all(1.0),
-                    onPressed: () => launch("tel://" + contactInfo.mPhoneNumber))
+                    onPressed: () =>
+                        launch("tel://" + contactInfo.mPhoneNumber))
               ],
             ),
           ),
-        );    
+        );
 }

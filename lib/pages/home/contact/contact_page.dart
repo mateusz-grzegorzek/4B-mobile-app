@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../common/contact/contact_info.dart';
 import '../../common/contact/contact_list.dart';
@@ -46,6 +47,100 @@ class MainContactPage extends State<MainContactWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new ContactListWidget(mDatabaseKey: gContactsDatabaseKey,mContactsList: gContactsList);
+    return new Scaffold(
+      body: Center(
+          child: new ListView(
+        children: <Widget>[
+          fBuildSocialMediaRow(),
+          fBuildCompanyName(),
+          fBuildAddressWidget(),
+          new ContactListWidget(
+              mDatabaseKey: gContactsDatabaseKey, mContactsList: gContactsList)
+        ],
+      )),
+    );
+  }
+
+  Widget fBuildSocialMediaRow() {
+    return new Container(
+      padding: EdgeInsets.all(10.0),
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        IconButton(
+          icon: Image.asset(
+            "assets/social_media/facebook.png",
+            height: 50.0,
+          ),
+          onPressed: () => launch("https://www.facebook.com/4BusinessTeam/"),
+        ),
+        IconButton(
+          icon: Image.asset(
+            "assets/social_media/instagram.png",
+            height: 50.0,
+          ),
+          onPressed: () => launch("https://www.instagram.com/4business_team/"),
+        ),
+        IconButton(
+          icon: Image.asset(
+            "assets/social_media/linkedin.png",
+            height: 50.0,
+          ),
+          onPressed: () => launch("https://www.linkedin.com/company/3297050"),
+        )
+      ],
+    ));
+  }
+
+  Widget fBuildCompanyName() {
+    return new Container(
+      padding: EdgeInsets.all(10.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "4BUSINESS TEAM SP. Z O.O.",
+            style: TextStyle(
+                color: Colors.blue,
+                fontWeight: FontWeight.w600,
+                fontSize: 20.0),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget fBuildAddressWidget() {
+    String address = """
+    ul. Wieniawskiego 66/31
+    31-436 Kraków
+    """;
+    String tel = "+48124100440";
+    String telText = "tel/fax +48 12 410 04 40";
+    String email = "biuro@4b.com.pl";
+
+    TextStyle textStyle = new TextStyle(color: Colors.grey, fontSize: 16.0);
+
+    return new Container(
+      padding: EdgeInsets.all(10.0),
+      child: new Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          new Text(address, style: textStyle, textAlign: TextAlign.center),
+          new FlatButton(
+            padding: EdgeInsets.all(0),
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: () => launch("tel://" + tel),
+            child: new Text(telText, style: textStyle),
+          ),
+          new FlatButton(
+            padding: EdgeInsets.all(0),
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            onPressed: () => launch("mailto://" + email),
+            child: new Text(email, style: textStyle),
+          )
+        ],
+      ),
+    );
   }
 }

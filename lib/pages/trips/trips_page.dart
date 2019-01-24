@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 
 import '../trips/trip_info.dart';
-import 'package:flutter/material.dart';
+import '../common/contact/contact_info.dart';
 import '../../utils/firebase_data.dart';
 import '../../utils/shared_preferences.dart';
 import '../../utils/tile_info.dart';
@@ -10,6 +11,7 @@ final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;
 List<TileInfo> gVisitedPlaces;
 List<String> gImportantInfo;
+List<ContactInfo> gTripContacts;
 
 void fGetTripsFromMemory() {
   String tripsJson = gPrefs.getString(gTripsDatabaseKey);
@@ -28,6 +30,12 @@ void fGetTripsFromMemory() {
           importantInfo.add(aImportantInfo);
         });
       }
+      List<ContactInfo> tripContacts = new List<ContactInfo>();
+      if (aTripInfo['mContacts'] != null) {
+        aTripInfo['mContacts'].forEach((aTripContacts) {
+          tripContacts.add(aTripContacts);
+        });
+      }
       return new TripInfo(
           aTripInfo['mId'],
           aTripInfo['mTitle'],
@@ -36,7 +44,8 @@ void fGetTripsFromMemory() {
           aTripInfo['mPassword'],
           aTripInfo['mAboutCountry'],
           visitedPlaces,
-          importantInfo);
+          importantInfo,
+          tripContacts);
     }).toList());
   }
 }
@@ -45,13 +54,18 @@ void fAddTripToList(aTripId, aTripInfo) {
   int tripId = fGetDatabaseId(aTripId, 2);
   print("FirebaseData:fAddTripToList");
   List<TileInfo> visitedPlaces = new List<TileInfo>();
-  aTripInfo["visited_places"].forEach((aCountry, aPlaceText) {
-    visitedPlaces.add(new TileInfo(0, "visited_places", aPlaceText["title"],
-        aPlaceText["body"])); // #TODO Id to fix
+  aTripInfo["visited_places"].forEach((aPlaceId, aPlaceText) {
+    visitedPlaces.add(new TileInfo(int.parse(aPlaceId), "visited_places", aPlaceText["title"],
+        aPlaceText["body"]));
   });
   List<String> importantInfo = new List<String>();
-  aTripInfo["important_info"].forEach((aCountry, aInfoText) {
+  aTripInfo["important_info"].forEach((aInfoId, aInfoText) {
     importantInfo.add(aInfoText);
+  });
+  List<ContactInfo> tripContacts = new List<ContactInfo>();
+  aTripInfo["contacts"].forEach((aContactInfoId, aContactInfo) {
+    tripContacts.add(new ContactInfo(int.parse(aContactInfoId), aContactInfo['name'],
+        aContactInfo['description'], aContactInfo['phone_number']));
   });
   TripInfo tripInfo = new TripInfo(
       tripId,
@@ -61,7 +75,8 @@ void fAddTripToList(aTripId, aTripInfo) {
       aTripInfo["password"],
       aTripInfo["about_country"],
       visitedPlaces,
-      importantInfo);
+      importantInfo,
+      tripContacts);
   tripInfo.fLog();
   gTripsList.add(tripInfo);
 }
@@ -72,6 +87,7 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
       gAboutCountry = tripInfo.mAboutCountry; // ToDo: Do it better
       gVisitedPlaces = tripInfo.mVisitedPlaces;
       gImportantInfo = tripInfo.mImportantInfo;
+      gTripContacts = tripInfo.mContacts;
       return true;
     }
   }

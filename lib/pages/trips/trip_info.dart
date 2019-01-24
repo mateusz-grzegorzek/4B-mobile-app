@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import '../common/contact/contact_info.dart';
 import '../../utils/tile_info.dart';
 part 'trip_info.g.dart';
 
 @JsonSerializable()
 class TripInfo extends Object {
   TripInfo(this.mId, this.mTitle, this.mBody, this.mUserName, this.mPassword,
-      this.mAboutCountry, this.mVisitedPlaces, this.mImportantInfo);
+      this.mAboutCountry, this.mVisitedPlaces, this.mImportantInfo, this.mContacts);
 
   int mId;
   String mTitle;
@@ -16,6 +17,7 @@ class TripInfo extends Object {
   String mAboutCountry;
   List<TileInfo> mVisitedPlaces;
   List<String> mImportantInfo;
+  List<ContactInfo> mContacts;
 
   TripInfo.fromTripInfo(TripInfo aNewsInfo) {
     this.mId = aNewsInfo.mId;
@@ -26,11 +28,12 @@ class TripInfo extends Object {
     this.mAboutCountry = aNewsInfo.mAboutCountry;
     this.mVisitedPlaces = aNewsInfo.mVisitedPlaces;
     this.mImportantInfo = aNewsInfo.mImportantInfo;
+    this.mContacts = aNewsInfo.mContacts;
   }
 
   void fLog() {
     print("TripInfo:mId=$mId,mTitle=$mTitle,mBody=$mBody,mUserName=$mUserName,"
-        "mPassword=$mPassword,mAboutCountry=$mAboutCountry,mVisitedPlaces=$mVisitedPlaces,mImportantInfo=$mImportantInfo");
+        "mPassword=$mPassword,mAboutCountry=$mAboutCountry,mVisitedPlaces=$mVisitedPlaces,mImportantInfo=$mImportantInfo,mContacts=$mContacts");
   }
 
   factory TripInfo.fromJson(Map<String, dynamic> json) =>

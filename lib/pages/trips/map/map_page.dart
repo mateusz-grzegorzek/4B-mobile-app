@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../utils/firebase_data.dart';
-import '../../utils/shared_preferences.dart';
+import '../../../utils/firebase_data.dart';
+import '../../../utils/shared_preferences.dart';
 import 'map_place.dart';
 
 final List<MapPlace> gPlacesList = new List<MapPlace>();

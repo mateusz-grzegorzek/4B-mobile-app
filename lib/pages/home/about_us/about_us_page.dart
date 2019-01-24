@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../home/home_page.dart';
+import '../../home/home_page.dart';
 
 String gAbout4Business =
     "Firma 4Business została założona w 2005 roku w Krakowie przez dwójkę przyjaciół, "

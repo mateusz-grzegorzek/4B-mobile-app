@@ -1,17 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../offer/offer_page.dart';
-import '../welcome/welcome_page.dart';
-import '../map/map_page.dart';
-import '../schedule/schedule_page.dart';
-import '../contact/contact_page.dart';
-import '../news/news_page.dart';
-import '../about_us/about_us_page.dart';
-import '../login/login_page.dart';
-import '../about_country/about_country_page.dart';
-import '../visited_places/visited_places_page.dart';
-import '../important_info/important_info_page.dart';
+
+import 'offer/offer_page.dart';
+import 'welcome/welcome_page.dart';
+import 'about_us/about_us_page.dart';
+import 'login/login_page.dart';
+import 'contact/contact_page.dart';
+
 import '../trips/trips_page.dart';
+import '../trips/map/map_page.dart';
+import '../trips/schedule/schedule_page.dart';
+import '../trips/news/news_page.dart';
+import '../trips/about_country/about_country_page.dart';
+import '../trips/visited_places/visited_places_page.dart';
+import '../trips/important_info/important_info_page.dart';
+import '../trips/contact/contact_page.dart';
 
 HomePage gHomePage = new HomePage();
 Color gGoldColor = Color(0xffffd700);
@@ -84,10 +87,12 @@ class HomePage extends State<HomePageWidget> {
     mPageWidgetsMapAll[MapPage.Id] =
         new MenuItem(MapPage.Id, "Mapa", new MapWidget(), true);
 // ToDo: Implement better way to order MenuItems
-    mPageWidgetsMapAll[ContactPage.Id] =
-        new MenuItem(ContactPage.Id, "Kontakt", new ContactWidget(), true);
+    mPageWidgetsMapAll[MainContactPage.Id] = new MenuItem(
+        MainContactPage.Id, "Kontakt", new MainContactWidget(), false);
     mPageWidgetsMapAll[LoginPage.Id] =
         new MenuItem(LoginPage.Id, "Zaloguj się", new LoginWidget(), false);
+    mPageWidgetsMapAll[TripContactPage.Id] = new MenuItem(
+        TripContactPage.Id, "Kontakt", new TripContactWidget(), true);
 
     fSetPage(WelcomePage.Id);
   }
@@ -130,10 +135,9 @@ class HomePage extends State<HomePageWidget> {
     mPageWidgetsMapVisible.clear();
     // ToDo: Refactor this
     mPageWidgetsMapAll.forEach((id, menuItem) {
-      if (mPageWidgetsMapAll[id].mId == ContactPage.Id ||
-          (mIsLogged == menuItem.mVisibleWhenLogged &&
-              mPageWidgetsMapAll[id].mId != WelcomePage.Id &&
-              mPageWidgetsMapAll[id].mId != TripsPage.Id)) {
+      if (mIsLogged == menuItem.mVisibleWhenLogged &&
+          mPageWidgetsMapAll[id].mId != WelcomePage.Id &&
+          mPageWidgetsMapAll[id].mId != TripsPage.Id) {
         mPageWidgetsMapVisible[id] = menuItem;
       }
     });

@@ -56,7 +56,6 @@ class ContactListPage extends State<ContactListWidget> {
     fsortContactList();
     return new ListView.builder(
         itemCount: widget.mContactsList.length,
-        padding: const EdgeInsets.all(6.0),
         shrinkWrap: true,
         itemBuilder: (context, index) {
           return new Card(

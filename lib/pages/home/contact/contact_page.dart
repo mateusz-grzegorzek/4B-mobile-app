@@ -49,11 +49,17 @@ class MainContactPage extends State<MainContactWidget> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: Center(
-          child: new ListView(
+        child: new ListView(
         children: <Widget>[
           fBuildSocialMediaRow(),
-          fBuildCompanyName(),
-          fBuildAddressWidget(),
+          new Card(
+            child: Column(
+              children: <Widget>[
+                fBuildCompanyName(),
+                fBuildAddressWidget(),
+              ],
+            ),
+          ),
           new ContactListWidget(
               mDatabaseKey: gContactsDatabaseKey, mContactsList: gContactsList)
         ],
@@ -63,33 +69,36 @@ class MainContactPage extends State<MainContactWidget> {
 
   Widget fBuildSocialMediaRow() {
     return new Container(
-      padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(10.0),
         child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        IconButton(
-          icon: Image.asset(
-            "assets/social_media/facebook.png",
-            height: 50.0,
-          ),
-          onPressed: () => launch("https://www.facebook.com/4BusinessTeam/"),
-        ),
-        IconButton(
-          icon: Image.asset(
-            "assets/social_media/instagram.png",
-            height: 50.0,
-          ),
-          onPressed: () => launch("https://www.instagram.com/4business_team/"),
-        ),
-        IconButton(
-          icon: Image.asset(
-            "assets/social_media/linkedin.png",
-            height: 50.0,
-          ),
-          onPressed: () => launch("https://www.linkedin.com/company/3297050"),
-        )
-      ],
-    ));
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            IconButton(
+              icon: Image.asset(
+                "assets/social_media/facebook.png",
+                height: 50.0,
+              ),
+              onPressed: () =>
+                  launch("https://www.facebook.com/4BusinessTeam/"),
+            ),
+            IconButton(
+              icon: Image.asset(
+                "assets/social_media/instagram.png",
+                height: 50.0,
+              ),
+              onPressed: () =>
+                  launch("https://www.instagram.com/4business_team/"),
+            ),
+            IconButton(
+              icon: Image.asset(
+                "assets/social_media/linkedin.png",
+                height: 50.0,
+              ),
+              onPressed: () =>
+                  launch("https://www.linkedin.com/company/3297050"),
+            )
+          ],
+        ));
   }
 
   Widget fBuildCompanyName() {

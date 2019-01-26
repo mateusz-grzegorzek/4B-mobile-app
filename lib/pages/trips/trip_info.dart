@@ -16,7 +16,7 @@ class TripInfo extends Object {
   String mPassword;
   String mAboutCountry;
   List<TileInfo> mVisitedPlaces;
-  List<String> mImportantInfo;
+  List<TileInfo> mImportantInfo;
   List<ContactInfo> mContacts;
 
   TripInfo.fromTripInfo(TripInfo aNewsInfo) {
@@ -35,6 +35,8 @@ class TripInfo extends Object {
     print("TripInfo:mId=$mId,mTitle=$mTitle,mBody=$mBody,mUserName=$mUserName,"
         "mPassword=$mPassword,mAboutCountry=$mAboutCountry,mVisitedPlaces=$mVisitedPlaces,mImportantInfo=$mImportantInfo,mContacts=$mContacts");
   }
+
+  Map<String, dynamic> toJson() => _$TripInfoToJson(this);
 
   factory TripInfo.fromJson(Map<String, dynamic> json) =>
       _$TripInfoFromJson(json);

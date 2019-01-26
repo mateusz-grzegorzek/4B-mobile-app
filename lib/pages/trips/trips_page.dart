@@ -10,7 +10,7 @@ import '../../utils/tile_info.dart';
 final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;
 List<TileInfo> gVisitedPlaces;
-List<String> gImportantInfo;
+List<TileInfo> gImportantInfo;
 List<ContactInfo> gTripContacts;
 
 void fGetTripsFromMemory() {
@@ -20,12 +20,11 @@ void fGetTripsFromMemory() {
       List<TileInfo> visitedPlaces = new List<TileInfo>();
       if (aTripInfo['mVisitedPlaces'] != null) {
         aTripInfo['mVisitedPlaces'].forEach((aVisitedPlace) {
-          print(aVisitedPlace.toString());
           visitedPlaces.add(aVisitedPlace);
         });
       }
-      List<String> importantInfo = new List<String>();
-      if (aTripInfo['mVisitedPlaces'] != null) {
+      List<TileInfo> importantInfo = new List<TileInfo>();
+      if (aTripInfo['mImportantInfo'] != null) {
         aTripInfo['mImportantInfo'].forEach((aImportantInfo) {
           importantInfo.add(aImportantInfo);
         });
@@ -55,17 +54,21 @@ void fAddTripToList(aTripId, aTripInfo) {
   print("FirebaseData:fAddTripToList");
   List<TileInfo> visitedPlaces = new List<TileInfo>();
   aTripInfo["visited_places"].forEach((aPlaceId, aPlaceText) {
-    visitedPlaces.add(new TileInfo(int.parse(aPlaceId), "visited_places", aPlaceText["title"],
-        aPlaceText["body"]));
+    visitedPlaces.add(new TileInfo(int.parse(aPlaceId), "visited_places",
+        aPlaceText["title"], aPlaceText["body"]));
   });
-  List<String> importantInfo = new List<String>();
+  List<TileInfo> importantInfo = new List<TileInfo>();
   aTripInfo["important_info"].forEach((aInfoId, aInfoText) {
-    importantInfo.add(aInfoText);
+    importantInfo.add(new TileInfo(int.parse(aInfoId), "important_info",
+        aInfoText["title"], aInfoText["body"]));
   });
   List<ContactInfo> tripContacts = new List<ContactInfo>();
   aTripInfo["contacts"].forEach((aContactInfoId, aContactInfo) {
-    tripContacts.add(new ContactInfo(int.parse(aContactInfoId), aContactInfo['name'],
-        aContactInfo['description'], aContactInfo['phone_number']));
+    tripContacts.add(new ContactInfo(
+        int.parse(aContactInfoId),
+        aContactInfo['name'],
+        aContactInfo['description'],
+        aContactInfo['phone_number']));
   });
   TripInfo tripInfo = new TripInfo(
       tripId,

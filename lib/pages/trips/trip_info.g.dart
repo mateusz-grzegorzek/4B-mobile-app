@@ -18,7 +18,10 @@ TripInfo _$TripInfoFromJson(Map<String, dynamic> json) {
           ?.map((e) =>
               e == null ? null : TileInfo.fromJson(e as Map<String, dynamic>))
           ?.toList(),
-      (json['mImportantInfo'] as List)?.map((e) => e as String)?.toList(),
+      (json['mImportantInfo'] as List)
+          ?.map((e) =>
+              e == null ? null : TileInfo.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
       (json['mContacts'] as List)
           ?.map((e) => e == null
               ? null

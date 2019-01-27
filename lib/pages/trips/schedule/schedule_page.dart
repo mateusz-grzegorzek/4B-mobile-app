@@ -102,13 +102,13 @@ void fAddEventToList(aEventId, aEventInfo) {
   }
 }
 
-class ScheduleWidget extends StatefulWidget {
+class SchedulePage extends StatefulWidget {
+  static const String Id = "SchedulePage";
   @override
-  SchedulePage createState() => new SchedulePage();
+  _SchedulePageState createState() => new _SchedulePageState();
 }
 
-class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
-  static const String Id = "SchedulePage";
+class _SchedulePageState extends State<SchedulePage> with TickerProviderStateMixin {
   TabController mTabController;
   StreamSubscription<bool> mStreamSub;
 
@@ -134,7 +134,7 @@ class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    print("SchedulePage:initState");
+    print("_SchedulePageState:initState");
     super.initState();
     mStreamSub = fGetStream(gScheduleDatabaseKey).listen((aNewsInfo) {
       setState(() {});
@@ -143,7 +143,7 @@ class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    print("SchedulePage:dispose");
+    print("_SchedulePageState:dispose");
     super.dispose();
     if (mTabController != null) {
       mTabController.dispose();
@@ -154,7 +154,7 @@ class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext aContext) {
-    print("SchedulePage:build:gDays.length=" + gDayEventsMap.length.toString());
+    print("_SchedulePageState:build:gDays.length=" + gDayEventsMap.length.toString());
     if (gDayEventsMap.length > 0) {
       int previousIndex = fFindTodayDayTabIndex();
       if (mTabController != null) {

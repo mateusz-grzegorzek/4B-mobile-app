@@ -5,14 +5,13 @@ import '../trips_page.dart';
 import '../../common/contact/contact_list.dart';
 import '../../../utils/firebase_data.dart';
 
-class TripContactWidget extends StatefulWidget {
+class TripContactPage extends StatefulWidget {
+  static const String Id = "TripContactPage";
   @override
-  TripContactPage createState() => new TripContactPage();
+  _TripContactPageState createState() => new _TripContactPageState();
 }
 
-class TripContactPage extends State<TripContactWidget> {
-  static const String Id = "TripContactPage";
-
+class _TripContactPageState extends State<TripContactPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

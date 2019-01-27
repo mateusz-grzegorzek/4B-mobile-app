@@ -25,18 +25,18 @@ void fAddNewsToList(aNewsId, aNewsInfo) {
   gNewsList.add(newsInfo);
 }
 
-class NewsWidget extends StatefulWidget {
+class NewsPage extends StatefulWidget {
+  static const String Id = "NewsPage";
   @override
-  NewsPage createState() => new NewsPage();
+  _NewsPageState createState() => new _NewsPageState();
 }
 
-class NewsPage extends State<NewsWidget> {
-  static const String Id = "NewsPageWidget";
+class _NewsPageState extends State<NewsPage> {
   StreamSubscription<bool> mNewsStreamSubscription;
 
   @override
   void initState() {
-    print("NewsPage:initState");
+    print("_NewsPageState:initState");
     super.initState();
     mNewsStreamSubscription = fGetStream(gNewsDatabaseKey).listen((aNewsInfo) {
       setState(() {});
@@ -45,7 +45,7 @@ class NewsPage extends State<NewsWidget> {
 
   @override
   void dispose() {
-    print("NewsPage:dispose");
+    print("_NewsPageState:dispose");
     super.dispose();
     mNewsStreamSubscription.cancel();
     fCloseStream(gNewsDatabaseKey);
@@ -53,7 +53,7 @@ class NewsPage extends State<NewsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("NewsPage:build:gNewsList.length=" + gNewsList.length.toString());
+    print("_NewsPageState:build:gNewsList.length=" + gNewsList.length.toString());
     gNewsList.sort((firstNews, secondNews) {
       if (firstNews.mId > secondNews.mId) {
         return 1;

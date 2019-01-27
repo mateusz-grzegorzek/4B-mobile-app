@@ -1,20 +1,19 @@
 import 'package:business_mobile_app/pages/home/offer/football/football_page.dart';
 import 'package:flutter/material.dart';
 
-class OfferWidget extends StatefulWidget {
-  @override
-  OfferPage createState() => new OfferPage();
-}
-
 class Event {
   Event(this.mWidget, this.mImagePath);
   Widget mWidget;
   String mImagePath;
 }
 
-class OfferPage extends State<OfferWidget> {
+class OfferPage extends StatefulWidget {
   static const String Id = "OfferPage";
+  @override
+  _OfferPageState createState() => new _OfferPageState();
+}
 
+class _OfferPageState extends State<OfferPage> {
   List<Event> mEventImagePathList = [
     new Event(
         new FootballPageWidget(), "assets/images/sport_events.png"),

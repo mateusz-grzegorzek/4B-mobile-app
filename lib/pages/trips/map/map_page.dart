@@ -40,14 +40,8 @@ MapPlace fGetPlaceById(int aId) {
   return mapPlace;
 }
 
-class MapWidget extends StatefulWidget {
-  @override
-  MapPage createState() => new MapPage();
-}
-
-class MapPage extends State<MapWidget> {
+class MapPage extends StatefulWidget {
   static const String Id = "MapPage";
-  StreamSubscription<bool> mStreamSub;
 
   static void fNavigateTo(double aCoordX, double aCoordY) async {
     print("fNavigateTo:aCoordX=$aCoordX,aCoordY=$aCoordY");
@@ -76,8 +70,15 @@ class MapPage extends State<MapWidget> {
   }
 
   @override
+  _MapPageState createState() => new _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
+  StreamSubscription<bool> mStreamSub;
+
+  @override
   void initState() {
-    print("MapPage:initState");
+    print("_MapPageState:initState");
     super.initState();
     mStreamSub = fGetStream(gPlacesDatabaseKey).listen((aNewsInfo) {
       setState(() {});
@@ -86,7 +87,7 @@ class MapPage extends State<MapWidget> {
 
   @override
   void dispose() {
-    print("MapPage:dispose");
+    print("_MapPageState:dispose");
     super.dispose();
     mStreamSub.cancel();
     fCloseStream(gPlacesDatabaseKey);
@@ -94,7 +95,7 @@ class MapPage extends State<MapWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("MapPage:build:gPlacesList.length=" + gPlacesList.length.toString());
+    print("_MapPageState:build:gPlacesList.length=" + gPlacesList.length.toString());
     gPlacesList.sort((firstMapPlace, secondMapPlace) {
       if (firstMapPlace.mId > secondMapPlace.mId) {
         return 1;
@@ -124,7 +125,7 @@ class MapPage extends State<MapWidget> {
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0)),
                     subtitle: new Text(gPlacesList[index].mAddress),
-                    onTap: () => fNavigateTo(
+                    onTap: () => MapPage.fNavigateTo(
                         gPlacesList[index].mCoordX, gPlacesList[index].mCoordY),
                   ),
                 );

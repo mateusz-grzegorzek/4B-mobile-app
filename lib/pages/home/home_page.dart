@@ -16,8 +16,9 @@ import '../trips/visited_places/visited_places_page.dart';
 import '../trips/important_info/important_info_page.dart';
 import '../trips/contact/contact_page.dart';
 
+import '../../utils/fonts.dart';
+
 HomePage gHomePage = new HomePage();
-Color gGoldColor = Color(0xffffd700);
 
 class MenuItem extends StatelessWidget {
   MenuItem(this.mId, this.mTitle, this.mPage, this.mVisibleWhenLogged);
@@ -64,35 +65,35 @@ class HomePage extends State<HomePageWidget> {
     mPageWidgetsMapAll[AboutUsPage.Id] =
         new MenuItem(AboutUsPage.Id, "O 4Business", new AboutUsPage(), false);
     mPageWidgetsMapAll[OfferPage.Id] =
-        new MenuItem(OfferPage.Id, "Oferta", new OfferWidget(), false);
+        new MenuItem(OfferPage.Id, "Oferta", new OfferPage(), false);
 
     mPageWidgetsMapAll[TripsPage.Id] = new MenuItem(TripsPage.Id,
-        "Drogi uczestniku, witamy w aplikacji!", new TripsWidget(), true);
+        "Drogi uczestniku, witamy w aplikacji!", new TripsPage(), true);
     mPageWidgetsMapAll[AboutCountryPage.Id] = new MenuItem(
-        AboutCountryPage.Id, "O kraju", new AboutCountryWidget(), true);
+        AboutCountryPage.Id, "O kraju", new AboutCountryPage(), true);
     mPageWidgetsMapAll[VisitedPlacesPage.Id] = new MenuItem(
         VisitedPlacesPage.Id,
         "Odwiedzane miejsca",
-        new VisitedPlacesWidget(),
+        new VisitedPlacesPage(),
         true);
     mPageWidgetsMapAll[SchedulePage.Id] = new MenuItem(
-        SchedulePage.Id, "Agenda wyjazdu", new ScheduleWidget(), true);
+        SchedulePage.Id, "Agenda wyjazdu", new SchedulePage(), true);
     mPageWidgetsMapAll[ImporatantInfoPage.Id] = new MenuItem(
         ImporatantInfoPage.Id,
         "Ważne informacje przed wyjazdem",
-        new ImporatantInfoWidget(),
+        new ImporatantInfoPage(),
         true);
     mPageWidgetsMapAll[NewsPage.Id] =
-        new MenuItem(NewsPage.Id, "Aktualności", new NewsWidget(), true);
+        new MenuItem(NewsPage.Id, "Aktualności", new NewsPage(), true);
     mPageWidgetsMapAll[MapPage.Id] =
-        new MenuItem(MapPage.Id, "Mapa", new MapWidget(), true);
+        new MenuItem(MapPage.Id, "Mapa", new MapPage(), true);
 // ToDo: Implement better way to order MenuItems
     mPageWidgetsMapAll[MainContactPage.Id] = new MenuItem(
-        MainContactPage.Id, "Kontakt", new MainContactWidget(), false);
+        MainContactPage.Id, "Kontakt", new MainContactPage(), false);
     mPageWidgetsMapAll[LoginPage.Id] =
-        new MenuItem(LoginPage.Id, "Zaloguj się", new LoginWidget(), false);
+        new MenuItem(LoginPage.Id, "Zaloguj się", new LoginPage(), false);
     mPageWidgetsMapAll[TripContactPage.Id] = new MenuItem(
-        TripContactPage.Id, "Kontakt", new TripContactWidget(), true);
+        TripContactPage.Id, "Kontakt", new TripContactPage(), true);
 
     fSetPage(WelcomePage.Id);
   }

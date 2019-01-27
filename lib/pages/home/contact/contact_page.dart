@@ -32,14 +32,13 @@ void fAddContactToList(aContactId, aContactInfo) {
   gContactsList.add(contactInfo);
 }
 
-class MainContactWidget extends StatefulWidget {
+class MainContactPage extends StatefulWidget {
+  static const String Id = "MainContactPage";
   @override
-  MainContactPage createState() => new MainContactPage();
+  _MainContactPageState createState() => new _MainContactPageState();
 }
 
-class MainContactPage extends State<MainContactWidget> {
-  static const String Id = "MainContactPage";
-
+class _MainContactPageState extends State<MainContactPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

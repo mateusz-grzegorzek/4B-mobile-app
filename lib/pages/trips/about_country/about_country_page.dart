@@ -1,14 +1,13 @@
 import '../trips_page.dart';
 import 'package:flutter/material.dart';
 
-class AboutCountryWidget extends StatefulWidget {
+class AboutCountryPage extends StatefulWidget {
+  static const String Id = "AboutCountryPage";
   @override
-  AboutCountryPage createState() => new AboutCountryPage();
+  _AboutCountryPageState createState() => new _AboutCountryPageState();
 }
 
-class AboutCountryPage extends State<AboutCountryWidget> {
-  static const String Id = "AboutCountryPage";
-
+class _AboutCountryPageState extends State<AboutCountryPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

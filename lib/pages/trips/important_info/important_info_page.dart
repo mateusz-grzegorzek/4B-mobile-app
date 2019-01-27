@@ -1,14 +1,13 @@
 import '../trips_page.dart';
 import 'package:flutter/material.dart';
 
-class ImporatantInfoWidget extends StatefulWidget {
+class ImporatantInfoPage extends StatefulWidget {
+  static const String Id = "ImporatantInfoPage";
   @override
-  ImporatantInfoPage createState() => new ImporatantInfoPage();
+  _ImporatantInfoPageState createState() => new _ImporatantInfoPageState();
 }
 
-class ImporatantInfoPage extends State<ImporatantInfoWidget> {
-  static const String Id = "ImporatantInfoPage";
-
+class _ImporatantInfoPageState extends State<ImporatantInfoPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

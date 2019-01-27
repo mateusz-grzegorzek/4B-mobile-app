@@ -1,14 +1,13 @@
 import '../../trips/trips_page.dart';
 import 'package:flutter/material.dart';
 
-class VisitedPlacesWidget extends StatefulWidget {
+class VisitedPlacesPage extends StatefulWidget {
+  static const String Id = "VisitedPlacesPage";
   @override
-  VisitedPlacesPage createState() => new VisitedPlacesPage();
+  _VisitedPlacesPageState createState() => new _VisitedPlacesPageState();
 }
 
-class VisitedPlacesPage extends State<VisitedPlacesWidget> {
-  static const String Id = "VisitedPlacesPage";
-
+class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

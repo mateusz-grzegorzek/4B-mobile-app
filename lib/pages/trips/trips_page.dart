@@ -97,14 +97,13 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
   return false;
 }
 
-class TripsWidget extends StatefulWidget {
+class TripsPage extends StatefulWidget {
+  static const String Id = "TripsPage";
   @override
-  TripsPage createState() => new TripsPage();
+  _TripsPageState createState() => new _TripsPageState();
 }
 
-class TripsPage extends State<TripsWidget> {
-  static const String Id = "TripsPage";
-
+class _TripsPageState extends State<TripsPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(body: null);

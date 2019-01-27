@@ -13,17 +13,10 @@ class ImporatantInfoPage extends State<ImporatantInfoWidget> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: ListView.builder(
-        itemBuilder: (BuildContext context, int index) => new ListTile(
-                title: new Text(
-              gImportantInfo[index],
-              textAlign: TextAlign.center,
-              style: new TextStyle(
-                  color: Colors.blue,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold),
-            )),
         itemCount: gImportantInfo.length,
-      ),
+        itemBuilder: (BuildContext context, int index) =>
+          gImportantInfo[index].fGetTileCard()
+      )
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'tile_info.g.dart';
@@ -16,6 +17,22 @@ class TileInfo extends Object {
     this.mFamily = aTileInfo.mFamily;
     this.mTitle = aTileInfo.mTitle;
     this.mBody = aTileInfo.mBody;
+  }
+
+  Card fGetTileCard() {
+    return new Card(
+      child: new ListTile(
+        title: new Text(
+          mTitle,
+          style: new TextStyle(
+            color: Colors.blue,
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold
+          ),
+        ),
+        subtitle: new Text(mBody),
+      ),
+    );
   }
 
   void fLog() {

@@ -14,19 +14,8 @@ class VisitedPlacesPage extends State<VisitedPlacesWidget> {
     return new Scaffold(
       body: ListView.builder(
         itemCount: gVisitedPlaces.length,
-        padding: const EdgeInsets.all(6.0),
-        itemBuilder: (context, index) {
-          return new Card(
-            child: new ListTile(
-              title: new Text(
-                gVisitedPlaces[index].mTitle,
-                style: new TextStyle(
-                  color: Colors.blue,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold)),
-              subtitle: new Text(gVisitedPlaces[index].mBody)
-            ));
-        }
+        itemBuilder: (BuildContext context, int index) =>
+          gVisitedPlaces[index].fGetTileCard()
       )
     );
   }

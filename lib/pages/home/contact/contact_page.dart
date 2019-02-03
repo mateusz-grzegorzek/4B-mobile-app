@@ -51,7 +51,13 @@ class MainContactPage extends State<MainContactWidget> {
       body: Center(
         child: new ListView(
         children: <Widget>[
-          fBuildSocialMediaRow(),
+          new Card(
+            child: Column(
+              children: <Widget>[
+                fBuildSocialMediaRow(),
+              ],
+            ),
+          ),
           new Card(
             child: Column(
               children: <Widget>[

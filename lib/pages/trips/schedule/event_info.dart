@@ -40,6 +40,8 @@ class EventInfo extends Object {
     }
   }
 
+  Map<String, dynamic> toJson() => _$EventInfoToJson(this);
+
   factory EventInfo.fromJson(Map<String, dynamic> json) =>
       _$EventInfoFromJson(json);
 }

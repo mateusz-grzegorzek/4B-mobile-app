@@ -11,9 +11,8 @@ final List<MapPlace> gPlacesList = new List<MapPlace>();
 void fGetPlacesFromMemory() {
   String placesJson = gPrefs.getString(gPlacesDatabaseKey);
   if (placesJson != null) {
-    gPlacesList.addAll(json.decode(placesJson).map<MapPlace>((mapPlace) {
-      return new MapPlace(mapPlace['mId'], mapPlace['mAddress'],
-          mapPlace['mName'], mapPlace['mCoordX'], mapPlace['mCoordY']);
+    gPlacesList.addAll(json.decode(placesJson).map<MapPlace>((aMapPlace) {
+      return MapPlace.fromJson(aMapPlace);
     }).toList());
   }
 }

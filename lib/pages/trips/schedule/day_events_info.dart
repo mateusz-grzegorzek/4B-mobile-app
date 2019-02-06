@@ -13,6 +13,8 @@ class DayEventsInfo extends Object {
   String mTitle;
   List<EventInfo> mEventInfoList;
 
+  Map<String, dynamic> toJson() => _$DayEventsInfoToJson(this);
+
   factory DayEventsInfo.fromJson(Map<String, dynamic> json) =>
       _$DayEventsInfoFromJson(json);
 }

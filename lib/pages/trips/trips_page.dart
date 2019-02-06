@@ -20,19 +20,19 @@ void fGetTripsFromMemory() {
       List<TileInfo> visitedPlaces = new List<TileInfo>();
       if (aTripInfo['mVisitedPlaces'] != null) {
         aTripInfo['mVisitedPlaces'].forEach((aVisitedPlace) {
-          visitedPlaces.add(aVisitedPlace);
+          visitedPlaces.add(TileInfo.fromJson(aVisitedPlace));
         });
       }
       List<TileInfo> importantInfo = new List<TileInfo>();
       if (aTripInfo['mImportantInfo'] != null) {
         aTripInfo['mImportantInfo'].forEach((aImportantInfo) {
-          importantInfo.add(aImportantInfo);
+          importantInfo.add(TileInfo.fromJson(aImportantInfo));
         });
       }
       List<ContactInfo> tripContacts = new List<ContactInfo>();
       if (aTripInfo['mContacts'] != null) {
         aTripInfo['mContacts'].forEach((aTripContacts) {
-          tripContacts.add(aTripContacts);
+          tripContacts.add(ContactInfo.fromJson(aTripContacts));
         });
       }
       return new TripInfo(

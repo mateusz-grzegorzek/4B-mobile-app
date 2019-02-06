@@ -14,13 +14,8 @@ void fGetContactsFromMemory() {
   String contactsJson = gPrefs.getString(gContactsDatabaseKey);
   if (contactsJson != null) {
     gContactsList
-        .addAll(json.decode(contactsJson).map<ContactInfo>((contactInfo) {
-      return new ContactInfo(
-          contactInfo['mId'],
-          contactInfo['mName'],
-          contactInfo['mDescription'],
-          contactInfo['mPhoneNumber'],
-          contactInfo['mEmail']);
+        .addAll(json.decode(contactsJson).map<ContactInfo>((aContactInfo) {
+      return ContactInfo.fromJson(aContactInfo);
     }).toList());
   }
 }
@@ -51,7 +46,13 @@ class MainContactPage extends State<MainContactWidget> {
       body: Center(
         child: new ListView(
         children: <Widget>[
-          fBuildSocialMediaRow(),
+          new Card(
+            child: Column(
+              children: <Widget>[
+                fBuildSocialMediaRow(),
+              ],
+            ),
+          ),
           new Card(
             child: Column(
               children: <Widget>[

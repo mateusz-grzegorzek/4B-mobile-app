@@ -24,6 +24,8 @@ class MapPlace extends Object {
         mCoordY.toString());
   }
 
+  Map<String, dynamic> toJson() => _$MapPlaceToJson(this);
+
   factory MapPlace.fromJson(Map<String, dynamic> json) =>
       _$MapPlaceFromJson(json);
 }

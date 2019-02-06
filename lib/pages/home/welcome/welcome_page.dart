@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../home/home_page.dart';
+import '../../../utils/fonts.dart';
 
-class WelcomePageWidget extends StatefulWidget {
-  @override
-  WelcomePage createState() => new WelcomePage();
-}
-
-class WelcomePage extends State<WelcomePageWidget> {
+class WelcomePage extends StatelessWidget {
   static const String Id = "WelcomePage";
   @override
   Widget build(BuildContext context) {

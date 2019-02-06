@@ -12,13 +12,6 @@ class TileInfo extends Object {
 
   TileInfo(this.mId, this.mFamily, this.mTitle, this.mBody);
 
-  TileInfo.setTileInfo(TileInfo aTileInfo) {
-    this.mId = aTileInfo.mId;
-    this.mFamily = aTileInfo.mFamily;
-    this.mTitle = aTileInfo.mTitle;
-    this.mBody = aTileInfo.mBody;
-  }
-
   Card fGetTileCard() {
     return new Card(
       child: new ListTile(

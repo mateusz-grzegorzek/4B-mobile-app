@@ -60,9 +60,9 @@ class HomePage extends State<HomePageWidget> {
     super.initState();
 
     mPageWidgetsMapAll[WelcomePage.Id] = new MenuItem(
-        WelcomePage.Id, "4Business Team", new WelcomePageWidget(), false);
+        WelcomePage.Id, "4Business Team", new WelcomePage(), false);
     mPageWidgetsMapAll[AboutUsPage.Id] =
-        new MenuItem(AboutUsPage.Id, "O 4Business", new AboutUsWidget(), false);
+        new MenuItem(AboutUsPage.Id, "O 4Business", new AboutUsPage(), false);
     mPageWidgetsMapAll[OfferPage.Id] =
         new MenuItem(OfferPage.Id, "Oferta", new OfferWidget(), false);
 

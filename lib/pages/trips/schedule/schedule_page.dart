@@ -25,8 +25,8 @@ void fGetScheduleFromMemory() {
   String scheduleJson = gPrefs.getString(gScheduleDatabaseKey);
   if (scheduleJson != null) {
     List<DayEventsInfo> dayEventsInfoList = new List<DayEventsInfo>();
-    json.decode(scheduleJson).forEach((dayEventsInfo) {
-      dayEventsInfoList.add(new DayEventsInfo.fromJson(dayEventsInfo));
+    json.decode(scheduleJson).forEach((aDayEventsInfo) {
+      dayEventsInfoList.add(DayEventsInfo.fromJson(aDayEventsInfo));
     });
     gDayEventsMap
         .addAll(fCreateSplayTreeMapFromDayEventsInfoList(dayEventsInfoList));

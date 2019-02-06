@@ -10,9 +10,8 @@ final List<TileInfo> gNewsList = new List<TileInfo>();
 void fGetNewsFromMemory() {
   String newsJson = gPrefs.getString(gNewsDatabaseKey);
   if (newsJson != null) {
-    gNewsList.addAll(json.decode(newsJson).map<TileInfo>((newsInfo) {
-      return new TileInfo(
-          newsInfo['mId'], "news_info", newsInfo['mTitle'], newsInfo['mBody']);
+    gNewsList.addAll(json.decode(newsJson).map<TileInfo>((aNewsInfo) {
+      return TileInfo.fromJson(aNewsInfo);
     }).toList());
   }
 }
@@ -33,8 +32,6 @@ class NewsWidget extends StatefulWidget {
 
 class NewsPage extends State<NewsWidget> {
   static const String Id = "NewsPageWidget";
-  static const String ImpId = "ImpNewsPageWidget"; // Temporary
-
   StreamSubscription<bool> mNewsStreamSubscription;
 
   @override

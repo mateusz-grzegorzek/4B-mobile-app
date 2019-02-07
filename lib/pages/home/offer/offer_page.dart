@@ -18,7 +18,7 @@ class OfferPage extends State<OfferWidget> {
   List<Event> mEventImagePathList = [
     new Event(
         new FootballPageWidget(), "assets/images/sport_events.png"),
-    new Event(new FootballPageWidget(), "assets/images/incentive.png")
+    //new Event(new FootballPageWidget(), "assets/images/incentive.png") // TODO Prepare pages for every offer
   ];
 
   void fShowEvent(int index) {
@@ -39,7 +39,7 @@ class OfferPage extends State<OfferWidget> {
           onTap: () => fShowEvent(index),
         );
       },
-      itemCount: 2,
+      itemCount: mEventImagePathList.length,
     );
   }
 }

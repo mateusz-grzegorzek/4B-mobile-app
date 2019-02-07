@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:location/location.dart';
+import 'package:flutter/services.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
 import 'map_place.dart';
@@ -50,6 +53,21 @@ class MapPage extends State<MapWidget> {
     print("fNavigateTo:aCoordX=$aCoordX,aCoordY=$aCoordY");
     String googleMapUrl =
         "https://www.google.com/maps/dir/?api=1&destination=$aCoordX,$aCoordY&travelmode=walking";
+
+    if (Platform.isIOS) {
+      try {
+        Location location = Location();
+        LocationData currentLocation;
+        currentLocation = await location.getLocation();
+        double originX = currentLocation.latitude;
+        double originY = currentLocation.longitude;
+        googleMapUrl =
+            "https://www.google.com/maps/dir/?api=1&origin=$originX,$originY&destination=$aCoordX,$aCoordY&travelmode=walking";
+      } on PlatformException {
+        print("fNavigateTo:Lack of location permission or error gathering location");
+      }
+    }
+
     if (await canLaunch(googleMapUrl)) {
       await launch(googleMapUrl);
     } else {

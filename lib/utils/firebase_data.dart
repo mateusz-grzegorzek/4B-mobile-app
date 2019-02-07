@@ -13,7 +13,6 @@ const String gNewsDatabaseKey = "news";
 const String gScheduleDatabaseKey = "schedule";
 const String gPlacesDatabaseKey = "places";
 const String gContactsDatabaseKey = "contacts";
-const String gLinksDatabaseKey = "links";
 const String gTeamDatabaseKey = "team";
 const String gTripsDatabaseKey = "trips";
 

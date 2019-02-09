@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
 import '../../../utils/tile_info.dart';
+import '../../../utils/widgets/appbars.dart';
 
 final List<TileInfo> gNewsList = new List<TileInfo>();
 
@@ -27,6 +28,7 @@ void fAddNewsToList(aNewsId, aNewsInfo) {
 
 class NewsPage extends StatefulWidget {
   static const String Id = "NewsPage";
+  static const String Title = "Aktualności";
   @override
   _NewsPageState createState() => new _NewsPageState();
 }
@@ -53,7 +55,8 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("_NewsPageState:build:gNewsList.length=" + gNewsList.length.toString());
+    print(
+        "_NewsPageState:build:gNewsList.length=" + gNewsList.length.toString());
     gNewsList.sort((firstNews, secondNews) {
       if (firstNews.mId > secondNews.mId) {
         return 1;
@@ -63,6 +66,7 @@ class _NewsPageState extends State<NewsPage> {
     });
 
     return new Scaffold(
+        appBar: fGetDefaultAppBar(NewsPage.Title),
         body: new ListView.builder(
             itemCount: gNewsList.length,
             padding: const EdgeInsets.all(6.0),

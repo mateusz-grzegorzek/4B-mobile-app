@@ -1,6 +1,8 @@
 import 'package:business_mobile_app/pages/home/offer/football/football_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../../utils/widgets/appbars.dart';
+
 class Event {
   Event(this.mWidget, this.mImagePath);
   Widget mWidget;
@@ -9,6 +11,7 @@ class Event {
 
 class OfferPage extends StatefulWidget {
   static const String Id = "OfferPage";
+  static const String Title = "Oferta";
   @override
   _OfferPageState createState() => new _OfferPageState();
 }
@@ -28,8 +31,7 @@ class _OfferPageState extends State<OfferPage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget fBuildEventList() {
     return ListView.builder(
       padding: EdgeInsets.all(8.0),
       itemBuilder: (BuildContext context, int index) {
@@ -39,6 +41,14 @@ class _OfferPageState extends State<OfferPage> {
         );
       },
       itemCount: mEventImagePathList.length,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: fGetDefaultAppBar(OfferPage.Title),
+      body: fBuildEventList(),
     );
   }
 }

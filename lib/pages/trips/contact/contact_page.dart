@@ -4,9 +4,11 @@ import 'package:url_launcher/url_launcher.dart';
 import '../trips_page.dart';
 import '../../common/contact/contact_list.dart';
 import '../../../utils/firebase_data.dart';
+import '../../../utils/widgets/appbars.dart';
 
 class TripContactPage extends StatefulWidget {
   static const String Id = "TripContactPage";
+  static const String Title = "Kontakt";
   @override
   _TripContactPageState createState() => new _TripContactPageState();
 }
@@ -14,17 +16,18 @@ class TripContactPage extends StatefulWidget {
 class _TripContactPageState extends State<TripContactPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
+        appBar: fGetDefaultAppBar(TripContactPage.Title),
         body: Center(
-            child: new ListView(
-      children: <Widget>[
-        new ContactListWidget(
-          mDatabaseKey: gTripsDatabaseKey,
-          mContactsList: gTripContacts,
-        ),
-        new HotelInformationCard()
-      ],
-    )));
+            child: ListView(
+          children: <Widget>[
+            ContactListWidget(
+              mDatabaseKey: gTripsDatabaseKey,
+              mContactsList: gTripContacts,
+            ),
+            HotelInformationCard()
+          ],
+        )));
   }
 }
 

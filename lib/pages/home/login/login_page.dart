@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import '../../home/home_page.dart';
-import '../../trips/trips_page.dart';
-import '../../../utils/shared_preferences.dart';
 
+import '../../trips/trips_page.dart';
+
+import '../../../utils/shared_preferences.dart';
+import '../../../utils/alerts.dart';
+import '../../../utils/widgets/appbars.dart';
 
 class LoginPage extends StatefulWidget {
   static const String Id = "LoginPage";
+  static const String Title = "Zaloguj się";
   @override
   _LoginPageState createState() => new _LoginPageState();
 }
@@ -24,13 +27,15 @@ class _LoginPageState extends State<LoginPage> {
       if (fIsTripLoginDataCorrect(userName, password)) {
         gPrefs.setString("login_user_name", userName);
         gPrefs.setString("login_password", password);
-        gHomePage.fOnLoginSuccess();
+        await fShowAlert(context, "Sukces!", "Zalogowano pomyślnie!");
+        Navigator.pop(context);
+        Navigator.of(context).pushNamed(TripsPage.Id);
       } else {
-        HomePage.fShowAlert(
+        await fShowAlert(
             context, "Błąd!", "Niepoprawna nazwa użytkownia lub hasło!");
       }
     } else {
-      HomePage.fShowAlert(
+      await fShowAlert(
           context, "Błąd!", "Proszę podaj nazwę użytkownika oraz hasło!");
     }
   }
@@ -48,6 +53,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
         resizeToAvoidBottomPadding: false,
+        appBar: fGetDefaultAppBar(LoginPage.Title),
         body: new Center(
             child: new Column(
           mainAxisAlignment: MainAxisAlignment.center,

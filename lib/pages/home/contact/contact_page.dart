@@ -7,6 +7,7 @@ import '../../common/contact/contact_list.dart';
 
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
+import '../../../utils/widgets/appbars.dart';
 
 List<ContactInfo> gContactsList = new List<ContactInfo>();
 
@@ -34,6 +35,7 @@ void fAddContactToList(aContactId, aContactInfo) {
 
 class MainContactPage extends StatefulWidget {
   static const String Id = "MainContactPage";
+  static const String Title = "Kontakt";
   @override
   _MainContactPageState createState() => new _MainContactPageState();
 }
@@ -42,8 +44,9 @@ class _MainContactPageState extends State<MainContactPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
+      appBar: fGetDefaultAppBar(MainContactPage.Title),
       body: Center(
-        child: new ListView(
+          child: new ListView(
         children: <Widget>[
           new Card(
             child: Column(

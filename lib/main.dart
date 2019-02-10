@@ -18,9 +18,9 @@ import 'pages/trips/map/map_page.dart';
 import 'pages/trips/contact/contact_page.dart';
 
 void main() async {
-  await fInitSharedPreferences();
+  fInitSharedPreferences();
   fInitFirebaseData();
-  runApp(new BusinessMobileApp());
+  runApp(BusinessMobileApp());
 }
 
 class BusinessMobileApp extends StatelessWidget {
@@ -45,12 +45,13 @@ class BusinessMobileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("4B Mobile App started");
-    return new MaterialApp(
+    return MaterialApp(
         title: '4B Mobile App',
         debugShowCheckedModeBanner: false,
-        theme: new ThemeData(
+        theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        feature/drawer_refactor
         home: new HomePage(),
         routes: routes);
   }

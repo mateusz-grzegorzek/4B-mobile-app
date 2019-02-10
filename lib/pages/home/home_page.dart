@@ -13,27 +13,27 @@ class HomePage extends StatefulWidget {
   static const String Id = "HomePage";
   static const String Title = "4Business Team";
   @override
-  _HomePageState createState() => new _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext aContext) {
-    final body = new Center(
+    final body = Center(
       child: Column(
         children: <Widget>[
-          new Padding(padding: EdgeInsets.all(40)),
-          new Container(
-            child: new Image(
+          Padding(padding: EdgeInsets.all(40)),
+          Container(
+            child: Image(
               image: AssetImage("assets/images/logo_white.png"),
               width: 150,
             ),
           ),
-          new Padding(padding: EdgeInsets.all(40)),
-          new Text(
+          Padding(padding: EdgeInsets.all(40)),
+          Text(
             "Lider wyjazdów w Polsce",
             textAlign: TextAlign.center,
-            style: new TextStyle(
+            style: TextStyle(
                 fontFamily: 'Amithen',
                 color: gBrownColor,
                 fontSize: 30.0,
@@ -43,14 +43,14 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
-    final drawer = new MenuBar(<MenuItem>[
+    final drawer = MenuBar(<MenuItem>[
       MenuItem(AboutUsPage.Id, AboutUsPage.Title),
       MenuItem(OfferPage.Id, OfferPage.Title),
       MenuItem(MainContactPage.Id, MainContactPage.Title),
       MenuItem(LoginPage.Id, LoginPage.Title)
     ]);
 
-    return new Scaffold(
+    return Scaffold(
         backgroundColor: Colors.black,
         appBar: fGetDefaultAppBar(),
         drawer: drawer,

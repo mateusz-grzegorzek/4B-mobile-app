@@ -51,7 +51,6 @@ class BusinessMobileApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        feature/drawer_refactor
         home: new HomePage(),
         routes: routes);
   }

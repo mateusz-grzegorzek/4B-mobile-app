@@ -97,11 +97,7 @@ class AboutUsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(padding: EdgeInsets.all(10)),
-                Text(" O 4Business",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 33.0,
-                        fontWeight: FontWeight.bold)),
+                fPrintHeadingText(" O 4Business"),
                 Padding(padding: EdgeInsets.all(10)),
                 about4BusinessText,
                 Padding(padding: EdgeInsets.all(10)),

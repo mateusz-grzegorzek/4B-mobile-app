@@ -87,10 +87,10 @@ void fAddEventToList(aEventId, aEventInfo) {
         aDayEventsListView.mEventInfoList.add(eventInfo);
         aDayEventsListView.mEventInfoList.sort(
             (firstEvent, secondEvent) => firstEvent.compareTo(secondEvent));
-        throw new Exception("dayAlreadyInList");
+        //throw new Exception("dayAlreadyInList"); tu sie cos zjebalo i w debugu zatrzymuje z komunikatem, do naprawy
       }
     });
-  } on Exception {} /* only way to break forEach :P */
+  } catch (e) {} /* only way to break forEach :P */
 
   print("fAddEventToList:dayAlreadyInList=" + dayAlreadyInList.toString());
   if (!dayAlreadyInList) {

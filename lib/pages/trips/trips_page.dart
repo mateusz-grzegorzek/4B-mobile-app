@@ -1,11 +1,22 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 
-import '../trips/trip_info.dart';
+import 'trip_info.dart';
 import '../common/contact/contact_info.dart';
+
 import '../../utils/firebase_data.dart';
 import '../../utils/shared_preferences.dart';
 import '../../utils/tile_info.dart';
+import '../../utils/widgets/menu_bar.dart';
+import '../../utils/widgets/appbars.dart';
+
+import 'map/map_page.dart';
+import 'schedule/schedule_page.dart';
+import 'news/news_page.dart';
+import 'about_country/about_country_page.dart';
+import 'visited_places/visited_places_page.dart';
+import 'important_info/important_info_page.dart';
+import 'contact/contact_page.dart';
 
 final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;
@@ -97,16 +108,30 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
   return false;
 }
 
-class TripsWidget extends StatefulWidget {
+class TripsPage extends StatefulWidget {
+  static const String Id = "TripsPage";
+  static const String Title = "Drogi uczestniku, witamy w aplikacji!";
   @override
-  TripsPage createState() => new TripsPage();
+  _TripsPageState createState() => _TripsPageState();
 }
 
-class TripsPage extends State<TripsWidget> {
-  static const String Id = "TripsPage";
+class _TripsPageState extends State<TripsPage> {
+  final drawer = MenuBar(<MenuItem>[
+    MenuItem(AboutCountryPage.Id, AboutCountryPage.Title),
+    MenuItem(VisitedPlacesPage.Id, VisitedPlacesPage.Title),
+    MenuItem(SchedulePage.Id, SchedulePage.Title),
+    MenuItem(ImporatantInfoPage.Id, ImporatantInfoPage.Title),
+    MenuItem(NewsPage.Id, NewsPage.Title),
+    MenuItem(MapPage.Id, MapPage.Title),
+    MenuItem(TripContactPage.Id, TripContactPage.Title),
+  ]
+  );
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(body: null);
+    return Scaffold(
+      appBar: fGetDefaultAppBar(TripsPage.Title),
+      drawer: drawer,
+      body: null);
   }
 }

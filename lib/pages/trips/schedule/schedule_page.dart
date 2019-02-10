@@ -6,6 +6,7 @@ import "package:intl/date_symbols.dart";
 import 'package:flutter/material.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
+import '../../../utils/widgets/appbars.dart';
 import 'day_events_info.dart';
 import 'event_info.dart';
 import 'day_events_list_view.dart';
@@ -102,13 +103,15 @@ void fAddEventToList(aEventId, aEventInfo) {
   }
 }
 
-class ScheduleWidget extends StatefulWidget {
+class SchedulePage extends StatefulWidget {
+  static const String Id = "SchedulePage";
+  static const String Title = "Agenda wyjazdu";
   @override
-  SchedulePage createState() => new SchedulePage();
+  _SchedulePageState createState() => new _SchedulePageState();
 }
 
-class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
-  static const String Id = "SchedulePage";
+class _SchedulePageState extends State<SchedulePage>
+    with TickerProviderStateMixin {
   TabController mTabController;
   StreamSubscription<bool> mStreamSub;
 
@@ -134,7 +137,7 @@ class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    print("SchedulePage:initState");
+    print("_SchedulePageState:initState");
     super.initState();
     mStreamSub = fGetStream(gScheduleDatabaseKey).listen((aNewsInfo) {
       setState(() {});
@@ -143,7 +146,7 @@ class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    print("SchedulePage:dispose");
+    print("_SchedulePageState:dispose");
     super.dispose();
     if (mTabController != null) {
       mTabController.dispose();
@@ -154,37 +157,43 @@ class SchedulePage extends State<ScheduleWidget> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext aContext) {
-    print("SchedulePage:build:gDays.length=" + gDayEventsMap.length.toString());
+    print("_SchedulePageState:build:gDays.length=" +
+        gDayEventsMap.length.toString());
     if (gDayEventsMap.length > 0) {
       int previousIndex = fFindTodayDayTabIndex();
       if (mTabController != null) {
         previousIndex = mTabController.index;
       }
       mTabController =
-          new TabController(vsync: this, length: gDayEventsMap.length + 1);
+          TabController(vsync: this, length: gDayEventsMap.length + 1);
       mTabController.animateTo(previousIndex);
-      TabBar dayTabBar = new TabBar(
+      TabBar dayTabBar = TabBar(
         isScrollable: true,
         controller: mTabController,
         tabs: List.from(gDayEventsMap.keys),
       );
 
-      return new DefaultTabController(
-        length: gDayEventsMap.length + 1,
-        child: new Scaffold(
-          appBar: new AppBar(
-            bottom: new PreferredSize(
-              preferredSize: new Size(0.0, 0.0),
-              child: new Container(child: dayTabBar),
+      return Scaffold(
+          appBar: fGetDefaultAppBar(SchedulePage.Title),
+          body: DefaultTabController(
+            length: gDayEventsMap.length + 1,
+            child: Scaffold(
+              appBar: AppBar(
+                bottom: PreferredSize(
+                  preferredSize: Size(0.0, 0.0),
+                  child: Container(child: dayTabBar),
+                ),
+              ),
+              body: TabBarView(
+                  controller: mTabController,
+                  children: List.from(gDayEventsMap.values)),
             ),
-          ),
-          body: new TabBarView(
-              controller: mTabController,
-              children: List.from(gDayEventsMap.values)),
-        ),
-      );
+          ));
     } else {
-      return new Center(child: new Text("No data..."));
+      return Scaffold(
+        appBar: fGetDefaultAppBar(SchedulePage.Title),
+        body: Center(child: new Text("No data...")),
+      );
     }
   }
 }

@@ -7,6 +7,7 @@ import 'package:location/location.dart';
 import 'package:flutter/services.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
+import '../../../utils/widgets/appbars.dart';
 import 'map_place.dart';
 
 final List<MapPlace> gPlacesList = new List<MapPlace>();
@@ -40,14 +41,9 @@ MapPlace fGetPlaceById(int aId) {
   return mapPlace;
 }
 
-class MapWidget extends StatefulWidget {
-  @override
-  MapPage createState() => new MapPage();
-}
-
-class MapPage extends State<MapWidget> {
+class MapPage extends StatefulWidget {
   static const String Id = "MapPage";
-  StreamSubscription<bool> mStreamSub;
+  static const String Title = "Mapa";
 
   static void fNavigateTo(double aCoordX, double aCoordY) async {
     print("fNavigateTo:aCoordX=$aCoordX,aCoordY=$aCoordY");
@@ -64,7 +60,8 @@ class MapPage extends State<MapWidget> {
         googleMapUrl =
             "https://www.google.com/maps/dir/?api=1&origin=$originX,$originY&destination=$aCoordX,$aCoordY&travelmode=walking";
       } on PlatformException {
-        print("fNavigateTo:Lack of location permission or error gathering location");
+        print(
+            "fNavigateTo:Lack of location permission or error gathering location");
       }
     }
 
@@ -76,8 +73,15 @@ class MapPage extends State<MapWidget> {
   }
 
   @override
+  _MapPageState createState() => new _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
+  StreamSubscription<bool> mStreamSub;
+
+  @override
   void initState() {
-    print("MapPage:initState");
+    print("_MapPageState:initState");
     super.initState();
     mStreamSub = fGetStream(gPlacesDatabaseKey).listen((aNewsInfo) {
       setState(() {});
@@ -86,7 +90,7 @@ class MapPage extends State<MapWidget> {
 
   @override
   void dispose() {
-    print("MapPage:dispose");
+    print("_MapPageState:dispose");
     super.dispose();
     mStreamSub.cancel();
     fCloseStream(gPlacesDatabaseKey);
@@ -94,7 +98,8 @@ class MapPage extends State<MapWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print("MapPage:build:gPlacesList.length=" + gPlacesList.length.toString());
+    print("_MapPageState:build:gPlacesList.length=" +
+        gPlacesList.length.toString());
     gPlacesList.sort((firstMapPlace, secondMapPlace) {
       if (firstMapPlace.mId > secondMapPlace.mId) {
         return 1;
@@ -103,34 +108,36 @@ class MapPage extends State<MapWidget> {
       }
     });
     return new Scaffold(
+        appBar: fGetDefaultAppBar(MapPage.Title),
         body: new Column(
-      children: <Widget>[
-        new Padding(padding: EdgeInsets.all(10.0)),
-        new Text(
-          "Nawiguj mnie do:",
-          style: new TextStyle(fontSize: 30.0),
-        ),
-        new Expanded(
-          child: new ListView.builder(
-              itemCount: gPlacesList.length,
-              padding: const EdgeInsets.only(top: 10.0),
-              itemExtent: 80.0,
-              itemBuilder: (context, index) {
-                return new Card(
-                  child: new ListTile(
-                    title: new Text(gPlacesList[index].mName,
-                        style: new TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18.0)),
-                    subtitle: new Text(gPlacesList[index].mAddress),
-                    onTap: () => fNavigateTo(
-                        gPlacesList[index].mCoordX, gPlacesList[index].mCoordY),
-                  ),
-                );
-              }),
-        ),
-      ],
-    ));
+          children: <Widget>[
+            new Padding(padding: EdgeInsets.all(10.0)),
+            new Text(
+              "Nawiguj mnie do:",
+              style: new TextStyle(fontSize: 30.0),
+            ),
+            new Expanded(
+              child: new ListView.builder(
+                  itemCount: gPlacesList.length,
+                  padding: const EdgeInsets.only(top: 10.0),
+                  itemExtent: 80.0,
+                  itemBuilder: (context, index) {
+                    return new Card(
+                      child: new ListTile(
+                        title: new Text(gPlacesList[index].mName,
+                            style: new TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.0)),
+                        subtitle: new Text(gPlacesList[index].mAddress),
+                        onTap: () => MapPage.fNavigateTo(
+                            gPlacesList[index].mCoordX,
+                            gPlacesList[index].mCoordY),
+                      ),
+                    );
+                  }),
+            ),
+          ],
+        ));
   }
 }

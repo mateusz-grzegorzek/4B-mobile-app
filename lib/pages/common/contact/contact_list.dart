@@ -7,6 +7,7 @@ import 'contact_info.dart';
 import '../../../utils/firebase_data.dart';
 
 class ContactListWidget extends StatefulWidget {
+  static const String Id = "ContactListPage";
   final List<ContactInfo> mContactsList;
   final String mDatabaseKey;
 
@@ -14,12 +15,10 @@ class ContactListWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  ContactListPage createState() => new ContactListPage();
+  _ContactListState createState() => new _ContactListState();
 }
 
-class ContactListPage extends State<ContactListWidget> {
-  static const String Id = "ContactListPage";
-
+class _ContactListState extends State<ContactListWidget> {
   StreamSubscription<bool> mStreamSub;
 
   @override

@@ -1,18 +1,20 @@
-import '../trips_page.dart';
 import 'package:flutter/material.dart';
+import '../trips_page.dart';
+import '../../../utils/widgets/appbars.dart';
 
-class AboutCountryWidget extends StatefulWidget {
+class AboutCountryPage extends StatefulWidget {
+  static const String Id = "AboutCountryPage";
+  static const String Title = "O kraju";
   @override
-  AboutCountryPage createState() => new AboutCountryPage();
+  _AboutCountryPageState createState() => new _AboutCountryPageState();
 }
 
-class AboutCountryPage extends State<AboutCountryWidget> {
-  static const String Id = "AboutCountryPage";
-
+class _AboutCountryPageState extends State<AboutCountryPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         backgroundColor: Colors.black,
+        appBar: fGetDefaultAppBar(AboutCountryPage.Title),
         body: SingleChildScrollView(
             child: Container(
                 padding: EdgeInsets.all(10),

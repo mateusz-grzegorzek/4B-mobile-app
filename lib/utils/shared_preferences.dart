@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../pages/home/contact/contact_page.dart';
 import '../pages/trips/map/map_page.dart';
@@ -10,9 +11,11 @@ SharedPreferences gPrefs;
 
 Future fInitSharedPreferences() async {
   gPrefs = await SharedPreferences.getInstance();
-  fGetNewsFromMemory();
-  fGetPlacesFromMemory();
-  fGetScheduleFromMemory();
-  fGetContactsFromMemory();
-  fGetTripsFromMemory();
+  if (!Platform.isIOS) { // TODO fix platform specific code
+    fGetNewsFromMemory();
+    fGetPlacesFromMemory();
+    fGetScheduleFromMemory();
+    fGetContactsFromMemory();
+    fGetTripsFromMemory();
+  }
 }

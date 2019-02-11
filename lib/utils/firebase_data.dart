@@ -4,13 +4,10 @@ import 'shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '../pages/home/contact/contact_page.dart';
 import '../pages/trips/map/map_page.dart';
-import '../pages/trips/schedule/day_events_info.dart';
 import '../pages/trips/news/news_page.dart';
-import '../pages/trips/schedule/schedule_page.dart';
 import '../pages/trips/trips_page.dart';
 
 const String gNewsDatabaseKey = "news";
-const String gScheduleDatabaseKey = "schedule";
 const String gPlacesDatabaseKey = "places";
 const String gContactsDatabaseKey = "contacts";
 const String gTeamDatabaseKey = "team";
@@ -28,13 +25,7 @@ class FirebaseData {
       print("FirebaseDataController:fSubscribe:listen:" + aDatabaseKey);
       globalVariable.clear();
       event.snapshot.value.forEach(aFunction);
-      String globalVariableJson;
-      if (aDatabaseKey != gScheduleDatabaseKey) {
-        globalVariableJson = json.encode(globalVariable);
-      } else {
-        globalVariableJson = json
-            .encode(fCreateDayEventsInfoListFromSplayTreeMap(gDayEventsMap));
-      }
+      String globalVariableJson = json.encode(globalVariable);
       gPrefs.setString(aDatabaseKey, globalVariableJson);
       mStreamController.add(true);
     });
@@ -51,8 +42,6 @@ Map<String, FirebaseData> gFirebaseDataMap = new Map<String, FirebaseData>();
 void fInitFirebaseData() {
   gFirebaseDataMap[gNewsDatabaseKey] =
       new FirebaseData(gNewsDatabaseKey, fAddNewsToList, gNewsList);
-  gFirebaseDataMap[gScheduleDatabaseKey] =
-      new FirebaseData(gScheduleDatabaseKey, fAddEventToList, gDayEventsMap);
   gFirebaseDataMap[gPlacesDatabaseKey] =
       new FirebaseData(gPlacesDatabaseKey, fAddPlaceToList, gPlacesList);
   gFirebaseDataMap[gContactsDatabaseKey] =

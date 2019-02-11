@@ -1,3 +1,4 @@
+import 'package:business_mobile_app/pages/trips/schedule/day_tile.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../common/contact/contact_info.dart';
@@ -16,7 +17,8 @@ class TripInfo extends Object {
       this.mVisitedPlaces,
       this.mImportantInfo,
       this.mContacts,
-      this.mBackgroundImagePath);
+      this.mBackgroundImagePath,
+      this.mDayTiles);
 
   int mId;
   String mTitle;
@@ -28,18 +30,20 @@ class TripInfo extends Object {
   List<TileInfo> mImportantInfo;
   List<ContactInfo> mContacts;
   String mBackgroundImagePath;
+  List<DayTile> mDayTiles;
 
-  TripInfo.fromTripInfo(TripInfo aNewsInfo) {
-    this.mId = aNewsInfo.mId;
-    this.mTitle = aNewsInfo.mTitle;
-    this.mBody = aNewsInfo.mBody;
-    this.mUserName = aNewsInfo.mUserName;
-    this.mPassword = aNewsInfo.mPassword;
-    this.mAboutCountry = aNewsInfo.mAboutCountry;
-    this.mVisitedPlaces = aNewsInfo.mVisitedPlaces;
-    this.mImportantInfo = aNewsInfo.mImportantInfo;
-    this.mContacts = aNewsInfo.mContacts;
-    this.mBackgroundImagePath = aNewsInfo.mBackgroundImagePath;
+  TripInfo.fromTripInfo(TripInfo aTripInfo) {
+    this.mId = aTripInfo.mId;
+    this.mTitle = aTripInfo.mTitle;
+    this.mBody = aTripInfo.mBody;
+    this.mUserName = aTripInfo.mUserName;
+    this.mPassword = aTripInfo.mPassword;
+    this.mAboutCountry = aTripInfo.mAboutCountry;
+    this.mVisitedPlaces = aTripInfo.mVisitedPlaces;
+    this.mImportantInfo = aTripInfo.mImportantInfo;
+    this.mContacts = aTripInfo.mContacts;
+    this.mBackgroundImagePath = aTripInfo.mBackgroundImagePath;
+    this.mDayTiles = aTripInfo.mDayTiles;
   }
 
   void fLog() {

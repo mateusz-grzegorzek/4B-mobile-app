@@ -1,6 +1,9 @@
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
 
+const TextStyle gSuperscriptTextStyle =
+    TextStyle(fontSize: 11.0, color: Colors.black, fontWeight: FontWeight.bold);
+
 const TextStyle gNormalTextStyle = TextStyle(
   fontSize: 20.0,
   color: Colors.black,
@@ -14,6 +17,12 @@ const TextStyle gMenuItemTextStyle =
 
 const TextStyle gHeadingTextStyle =
     TextStyle(fontSize: 33.0, color: Colors.black, fontWeight: FontWeight.bold);
+
+Text fPrintSuperscriptText(String aText,
+    [TextStyle aTextStyle = gSuperscriptTextStyle,
+    TextAlign aTextAlign = TextAlign.left]) {
+  return Text(aText, style: aTextStyle, textAlign: aTextAlign);
+}
 
 Text fPrintText(String aText,
     [TextStyle aTextStyle = gNormalTextStyle,
@@ -37,15 +46,19 @@ Text fPrintHeadingText(String aText) {
   return fPrintText(aText, gHeadingTextStyle);
 }
 
+Image fPrintOkSign() {
+  return Image(
+    image: AssetImage("assets/images/about_ok_sign.png"),
+    width: 25,
+  );
+}
+
 Column fPrintOptionRow(String option) {
   return Column(
     children: <Widget>[
       Row(
         children: <Widget>[
-          Image(
-            image: AssetImage("assets/images/about_ok_sign.png"),
-            width: 25,
-          ),
+          fPrintOkSign(),
           Padding(padding: EdgeInsets.all(5)),
           Expanded(child: fPrintText(option))
         ],

@@ -1,3 +1,5 @@
+import 'package:business_mobile_app/pages/trips/trip_info.dart';
+import 'package:business_mobile_app/utils/firebase_data.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -52,74 +54,76 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    var scaf;
-    try {
-      scaf = Scaffold(
-          resizeToAvoidBottomPadding: false,
-          backgroundColor: Colors.black,
-          appBar: fGetDefaultAppBar(LoginPage.Title),
-          body: new Container(
-              padding: EdgeInsets.all(25.0),
-              child: new Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "Nazwa:",
-                    style: TextStyle(
-                        color: gBrownColor,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Padding(padding: EdgeInsets.all(5)),
-                  Container(
-                      height: 52,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.white,
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 6.0),
-                          child: TextField(
-                            controller: mUserNameTextEditingController,
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                border: InputBorder.none,
-                                hintText: 'Proszę, wprowadź nazwę'),
-                          ),
+    return Scaffold(
+        resizeToAvoidBottomPadding: false,
+        backgroundColor: Colors.black,
+        appBar: fGetDefaultAppBar(LoginPage.Title),
+        body: new Container(
+            padding: EdgeInsets.all(25.0),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  "Nazwa:",
+                  style: TextStyle(
+                      color: gBrownColor,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                Padding(padding: EdgeInsets.all(5)),
+                Container(
+                    height: 52,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 6.0),
+                        child: TextField(
+                          controller: mUserNameTextEditingController,
+                          decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              border: InputBorder.none,
+                              hintText: 'Proszę, wprowadź nazwę'),
                         ),
-                      )),
-                  Padding(padding: EdgeInsets.all(10)),
-                  Text(
-                    "Hasło:",
-                    style: TextStyle(
-                        color: gBrownColor,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Padding(padding: EdgeInsets.all(5)),
-                  Container(
-                      height: 52,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
-                        color: Colors.white,
                       ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 6.0),
-                          child: TextField(
-                            controller: mPasswordTextEditingController,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                border: InputBorder.none,
-                                hintText: 'Proszę, wprowadź hasło'),
-                          ),
+                    )),
+                Padding(padding: EdgeInsets.all(10)),
+                Text(
+                  "Hasło:",
+                  style: TextStyle(
+                      color: gBrownColor,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                Padding(padding: EdgeInsets.all(5)),
+                Container(
+                    height: 52,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 6.0),
+                        child: TextField(
+                          controller: mPasswordTextEditingController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              border: InputBorder.none,
+                              hintText: 'Proszę, wprowadź hasło'),
                         ),
-                      )),
-                  new Padding(padding: new EdgeInsets.all(20.0)),
-                  Container(
+                      ),
+                    )),
+                Padding(padding: EdgeInsets.all(20.0)),
+                GestureDetector(
+                  onTap: () {
+                    fLogin();
+                  },
+                  child: Container(
                     alignment: Alignment.center,
                     width: double.infinity,
                     height: 52,
@@ -130,13 +134,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        FlatButton(
-                            onPressed: fLogin,
-                            child: Text(
-                              'Zaloguj się',
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            )),
+                        Text(
+                          'Zaloguj się',
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Padding(padding: EdgeInsets.all(20.0)),
                         Image(
                           image: AssetImage("assets/images/login_arrow.png"),
                           width: 20,
@@ -144,11 +147,8 @@ class _LoginPageState extends State<LoginPage> {
                       ],
                     ),
                   ),
-                ],
-              )));
-    } catch (e) {
-      print(e);
-    }
-    return scaf;
+                ),
+              ],
+            )));
   }
 }

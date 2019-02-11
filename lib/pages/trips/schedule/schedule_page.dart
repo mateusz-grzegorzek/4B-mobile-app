@@ -1,38 +1,10 @@
-import 'dart:collection';
-import 'dart:async';
-import 'dart:convert';
 import 'dart:core';
-import "package:intl/date_symbols.dart";
+import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
+import 'package:business_mobile_app/utils/fonts.dart';
+import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/firebase_data.dart';
-import '../../../utils/shared_preferences.dart';
 import '../../../utils/widgets/app_bar.dart';
-import 'day_events_info.dart';
-import 'event_info.dart';
-import 'day_events_list_view.dart';
-
-DayEventsMap gDayEventsMap = new DayEventsMap(fCompareDayTab);
-
-class DayEventsMap extends SplayTreeMap<DayTab, DayEventsListView> {
-  DayEventsMap(aCompareTo) : super(aCompareTo);
-}
-
-class DayTab extends Tab {
-  DayTab(this.mDateTime, aTitle) : super(text: aTitle);
-  final DateTime mDateTime;
-}
-
-void fGetScheduleFromMemory() {
-  String scheduleJson = gPrefs.getString(gScheduleDatabaseKey);
-  if (scheduleJson != null) {
-    List<DayEventsInfo> dayEventsInfoList = new List<DayEventsInfo>();
-    json.decode(scheduleJson).forEach((aDayEventsInfo) {
-      dayEventsInfoList.add(DayEventsInfo.fromJson(aDayEventsInfo));
-    });
-    gDayEventsMap
-        .addAll(fCreateSplayTreeMapFromDayEventsInfoList(dayEventsInfoList));
-  }
-}
 
 int fCompareDays(DateTime aLeftDateTime, DateTime aRightDateTime) {
   int diffInYears = aLeftDateTime.year - aRightDateTime.year;
@@ -62,47 +34,6 @@ int fCompareDays(DateTime aLeftDateTime, DateTime aRightDateTime) {
   }
 }
 
-int fCompareDayTab(DayTab aLeftDayTab, DayTab aRightDayTab) {
-  return fCompareDays(aLeftDayTab.mDateTime, aRightDayTab.mDateTime);
-}
-
-void fAddEventToList(aEventId, aEventInfo) {
-  print("fAddEventToList");
-  EventInfo eventInfo = new EventInfo(
-      fGetDatabaseId(aEventId, 3),
-      aEventInfo["title"],
-      aEventInfo["body"],
-      aEventInfo["place_id"],
-      DateTime.parse(aEventInfo["start_time"]),
-      DateTime.parse(aEventInfo["end_time"]));
-  eventInfo.log();
-
-  bool dayAlreadyInList = false;
-  try {
-    gDayEventsMap.forEach((aDayTab, aDayEventsListView) {
-      int result = fCompareDays(aDayTab.mDateTime, eventInfo.mStartTime);
-      print("fAddEventToList:result=$result");
-      if (result == 0) {
-        dayAlreadyInList = true;
-        aDayEventsListView.mEventInfoList.add(eventInfo);
-        aDayEventsListView.mEventInfoList.sort(
-            (firstEvent, secondEvent) => firstEvent.compareTo(secondEvent));
-        //throw new Exception("dayAlreadyInList"); tu sie cos zjebalo i w debugu zatrzymuje z komunikatem, do naprawy
-      }
-    });
-  } catch (e) {} /* only way to break forEach :P */
-
-  print("fAddEventToList:dayAlreadyInList=" + dayAlreadyInList.toString());
-  if (!dayAlreadyInList) {
-    String weekday = eventInfo.mStartTime.day.toString() +
-        " " +
-        en_USSymbols.SHORTMONTHS[eventInfo.mStartTime.month - 1];
-    DayTab dayTab = new DayTab(eventInfo.mStartTime, weekday);
-    gDayEventsMap[dayTab] = new DayEventsListView();
-    gDayEventsMap[dayTab].mEventInfoList.add(eventInfo);
-  }
-}
-
 class SchedulePage extends StatefulWidget {
   static const String Id = "SchedulePage";
   static const String Title = "Agenda wyjazdu";
@@ -112,88 +43,108 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage>
     with TickerProviderStateMixin {
-  TabController mTabController;
-  StreamSubscription<bool> mStreamSub;
-
-  int fFindTodayDayTabIndex() {
-    int index = 0;
-    bool indexFound = false;
-    try {
-      gDayEventsMap.forEach((aDayTab, aDayEventsListView) {
-        int result = fCompareDays(aDayTab.mDateTime, DateTime.now());
-        if (result == 0) {
-          indexFound = true;
-          throw new Exception("index");
-        }
-        index++;
-      });
-    } on Exception {}
-    if (!indexFound) {
-      index = 0;
-    }
-    print("fFindTodayDayTabIndex:index=$index");
-    return index;
-  }
-
   @override
   void initState() {
     print("_SchedulePageState:initState");
     super.initState();
-    mStreamSub = fGetStream(gScheduleDatabaseKey).listen((aNewsInfo) {
-      setState(() {});
-    });
   }
 
   @override
   void dispose() {
     print("_SchedulePageState:dispose");
     super.dispose();
-    if (mTabController != null) {
-      mTabController.dispose();
-    }
-    mStreamSub.cancel();
-    fCloseStream(gScheduleDatabaseKey);
+  }
+
+  Widget fPrintTime(String time) {
+    return Column(
+      children: <Widget>[
+        fPrintSuperscriptText(time),
+      ],
+    );
+  }
+
+  Widget fBuildTimeRow(DateTime aStartTime, DateTime aEndTime) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        fPrintBoldText(aStartTime.hour.toString()),
+        fPrintTime(aStartTime.minute.toString().padLeft(2, '0')),
+        fPrintBoldText(" - "),
+        fPrintBoldText(aEndTime.hour.toString()),
+        fPrintTime(aEndTime.minute.toString().padLeft(2, '0'))
+      ],
+    );
+  }
+
+  Column fBuildEventRow(EventInfo aEventInfo) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            fPrintOkSign(),
+            Padding(padding: EdgeInsets.all(5)),
+            fBuildTimeRow(aEventInfo.mStartTime, aEventInfo.mEndTime),
+            fPrintBoldText(" - "),
+            fPrintText(aEventInfo.mTitle)
+          ],
+        ),
+        Padding(padding: EdgeInsets.all(5)),
+      ],
+    );
+  }
+
+  Column fBuildDayTiles() {
+    return Column(
+        children:
+            List<Widget>.generate(gTripInfo.mDayTiles.length, (int index) {
+      return ExpansionTile(
+          title: fPrintBoldText(
+              "Dzień " + gTripInfo.mDayTiles[index].mDayNumber.toString()),
+          children: List<Widget>.generate(
+              gTripInfo.mDayTiles[index].mEventsList.length, (int index2) {
+            return fBuildEventRow(
+                gTripInfo.mDayTiles[index].mEventsList[index2]);
+          }));
+    }));
   }
 
   @override
   Widget build(BuildContext aContext) {
-    print("_SchedulePageState:build:gDays.length=" +
-        gDayEventsMap.length.toString());
-    if (gDayEventsMap.length > 0) {
-      int previousIndex = fFindTodayDayTabIndex();
-      if (mTabController != null) {
-        previousIndex = mTabController.index;
-      }
-      mTabController =
-          TabController(vsync: this, length: gDayEventsMap.length + 1);
-      mTabController.animateTo(previousIndex);
-      TabBar dayTabBar = TabBar(
-        isScrollable: true,
-        controller: mTabController,
-        tabs: List.from(gDayEventsMap.keys),
-      );
-
-      return Scaffold(
-          appBar: fGetDefaultAppBar(SchedulePage.Title),
-          body: DefaultTabController(
-            length: gDayEventsMap.length + 1,
-            child: Scaffold(
-              appBar: AppBar(
-                bottom: PreferredSize(
-                  preferredSize: Size(0.0, 0.0),
-                  child: Container(child: dayTabBar),
-                ),
-              ),
-              body: TabBarView(
-                  controller: mTabController,
-                  children: List.from(gDayEventsMap.values)),
-            ),
-          ));
-    } else {
-      return Scaffold(
-        appBar: fGetDefaultAppBar(SchedulePage.Title),
-        body: Center(child: new Text("No data...")),
-      );
-    }
+    return Scaffold(
+        appBar: fBuildAppBar(
+            "assets/images/trips/las_vegas/schedule_top_image.png"),
+        body: Container(
+          margin: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              fPrintHeadingText(" Agenda wyjazdu"),
+              Padding(padding: EdgeInsets.all(5)),
+              Container(
+                  height: 52,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: gBrownColor,
+                      width: 3,
+                    ),
+                    borderRadius: BorderRadius.circular(18.0),
+                  ),
+                  child: Row(children: <Widget>[
+                    Padding(padding: EdgeInsets.all(5)),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 6.0),
+                        child: fPrintBoldText("Rozwiń wszystkie informacje")),
+                    Padding(padding: EdgeInsets.all(10)),
+                    Image(
+                        image: AssetImage("assets/images/expand_arrows.png"),
+                        height: 20)
+                  ])),
+              Padding(padding: EdgeInsets.all(5)),
+              fBuildDayTiles()
+            ],
+          ),
+        ));
   }
 }

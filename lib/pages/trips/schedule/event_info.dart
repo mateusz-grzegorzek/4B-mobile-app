@@ -4,13 +4,10 @@ part 'event_info.g.dart';
 
 @JsonSerializable()
 class EventInfo extends Object {
-  EventInfo(this.mId, this.mTitle, this.mBody, this.mPlaceId, this.mStartTime,
-      this.mEndTime);
+  EventInfo(this.mId, this.mTitle, this.mStartTime, this.mEndTime);
 
   int mId;
   String mTitle;
-  String mBody;
-  int mPlaceId;
   DateTime mStartTime;
   DateTime mEndTime;
   void log() {
@@ -19,10 +16,6 @@ class EventInfo extends Object {
         mId.toString() +
         "mTitle=" +
         mTitle +
-        ",mBody=" +
-        mBody +
-        ",mPlaceId=" +
-        mPlaceId.toString() +
         ",mStartTime=" +
         mStartTime.toString() +
         ",mEndTime=" +

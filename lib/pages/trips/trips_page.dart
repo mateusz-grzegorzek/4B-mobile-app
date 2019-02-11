@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:business_mobile_app/pages/trips/schedule/day_tile.dart';
+import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
 import 'package:flutter/material.dart';
 
 import 'trip_info.dart';
@@ -26,26 +28,34 @@ List<TileInfo> gImportantInfo;
 List<ContactInfo> gTripContacts;
 String gBackgroundImagePath;
 
+TripInfo gTripInfo;
+
 void fGetTripsFromMemory() {
   String tripsJson = gPrefs.getString(gTripsDatabaseKey);
   if (tripsJson != null) {
     gTripsList.addAll(json.decode(tripsJson).map<TripInfo>((aTripInfo) {
-      List<TileInfo> visitedPlaces = new List<TileInfo>();
+      var visitedPlaces = List<TileInfo>();
       if (aTripInfo['mVisitedPlaces'] != null) {
         aTripInfo['mVisitedPlaces'].forEach((aVisitedPlace) {
           visitedPlaces.add(TileInfo.fromJson(aVisitedPlace));
         });
       }
-      List<TileInfo> importantInfo = new List<TileInfo>();
+      var importantInfo = List<TileInfo>();
       if (aTripInfo['mImportantInfo'] != null) {
         aTripInfo['mImportantInfo'].forEach((aImportantInfo) {
           importantInfo.add(TileInfo.fromJson(aImportantInfo));
         });
       }
-      List<ContactInfo> tripContacts = new List<ContactInfo>();
+      var tripContacts = List<ContactInfo>();
       if (aTripInfo['mContacts'] != null) {
         aTripInfo['mContacts'].forEach((aTripContacts) {
           tripContacts.add(ContactInfo.fromJson(aTripContacts));
+        });
+      }
+      var dayTiles = List<DayTile>();
+      if (aTripInfo['mDayTiles'] != null) {
+        aTripInfo['mDayTiles'].forEach((aDayTile) {
+          dayTiles.add(DayTile.fromJson(aDayTile));
         });
       }
       return new TripInfo(
@@ -58,7 +68,8 @@ void fGetTripsFromMemory() {
           visitedPlaces,
           importantInfo,
           tripContacts,
-          aTripInfo['mBackgroundImagePath']);
+          aTripInfo['mBackgroundImagePath'],
+          dayTiles);
     }).toList());
   }
 }
@@ -66,25 +77,38 @@ void fGetTripsFromMemory() {
 void fAddTripToList(aTripId, aTripInfo) {
   int tripId = fGetDatabaseId(aTripId, 2);
   print("FirebaseData:fAddTripToList");
-  List<TileInfo> visitedPlaces = new List<TileInfo>();
+  var visitedPlaces = List<TileInfo>();
   aTripInfo["visited_places"].forEach((aPlaceId, aPlaceText) {
-    visitedPlaces.add(new TileInfo(int.parse(aPlaceId), "visited_places",
+    visitedPlaces.add(TileInfo(int.parse(aPlaceId), "visited_places",
         aPlaceText["title"], aPlaceText["body"]));
   });
-  List<TileInfo> importantInfo = new List<TileInfo>();
+  var importantInfo = List<TileInfo>();
   aTripInfo["important_info"].forEach((aInfoId, aInfoText) {
-    importantInfo.add(new TileInfo(int.parse(aInfoId), "important_info",
+    importantInfo.add(TileInfo(int.parse(aInfoId), "important_info",
         aInfoText["title"], aInfoText["body"]));
   });
-  List<ContactInfo> tripContacts = new List<ContactInfo>();
+  var tripContacts = List<ContactInfo>();
   aTripInfo["contacts"].forEach((aContactInfoId, aContactInfo) {
-    tripContacts.add(new ContactInfo(
+    tripContacts.add(ContactInfo(
         int.parse(aContactInfoId),
         aContactInfo['name'],
         aContactInfo['description'],
         aContactInfo['phone_number']));
   });
-  TripInfo tripInfo = new TripInfo(
+  var dayTiles = List<DayTile>();
+  aTripInfo["schedule"].forEach((aDayTileId, aDayTile) {
+    var eventInfoList = List<EventInfo>();
+    aDayTile.forEach((aEventId, aEventInfo) {
+      eventInfoList.add(EventInfo(
+          fGetDatabaseId(aEventId, 2),
+          aEventInfo['title'],
+          DateTime.parse(aEventInfo["start_time"]),
+          DateTime.parse(aEventInfo['end_time'])));
+    });
+    dayTiles.add(DayTile(fGetDatabaseId(aDayTileId, 2),
+        fGetDatabaseId(aDayTileId, 2), eventInfoList));
+  });
+  var tripInfo = TripInfo(
       tripId,
       aTripInfo["title"],
       aTripInfo["body"],
@@ -94,7 +118,8 @@ void fAddTripToList(aTripId, aTripInfo) {
       visitedPlaces,
       importantInfo,
       tripContacts,
-      aTripInfo["background_image_path"]);
+      aTripInfo["background_image_path"],
+      dayTiles);
   tripInfo.fLog();
   gTripsList.add(tripInfo);
 }
@@ -102,11 +127,14 @@ void fAddTripToList(aTripId, aTripInfo) {
 bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
   for (TripInfo tripInfo in gTripsList) {
     if (tripInfo.mUserName == aUserName && tripInfo.mPassword == aPassword) {
-      gAboutCountry = tripInfo.mAboutCountry; // ToDo: Do it better
+      // ToDo: Do usunięcia
+      gAboutCountry = tripInfo.mAboutCountry;
       gVisitedPlaces = tripInfo.mVisitedPlaces;
       gImportantInfo = tripInfo.mImportantInfo;
       gTripContacts = tripInfo.mContacts;
       gBackgroundImagePath = tripInfo.mBackgroundImagePath;
+      // ToDo: Przepisać, żeby reszta też korzystała z gTripInfo
+      gTripInfo = tripInfo;
       return true;
     }
   }

@@ -35,14 +35,14 @@ class ServicePage extends StatefulWidget {
   ServicePage(this.mServiceInfo);
 
   @override
-  _FootballPageState createState() => _FootballPageState(mServiceInfo);
+  _ServicePageState createState() => _ServicePageState(mServiceInfo);
 }
 
-class _FootballPageState extends State<ServicePage> {
+class _ServicePageState extends State<ServicePage> {
   ServiceInfo mServiceInfo;
   String mMoreInfoText = "Więcej informacji na stronie internetowej: ";
 
-  _FootballPageState(this.mServiceInfo);
+  _ServicePageState(this.mServiceInfo);
 
   Widget fBuildWebPageButton() {
     return Container(

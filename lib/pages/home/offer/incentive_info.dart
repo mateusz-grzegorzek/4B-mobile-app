@@ -4,7 +4,7 @@ const String gIncentiveText1 =
     "Uczestnicy wyjazdu nie tylko mogą poznać odmienne kultury i ich zwyczaje, "
     "zobaczyć przepiękne krajobrazy, ale także zaskakiwani są wspaniałymi "
     "atrakcjami i programem, który niedostępny jest dla wszystkich turystów. "
-    "Organizowane przez nas wyjazdy należą do kategorii luksusowych i zapewniają unikatowe wrażenia.\n";
+    "Organizowane przez nas wyjazdy należą do kategorii luksusowych i zapewniają unikatowe wrażenia.";
 
 const String gIncentiveText2 =
     "Szczególnie rekomendowane przez nas kierunki to: ";

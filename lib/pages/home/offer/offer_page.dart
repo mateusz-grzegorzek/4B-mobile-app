@@ -1,6 +1,11 @@
-import 'package:business_mobile_app/pages/home/offer/football/football_page.dart';
-import 'package:business_mobile_app/pages/home/offer/incentive/incentive_page.dart';
+import 'package:business_mobile_app/pages/home/offer/events_info.dart';
+import 'package:business_mobile_app/pages/home/offer/football_info.dart';
+import 'package:business_mobile_app/pages/home/offer/incentive_info.dart';
+import 'package:business_mobile_app/pages/home/offer/journeys_info.dart';
+import 'package:business_mobile_app/pages/home/offer/marketing_info.dart';
+import 'package:business_mobile_app/pages/home/offer/program_for_firms_info.dart';
 import 'package:business_mobile_app/pages/home/offer/service_page.dart';
+import 'package:business_mobile_app/pages/home/offer/trainings_info.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:business_mobile_app/utils/widgets/app_bar.dart';
@@ -36,7 +41,62 @@ class _OfferPageState extends State<OfferPage> {
         gIncentiveOptions,
         gIncentiveUrlLink,
         gIncentivePathToTopImage,
-        gIncentivePathToMiddleImage))
+        gIncentivePathToMiddleImage)),
+    ServicePage(ServiceInfo(
+        "assets/images/offer/trainings.png",
+        "Konferencje i szkolenia",
+        gTrainingsText1,
+        true,
+        gTrainingsText2,
+        true,
+        gTrainingsOptions,
+        gTrainingsUrlLink,
+        gTrainingsPathToTopImage,
+        null)),
+    ServicePage(ServiceInfo(
+        "assets/images/offer/events.png",
+        "Eventy",
+        gEventsText1,
+        true,
+        gEventsText2,
+        false,
+        null,
+        gEventsUrlLink,
+        gEventsPathToTopImage,
+        gEventsPathToMiddleImage)),
+    ServicePage(ServiceInfo(
+        "assets/images/offer/journeys.png",
+        "Aktywne podróże",
+        gJourneysText1,
+        true,
+        gJourneysText2,
+        false,
+        null,
+        gJourneysUrlLink,
+        gJourneysPathToTopImage,
+        gJourneysPathToMiddleImage)),
+    ServicePage(ServiceInfo(
+        "assets/images/offer/marketing.png",
+        "Marketing sportowy",
+        gMarketingText1,
+        true,
+        gMarketingText2,
+        false,
+        gMarketingOptions,
+        gMarketingUrlLink,
+        gMarketingPathToTopImage,
+        null)),
+    ServicePage(ServiceInfo(
+        "assets/images/offer/program_for_firms.png",
+        "Programy dla firm",
+        gProgramForFirmsText1,
+        true,
+        gProgramForFirmsText2,
+        false,
+        null,
+        gProgramForFirmsUrlLink,
+        gProgramForFirmsPathToTopImage,
+        null))
   ];
 
   Column fCreateDivider() {

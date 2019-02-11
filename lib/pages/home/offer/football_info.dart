@@ -5,7 +5,7 @@ const String gFootballText1 =
     "Camp Nou w Barcelonie, Old Trafford w Manchesterze, Wembley w Londynie "
     "czy Allianz Arena w Monachium. Gwarantujemy miejsca, które dostarczą wielu "
     "niesamowitych wrażeń, niepowtarzalną atmosferę i przeżycia, które pozostaną "
-    "w pamięci przez długie lata!\n";
+    "w pamięci przez długie lata!";
 
 const String gFootballText2 =
     "Organizujemy również wyjazdy na wydarzenia związane z innymi "

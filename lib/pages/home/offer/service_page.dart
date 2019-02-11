@@ -80,6 +80,55 @@ class _FootballPageState extends State<ServicePage> {
     }));
   }
 
+  Widget fBuildTop() {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          fPrintHeadingText(mServiceInfo.mHeadingText),
+          Padding(padding: EdgeInsets.all(5)),
+          (mServiceInfo.mIsText1Bold)
+              ? fPrintBoldJustifiedText(mServiceInfo.mText1)
+              : fPrintJustifiedText(mServiceInfo.mText1),
+          Padding(padding: EdgeInsets.all(5)),
+        ],
+      ),
+    );
+  }
+
+  Widget fBuildMiddleImage() {
+    return (mServiceInfo.mPathToMiddleImage != null)
+        ? Column(
+            children: <Widget>[
+              Image(
+                image: AssetImage(mServiceInfo.mPathToMiddleImage),
+              ),
+              Padding(padding: EdgeInsets.all(5)),
+            ],
+          )
+        : fBuildNullWidget();
+  }
+
+  Widget fBuildBottom() {
+    return Padding(
+        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              (mServiceInfo.mIsText2Bold)
+                  ? fPrintBoldText(mServiceInfo.mText2)
+                  : fPrintJustifiedText(mServiceInfo.mText2),
+              Padding(padding: EdgeInsets.all(5)),
+              (mServiceInfo.mOptions != null)
+                  ? fBuildOptions()
+                  : fBuildNullWidget(),
+              fPrintBoldText(mMoreInfoText),
+              Padding(padding: EdgeInsets.all(5)),
+              fBuildWebPageButton()
+            ]));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,29 +136,13 @@ class _FootballPageState extends State<ServicePage> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.all(10),
             child: Center(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  fPrintHeadingText(mServiceInfo.mHeadingText),
-                  Padding(padding: EdgeInsets.all(5)),
-                  (mServiceInfo.mIsText1Bold)
-                      ? fPrintBoldText(mServiceInfo.mText1)
-                      : fPrintJustifiedText(mServiceInfo.mText1),
-                  (mServiceInfo.mPathToMiddleImage != null)
-                      ? Image(
-                          image: AssetImage(mServiceInfo.mPathToMiddleImage),
-                        )
-                      : null,
-                  Padding(padding: EdgeInsets.all(5)),
-                  (mServiceInfo.mIsText2Bold)
-                      ? fPrintBoldText(mServiceInfo.mText2)
-                      : fPrintText(mServiceInfo.mText2),
-                  Padding(padding: EdgeInsets.all(5)),
-                  fBuildOptions(),
-                  fPrintBoldText(mMoreInfoText),
-                  Padding(padding: EdgeInsets.all(5)),
-                  fBuildWebPageButton()
+                  fBuildTop(),
+                  fBuildMiddleImage(),
+                  fBuildBottom()
                 ],
               ),
             ),

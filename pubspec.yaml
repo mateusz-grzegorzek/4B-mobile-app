@@ -51,6 +51,11 @@ flutter:
   - assets/images/offer/
   - assets/images/offer/football/
   - assets/images/offer/incentive/
+  - assets/images/offer/trainings/
+  - assets/images/offer/events/
+  - assets/images/offer/journeys/
+  - assets/images/offer/marketing/
+  - assets/images/offer/program_for_firms/
   - assets/images/trips/las_vegas/
   - assets/social_media/
 

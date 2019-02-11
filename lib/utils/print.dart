@@ -29,6 +29,10 @@ Text fPrintJustifiedText(String aText) {
   return fPrintText(aText, gNormalTextStyle, TextAlign.justify);
 }
 
+Text fPrintBoldJustifiedText(String aText) {
+  return fPrintText(aText, gBoldTextStyle, TextAlign.justify);
+}
+
 Text fPrintHeadingText(String aText) {
   return fPrintText(aText, gHeadingTextStyle);
 }
@@ -49,4 +53,8 @@ Column fPrintOptionRow(String option) {
       Padding(padding: EdgeInsets.all(5)),
     ],
   );
+}
+
+Widget fBuildNullWidget() {
+  return Container(width: 0, height: 0);
 }

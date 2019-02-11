@@ -2,14 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'trip_info.dart';
-import '../common/contact/contact_info.dart';
-
-import '../../utils/firebase_data.dart';
-import '../../utils/shared_preferences.dart';
-import '../../utils/tile_info.dart';
-import '../../utils/widgets/menu_bar.dart';
-import '../../utils/widgets/appbars.dart';
-
 import 'map/map_page.dart';
 import 'schedule/schedule_page.dart';
 import 'news/news_page.dart';
@@ -17,6 +9,17 @@ import 'about_country/about_country_page.dart';
 import 'visited_places/visited_places_page.dart';
 import 'important_info/important_info_page.dart';
 import 'contact/contact_page.dart';
+
+import '../common/contact/contact_info.dart';
+import '../home/home_page.dart';
+
+import '../../utils/firebase_data.dart';
+import '../../utils/shared_preferences.dart';
+import '../../utils/tile_info.dart';
+import '../../utils/widgets/menu_bar.dart';
+import '../../utils/widgets/appbars.dart';
+
+
 
 final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;
@@ -124,6 +127,7 @@ class _TripsPageState extends State<TripsPage> {
     MenuItem(NewsPage.Id, NewsPage.Title),
     MenuItem(MapPage.Id, MapPage.Title),
     MenuItem(TripContactPage.Id, TripContactPage.Title),
+    MenuItem(HomePage.Id, "Wyloguj się"),
   ]
   );
 

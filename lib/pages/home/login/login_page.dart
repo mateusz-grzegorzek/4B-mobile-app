@@ -110,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                           padding: const EdgeInsets.only(left: 6.0),
                           child: TextField(
                             controller: mPasswordTextEditingController,
+                            obscureText: true,
                             decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 border: InputBorder.none,

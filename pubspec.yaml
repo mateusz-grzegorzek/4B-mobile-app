@@ -49,8 +49,9 @@ flutter:
   assets:
   - assets/images/
   - assets/images/offer/
-  - assets/social_media/
+  - assets/images/offer/football/
   - assets/images/trips/las_vegas/
+  - assets/social_media/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

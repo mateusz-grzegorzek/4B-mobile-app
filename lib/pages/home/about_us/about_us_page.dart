@@ -23,6 +23,7 @@ class AboutUsPage extends StatelessWidget {
   final mAbout4BusinessTeamPart1 =
       "Zespół 4Business zajmuje się kompleksową organizacją wyjazdów firmowych takich jak:";
 
+  // ToDo: Zrobić liste
   final mAbout4BusinessTeamOption1 = "wyjazdy motywacyjne dla pracowników";
   final mAbout4BusinessTeamOption2 = "firmowe wyjazdy integracyjne";
   final mAbout4BusinessTeamOption3 = "wyjazdy incentive";
@@ -39,19 +40,6 @@ class AboutUsPage extends StatelessWidget {
           text,
           style: TextStyle(color: Colors.black, fontSize: 20.0),
         ));
-  }
-
-  Row fPrintOptionRow(String option) {
-    return Row(
-      children: <Widget>[
-        Image(
-          image: AssetImage("assets/images/about_ok_sign.png"),
-          width: 25,
-        ),
-        Padding(padding: EdgeInsets.all(5)),
-        Expanded(child: fPrintNormalText(option))
-      ],
-    );
   }
 
   @override

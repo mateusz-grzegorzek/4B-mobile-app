@@ -21,6 +21,7 @@ class OfferPage extends StatefulWidget {
 class _OfferPageState extends State<OfferPage> {
   List<Event> mEventImagePathList = [
     new Event(new FootballPageWidget(), "assets/images/sport_events.png"),
+
     //new Event(new FootballPageWidget(), "assets/images/incentive.png") // TODO Prepare pages for every offer
   ];
 
@@ -39,7 +40,6 @@ class _OfferPageState extends State<OfferPage> {
         return new ListTile(
           leading:
               Image(image: AssetImage("assets/images/offer/sport_events.png")),
-          //title: Image.asset(mEventImagePathList[index].mImagePath),
           onTap: () => fShowEvent(index),
         );
       },
@@ -55,21 +55,26 @@ class _OfferPageState extends State<OfferPage> {
     ]);
   }
 
-  Column fCreateEventRow(String aImagePath, String aImageTitle) {
+  Column fCreateEventRow(String aImagePath, String aImageTitle, int index) {
     return Column(children: <Widget>[
       fCreateDivider(),
       Padding(padding: EdgeInsets.all(10)),
-      Row(
-        children: <Widget>[
-          Padding(padding: EdgeInsets.all(10)),
-          Image(
-            height: 30,
-            width: 30,
-            image: AssetImage(aImagePath),
-          ),
-          Padding(padding: EdgeInsets.all(10)),
-          fPrintBoldText(aImageTitle)
-        ],
+      GestureDetector(
+        onTap: () {
+          fShowEvent(index);
+        },
+        child: Row(
+          children: <Widget>[
+            Padding(padding: EdgeInsets.all(10)),
+            Image(
+              height: 30,
+              width: 30,
+              image: AssetImage(aImagePath),
+            ),
+            Padding(padding: EdgeInsets.all(10)),
+            fPrintBoldText(aImageTitle)
+          ],
+        ),
       ),
       Padding(padding: EdgeInsets.all(10))
     ]);
@@ -82,7 +87,8 @@ class _OfferPageState extends State<OfferPage> {
         child: Container(
           decoration: new BoxDecoration(
               image: new DecorationImage(
-            image: new AssetImage("assets/images/offer/top_image.png"),
+            // ToDo: Flutter nie ogarnia jeśli nazwa obrazka jest taka sama, ale ścieżka inna, i traktuje je tak samo (znaleźć fixa na to i pozmieniać nazwy)
+            image: new AssetImage("assets/images/offer/offer_top_image.png"),
             fit: BoxFit.cover,
           )),
           child: AppBar(
@@ -101,21 +107,23 @@ class _OfferPageState extends State<OfferPage> {
                     children: <Widget>[
                       fPrintHeadingText(" Oferta"),
                       Padding(padding: EdgeInsets.all(10)),
+                      // ToDo: Jak będzie czas to przerobić jako ListView czy coś
                       fCreateEventRow("assets/images/offer/sport_events.png",
-                          "Wydarzenia sportowe"),
+                          "Wydarzenia sportowe", 0),
                       fCreateEventRow(
-                          "assets/images/offer/incentive.png", "Incentive"),
+                          "assets/images/offer/incentive.png", "Incentive", 0),
                       fCreateEventRow("assets/images/offer/trainings.png",
-                          "Konferencje i szkolenia"),
+                          "Konferencje i szkolenia", 0),
                       fCreateEventRow(
-                          "assets/images/offer/events.png", "Eventy"),
+                          "assets/images/offer/events.png", "Eventy", 0),
                       fCreateEventRow("assets/images/offer/journeys.png",
-                          "Aktywne podróże"),
+                          "Aktywne podróże", 0),
                       fCreateEventRow("assets/images/offer/marketing.png",
-                          "Marketing sportowy"),
+                          "Marketing sportowy", 0),
                       fCreateEventRow(
                           "assets/images/offer/program_for_firms.png",
-                          "Program dla firm"),
+                          "Program dla firm",
+                          0),
                     ]))));
   }
 }

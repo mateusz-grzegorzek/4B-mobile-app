@@ -25,3 +25,16 @@ Text fPrintHeadingText(String text) {
       style: TextStyle(
           color: Colors.black, fontSize: 33.0, fontWeight: FontWeight.bold));
 }
+
+Row fPrintOptionRow(String option) {
+  return Row(
+    children: <Widget>[
+      Image(
+        image: AssetImage("assets/images/about_ok_sign.png"),
+        width: 25,
+      ),
+      Padding(padding: EdgeInsets.all(5)),
+      Expanded(child: fPrintNormalText(option))
+    ],
+  );
+}

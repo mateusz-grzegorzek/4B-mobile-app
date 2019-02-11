@@ -33,15 +33,6 @@ class AboutUsPage extends StatelessWidget {
   final mAbout4BusinessTeamPart2 =
       "Gwarantujemy doskonałą obsługę i satysfakcję z powierzonych nam zadań!";
 
-  Padding fPrintText(String text) {
-    return Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.black, fontSize: 20.0),
-        ));
-  }
-
   Widget fBuildOfferButton() {
     return Container(
       alignment: Alignment.center,

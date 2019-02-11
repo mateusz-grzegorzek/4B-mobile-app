@@ -17,7 +17,7 @@ import '../../utils/firebase_data.dart';
 import '../../utils/shared_preferences.dart';
 import '../../utils/tile_info.dart';
 import '../../utils/widgets/menu_bar.dart';
-import '../../utils/widgets/appbars.dart';
+import '../../utils/widgets/app_bar.dart';
 
 final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;

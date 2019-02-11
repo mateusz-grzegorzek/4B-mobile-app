@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../trips_page.dart';
-import '../../../utils/widgets/appbars.dart';
+import '../../../utils/widgets/app_bar.dart';
 
 class AboutCountryPage extends StatefulWidget {
   static const String Id = "AboutCountryPage";

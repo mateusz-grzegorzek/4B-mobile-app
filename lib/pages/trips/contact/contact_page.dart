@@ -4,7 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../trips_page.dart';
 import '../../common/contact/contact_list.dart';
 import '../../../utils/firebase_data.dart';
-import '../../../utils/widgets/appbars.dart';
+import '../../../utils/widgets/app_bar.dart';
 
 class TripContactPage extends StatefulWidget {
   static const String Id = "TripContactPage";

@@ -6,7 +6,7 @@ import "package:intl/date_symbols.dart";
 import 'package:flutter/material.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
-import '../../../utils/widgets/appbars.dart';
+import '../../../utils/widgets/app_bar.dart';
 import 'day_events_info.dart';
 import 'event_info.dart';
 import 'day_events_list_view.dart';

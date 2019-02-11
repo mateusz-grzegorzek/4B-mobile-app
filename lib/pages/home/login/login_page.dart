@@ -5,7 +5,7 @@ import '../../trips/trips_page.dart';
 
 import '../../../utils/shared_preferences.dart';
 import '../../../utils/alerts.dart';
-import '../../../utils/widgets/appbars.dart';
+import '../../../utils/widgets/app_bar.dart';
 
 class LoginPage extends StatefulWidget {
   static const String Id = "LoginPage";

@@ -1,4 +1,3 @@
-import 'package:business_mobile_app/utils/widgets/appbars.dart';
 import 'package:flutter/material.dart';
 
 import 'offer/offer_page.dart';
@@ -6,6 +5,7 @@ import 'about_us/about_us_page.dart';
 import 'login/login_page.dart';
 import 'contact/contact_page.dart';
 
+import '../../utils/widgets/app_bar.dart';
 import '../../utils/widgets/menu_bar.dart';
 import '../../utils/fonts.dart';
 

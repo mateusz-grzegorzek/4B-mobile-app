@@ -7,7 +7,7 @@ import 'package:location/location.dart';
 import 'package:flutter/services.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
-import '../../../utils/widgets/appbars.dart';
+import '../../../utils/widgets/app_bar.dart';
 import 'map_place.dart';
 
 final List<MapPlace> gPlacesList = new List<MapPlace>();

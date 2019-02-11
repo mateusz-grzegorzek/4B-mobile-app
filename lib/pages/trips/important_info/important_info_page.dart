@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../trips_page.dart';
-import '../../../utils/widgets/appbars.dart';
+import '../../../utils/widgets/app_bar.dart';
 
 class ImporatantInfoPage extends StatefulWidget {
   static const String Id = "ImporatantInfoPage";
@@ -13,12 +13,10 @@ class _ImporatantInfoPageState extends State<ImporatantInfoPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: fGetDefaultAppBar(ImporatantInfoPage.Title),
-      body: ListView.builder(
-        itemCount: gImportantInfo.length,
-        itemBuilder: (BuildContext context, int index) =>
-          gImportantInfo[index].fGetTileCard()
-      )
-    );
+        appBar: fGetDefaultAppBar(ImporatantInfoPage.Title),
+        body: ListView.builder(
+            itemCount: gImportantInfo.length,
+            itemBuilder: (BuildContext context, int index) =>
+                gImportantInfo[index].fGetTileCard()));
   }
 }

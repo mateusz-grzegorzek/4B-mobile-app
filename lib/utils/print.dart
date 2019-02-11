@@ -1,40 +1,52 @@
+import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
 
-TextStyle g4BussinessNormalTextStyle = TextStyle(
+const TextStyle gNormalTextStyle = TextStyle(
   fontSize: 20.0,
   color: Colors.black,
 );
 
-Text fPrintNormalText(String text) {
-  return Text(text, style: g4BussinessNormalTextStyle);
+const TextStyle gBoldTextStyle =
+    TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold);
+
+const TextStyle gMenuItemTextStyle =
+    TextStyle(fontSize: 20.0, color: gBrownColor, fontWeight: FontWeight.bold);
+
+const TextStyle gHeadingTextStyle =
+    TextStyle(fontSize: 33.0, color: Colors.black, fontWeight: FontWeight.bold);
+
+Text fPrintText(String aText,
+    [TextStyle aTextStyle = gNormalTextStyle,
+    TextAlign aTextAlign = TextAlign.left]) {
+  return Text(aText, style: aTextStyle, textAlign: aTextAlign);
 }
 
-Text fPrintJustifiedText(String text) {
-  return Text(text,
-      textAlign: TextAlign.justify, style: g4BussinessNormalTextStyle);
+Text fPrintBoldText(String aText) {
+  return fPrintText(aText, gBoldTextStyle);
 }
 
-Text fPrintBoldText(String text, [Color color=Colors.black]) {
-  return Text(text,
-      style: TextStyle(
-          color: color, fontSize: 20.0, fontWeight: FontWeight.bold));
+Text fPrintJustifiedText(String aText) {
+  return fPrintText(aText, gNormalTextStyle, TextAlign.justify);
 }
 
-Text fPrintHeadingText(String text, [Color color=Colors.black]) {
-  return Text(text,
-      style: TextStyle(
-          color: color, fontSize: 33.0, fontWeight: FontWeight.bold));
+Text fPrintHeadingText(String aText) {
+  return fPrintText(aText, gHeadingTextStyle);
 }
 
-Row fPrintOptionRow(String option) {
-  return Row(
+Column fPrintOptionRow(String option) {
+  return Column(
     children: <Widget>[
-      Image(
-        image: AssetImage("assets/images/about_ok_sign.png"),
-        width: 25,
+      Row(
+        children: <Widget>[
+          Image(
+            image: AssetImage("assets/images/about_ok_sign.png"),
+            width: 25,
+          ),
+          Padding(padding: EdgeInsets.all(5)),
+          Expanded(child: fPrintText(option))
+        ],
       ),
       Padding(padding: EdgeInsets.all(5)),
-      Expanded(child: fPrintNormalText(option))
     ],
   );
 }

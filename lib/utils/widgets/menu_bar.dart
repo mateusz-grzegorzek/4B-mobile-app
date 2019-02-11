@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../fonts.dart';
 import '../print.dart';
 
 class MenuItem extends StatelessWidget {
@@ -24,7 +23,7 @@ class MenuItem extends StatelessWidget {
 
   Widget fBuildListTile(context) {
     return ListTile(
-        title: fPrintBoldText(mTitle, gBrownColor),
+        title: fPrintText(mTitle, gMenuItemTextStyle),
         onTap: () {
           Navigator.pop(context);
           Navigator.of(context).pushNamed(mId);

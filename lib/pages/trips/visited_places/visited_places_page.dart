@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../trips/trips_page.dart';
-import '../../../utils/widgets/appbars.dart';
+import '../../../utils/widgets/app_bar.dart';
 
 class VisitedPlacesPage extends StatefulWidget {
   static const String Id = "VisitedPlacesPage";
@@ -13,12 +13,10 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: fGetDefaultAppBar(VisitedPlacesPage.Title),
-      body: ListView.builder(
-        itemCount: gVisitedPlaces.length,
-        itemBuilder: (BuildContext context, int index) =>
-          gVisitedPlaces[index].fGetTileCard()
-      )
-    );
+        appBar: fGetDefaultAppBar(VisitedPlacesPage.Title),
+        body: ListView.builder(
+            itemCount: gVisitedPlaces.length,
+            itemBuilder: (BuildContext context, int index) =>
+                gVisitedPlaces[index].fGetTileCard()));
   }
 }

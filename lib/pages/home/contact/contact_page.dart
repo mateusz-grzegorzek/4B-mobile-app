@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -41,6 +42,23 @@ class MainContactPage extends StatefulWidget {
 }
 
 class _MainContactPageState extends State<MainContactPage> {
+  StreamSubscription<bool> mStreamSub;
+
+  @override
+  void initState() {
+    super.initState();
+    mStreamSub = fGetStream(gContactsDatabaseKey).listen((aContactInfo) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    mStreamSub.cancel();
+    fCloseStream(gContactsDatabaseKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(

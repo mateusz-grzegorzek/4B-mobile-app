@@ -17,7 +17,7 @@ import 'pages/trips/news/news_page.dart';
 import 'pages/trips/map/map_page.dart';
 import 'pages/trips/contact/contact_page.dart';
 
-void main() async {
+void main() {
   fInitSharedPreferences();
   fInitFirebaseData();
   runApp(BusinessMobileApp());
@@ -51,7 +51,7 @@ class BusinessMobileApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: new HomePage(),
+        home: HomePage(),
         routes: routes);
   }
 }

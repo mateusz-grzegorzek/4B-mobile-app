@@ -14,16 +14,16 @@ Text fPrintJustifiedText(String text) {
       textAlign: TextAlign.justify, style: g4BussinessNormalTextStyle);
 }
 
-Text fPrintBoldText(String text) {
+Text fPrintBoldText(String text, [Color color=Colors.black]) {
   return Text(text,
       style: TextStyle(
-          color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.bold));
+          color: color, fontSize: 20.0, fontWeight: FontWeight.bold));
 }
 
-Text fPrintHeadingText(String text) {
+Text fPrintHeadingText(String text, [Color color=Colors.black]) {
   return Text(text,
       style: TextStyle(
-          color: Colors.black, fontSize: 33.0, fontWeight: FontWeight.bold));
+          color: color, fontSize: 33.0, fontWeight: FontWeight.bold));
 }
 
 Row fPrintOptionRow(String option) {

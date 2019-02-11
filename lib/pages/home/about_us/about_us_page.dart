@@ -1,7 +1,7 @@
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/fonts.dart';
-import '../../../utils/widgets/appbars.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:business_mobile_app/utils/fonts.dart';
 
 class AboutUsPage extends StatelessWidget {
   static const String Id = "AboutUsPage";
@@ -40,6 +40,34 @@ class AboutUsPage extends StatelessWidget {
           text,
           style: TextStyle(color: Colors.black, fontSize: 20.0),
         ));
+  }
+
+  Widget fBuildOfferButton() {
+    return Container(
+      alignment: Alignment.center,
+      margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+      width: double.infinity,
+      height: 52,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18.0),
+        color: gBrownColor,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          FlatButton(
+              onPressed: () => launch("http://www.4b.com.pl/uslugi/"),
+              child: Text(
+                'Sprawdź naszą ofertę',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              )),
+          Image(
+            image: AssetImage("assets/images/login_arrow.png"),
+            width: 20,
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -114,8 +142,10 @@ class AboutUsPage extends StatelessWidget {
                 Padding(padding: EdgeInsets.all(5)),
                 fPrintOptionRow(mAbout4BusinessTeamOption5),
                 Padding(padding: EdgeInsets.all(5)),
-                fPrintJustifiedText(mAbout4BusinessTeamPart2)
-                // ToDo: Sprawdz naszą ofertę (jak starczy czasu)
+                fPrintJustifiedText(mAbout4BusinessTeamPart2),
+                Padding(padding: EdgeInsets.all(10)),
+                fBuildOfferButton(),
+                Padding(padding: EdgeInsets.all(10)),
               ],
             ),
           ),

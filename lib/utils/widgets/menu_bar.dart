@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../fonts.dart';
+import '../print.dart';
+
 class MenuItem extends StatelessWidget {
   final String mId;
   final String mTitle;
@@ -8,18 +11,24 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-          title: Text(mTitle,
-              style: TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18.0)),
-          onTap: () {
-            Navigator.pop(context);
-            Navigator.of(context).pushNamed(mId);
-          }),
+    return Column(
+      children: <Widget>[fBuildListTile(context), fBuildDivider()],
     );
+  }
+
+  Padding fBuildDivider() {
+    return Padding(
+        padding: EdgeInsets.only(left: 15.0, right: 15.0),
+        child: const Divider(height: 2.1, color: Colors.white));
+  }
+
+  Widget fBuildListTile(context) {
+    return ListTile(
+        title: fPrintBoldText(mTitle, gBrownColor),
+        onTap: () {
+          Navigator.pop(context);
+          Navigator.of(context).pushNamed(mId);
+        });
   }
 }
 
@@ -29,11 +38,35 @@ class MenuBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.fromLTRB(15.0, 50.0, 50.0, 0.0),
-        children: mMenuItems,
+    List<Widget> items = [];
+    items.add(fBuildDrawerHeader(context));
+    items.addAll(mMenuItems);
+
+    return Theme(
+      data: Theme.of(context).copyWith(canvasColor: Color(0xFF231f20)),
+      child: Drawer(
+        child: ListView(
+            //children: mMenuItems,
+            children: items),
       ),
     );
+  }
+
+  Widget fBuildDrawerHeader(context) {
+    return Container(
+        height: 60.0,
+        child: DrawerHeader(
+            padding: EdgeInsets.all(5.0),
+            child: Row(
+              children: <Widget>[
+                IconButton(
+                  icon: Image(
+                    image: AssetImage("assets/images/cancel_sign.png"),
+                    width: 25.0,
+                  ),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
+              ],
+            )));
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:core';
 import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
+import 'package:business_mobile_app/utils/expansion_tile.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
@@ -95,11 +96,19 @@ class _SchedulePageState extends State<SchedulePage>
     );
   }
 
+  var expansionTileList = List<GlobalKey<AppExpansionTileState>>();
+
   Column fBuildDayTiles() {
     return Column(
         children:
             List<Widget>.generate(gTripInfo.mDayTiles.length, (int index) {
-      return ExpansionTile(
+      GlobalKey<AppExpansionTileState> expansionTile = GlobalKey();
+      expansionTileList.add(expansionTile);
+      return AppExpansionTile(
+          key: expansionTileList[index],
+          trailing: Image(
+              image: AssetImage("assets/images/expansion_arrow.png"),
+              height: 15),
           title: fPrintBoldText(
               "Dzień " + gTripInfo.mDayTiles[index].mDayNumber.toString()),
           children: List<Widget>.generate(
@@ -110,40 +119,53 @@ class _SchedulePageState extends State<SchedulePage>
     }));
   }
 
+  Widget fBuildExpandAllTiles() {
+    return GestureDetector(
+      onTap: () {
+        expansionTileList.forEach((expansionTile) {
+          expansionTile.currentState.expand();
+        });
+      },
+      child: Container(
+          height: 52,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: gBrownColor,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(18.0),
+          ),
+          child: Row(children: <Widget>[
+            Padding(padding: EdgeInsets.all(5)),
+            Padding(
+                padding: const EdgeInsets.only(left: 6.0),
+                child: fPrintBoldText("Rozwiń wszystkie informacje")),
+            Padding(padding: EdgeInsets.all(10)),
+            Image(
+                image: AssetImage("assets/images/expand_arrows.png"),
+                height: 20)
+          ])),
+    );
+  }
+
   @override
   Widget build(BuildContext aContext) {
     return Scaffold(
         appBar: fBuildAppBar(
             "assets/images/trips/las_vegas/schedule_top_image.png"),
-        body: Container(
-          margin: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              fPrintHeadingText(" Agenda wyjazdu"),
-              Padding(padding: EdgeInsets.all(5)),
-              Container(
-                  height: 52,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: gBrownColor,
-                      width: 3,
-                    ),
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                  child: Row(children: <Widget>[
-                    Padding(padding: EdgeInsets.all(5)),
-                    Padding(
-                        padding: const EdgeInsets.only(left: 6.0),
-                        child: fPrintBoldText("Rozwiń wszystkie informacje")),
-                    Padding(padding: EdgeInsets.all(10)),
-                    Image(
-                        image: AssetImage("assets/images/expand_arrows.png"),
-                        height: 20)
-                  ])),
-              Padding(padding: EdgeInsets.all(5)),
-              fBuildDayTiles()
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            margin: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                fPrintHeadingText(" Agenda wyjazdu"),
+                Padding(padding: EdgeInsets.all(5)),
+                fBuildExpandAllTiles(),
+                Padding(padding: EdgeInsets.all(5)),
+                fBuildDayTiles()
+              ],
+            ),
           ),
         ));
   }

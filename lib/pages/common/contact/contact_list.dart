@@ -38,7 +38,7 @@ class _ContactListState extends State<ContactListWidget> {
     fCloseStream(widget.mDatabaseKey);
   }
 
-  void fsortContactList() {
+  void fSortContactList() {
     widget.mContactsList.sort((firstContact, secondContact) {
       if (firstContact.mId > secondContact.mId) {
         return 1;
@@ -52,7 +52,7 @@ class _ContactListState extends State<ContactListWidget> {
   Widget build(BuildContext context) {
     print("ContactListPage:build:mContactsList.length=" +
         widget.mContactsList.length.toString());
-    fsortContactList();
+    fSortContactList();
     return new ListView.builder(
         itemCount: widget.mContactsList.length,
         shrinkWrap: true,

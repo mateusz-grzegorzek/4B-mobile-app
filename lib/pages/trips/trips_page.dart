@@ -74,6 +74,31 @@ void fGetTripsFromMemory() {
   }
 }
 
+List<DayTile> fSortDayTileList(List<DayTile> aDayTiles) {
+  aDayTiles.sort((firstDayTile, secondDayTile) {
+    if (firstDayTile.mId > secondDayTile.mId) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  aDayTiles.forEach((dayTile) {
+    fSortEventInfoList(dayTile.mEventsList);
+  });
+  return aDayTiles;
+}
+
+List<EventInfo> fSortEventInfoList(List<EventInfo> aEventInfoList) {
+  aEventInfoList.sort((firstEventInfo, secondEventInfo) {
+    if (firstEventInfo.mId > secondEventInfo.mId) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  return aEventInfoList;
+}
+
 void fAddTripToList(aTripId, aTripInfo) {
   int tripId = fGetDatabaseId(aTripId, 2);
   print("FirebaseData:fAddTripToList");
@@ -108,6 +133,7 @@ void fAddTripToList(aTripId, aTripInfo) {
     dayTiles.add(DayTile(fGetDatabaseId(aDayTileId, 2),
         fGetDatabaseId(aDayTileId, 2), eventInfoList));
   });
+  dayTiles = fSortDayTileList(dayTiles);
   var tripInfo = TripInfo(
       tripId,
       aTripInfo["title"],

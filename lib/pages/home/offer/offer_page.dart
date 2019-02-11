@@ -1,9 +1,8 @@
 import 'package:business_mobile_app/pages/home/offer/football/football_page.dart';
+import 'package:business_mobile_app/pages/home/offer/incentive/incentive_page.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
-
-import '../../../utils/widgets/appbars.dart';
 
 class Event {
   Event(this.mWidget, this.mImagePath);
@@ -15,13 +14,13 @@ class OfferPage extends StatefulWidget {
   static const String Id = "OfferPage";
   static const String Title = "Oferta";
   @override
-  _OfferPageState createState() => new _OfferPageState();
+  _OfferPageState createState() => _OfferPageState();
 }
 
 class _OfferPageState extends State<OfferPage> {
   List<Event> mEventImagePathList = [
-    new Event(new FootballPageWidget(), "assets/images/sport_events.png"),
-
+    Event(FootballPageWidget(), "assets/images/sport_events.png"),
+    Event(IncentivePageWidget(), "assets/images/sport_events.png"),
     //new Event(new FootballPageWidget(), "assets/images/incentive.png") // TODO Prepare pages for every offer
   ];
 
@@ -111,7 +110,7 @@ class _OfferPageState extends State<OfferPage> {
                       fCreateEventRow("assets/images/offer/sport_events.png",
                           "Wydarzenia sportowe", 0),
                       fCreateEventRow(
-                          "assets/images/offer/incentive.png", "Incentive", 0),
+                          "assets/images/offer/incentive.png", "Incentive", 1),
                       fCreateEventRow("assets/images/offer/trainings.png",
                           "Konferencje i szkolenia", 0),
                       fCreateEventRow(

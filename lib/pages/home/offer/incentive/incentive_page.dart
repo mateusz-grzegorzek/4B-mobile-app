@@ -3,38 +3,35 @@ import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FootballPageWidget extends StatefulWidget {
+class IncentivePageWidget extends StatefulWidget {
   @override
-  FootballPage createState() => new FootballPage();
+  IncentivePage createState() => new IncentivePage();
 }
 
-class FootballPage extends State<FootballPageWidget> {
-  static const String Id = "FootballPage";
+class IncentivePage extends State<IncentivePageWidget> {
+  static const String Id = "IncentivePage";
 
-  String mAboutFootball1 =
-      "Piłka nożna jest niewątpliwie najpopularniejszym sportem na świecie, "
-      "więc nasza oferta dotyczącą tej dyscypliny jest niezwykle szeroka. "
-      "Oferujemy Państwu obecność na najlepszych światowych stadionach – "
-      "Camp Nou w Barcelonie, Old Trafford w Manchesterze, Wembley w Londynie "
-      "czy Allianz Arena w Monachium. Gwarantujemy miejsca, które dostarczą wielu "
-      "niesamowitych wrażeń, niepowtarzalną atmosferę i przeżycia, które pozostaną "
-      "w pamięci przez długie lata!\n";
+  String mText1 =
+      "Na wyjazdy firmowe w szczególności polecamy destynacje egzotyczne. "
+      "Podróż w odległy zakątek świata jest wyjątkową formą motywacji lub nagrody. "
+      "Uczestnicy wyjazdu nie tylko mogą poznać odmienne kultury i ich zwyczaje, "
+      "zobaczyć przepiękne krajobrazy, ale także zaskakiwani są wspaniałymi "
+      "atrakcjami i programem, który niedostępny jest dla wszystkich turystów. "
+      "Organizowane przez nas wyjazdy należą do kategorii luksusowych i zapewniają unikatowe wrażenia.\n";
 
-  String mAboutFootball2 =
-      "Organizujemy również wyjazdy na wydarzenia związane z innymi "
-      "dyscyplinami sportowymi, jak: ";
+  String mText2 = "Szczególnie rekomendowane przez nas kierunki to: ";
 
   // ToDo: Zrobić liste
-  final mSportEventOption1 = "Formuła 1";
-  final mSportEventOption2 = "Tenis";
-  final mSportEventOption3 = "NBA / HNL / NFL";
-  final mSportEventOption4 = "Boks";
-  final mSportEventOption5 = "Rugby";
-  final mSportEventOption6 = "Siatkówka";
+  final mOption1 = "Indie";
+  final mOption2 = "Las Vegas i dzikie okolice Światowego Centrum Rozrywki";
+  final mOption3 = "Malezja – Tropikalne Emocje";
+  final mOption4 = "Mauritius – Niebiańska Wyspa";
+  final mOption5 = "Rosja";
+  final mOption6 = "Tajlandia";
 
-  String mAboutFootball3 = "Więcej informacji na stronie internetowej: ";
-  String mAboutFootballUrlLink = ""
-      "http://www.4b.com.pl/uslugi/wydarzenia-sportowe/#tab1";
+  String mUrlText = "Więcej informacji na stronie internetowej: ";
+  String mUrlLink = ""
+      "http://www.4b.com.pl/uslugi/incentive/#tab1";
 
   Widget fBuildWebPageButton() {
     return Container(
@@ -50,7 +47,7 @@ class FootballPage extends State<FootballPageWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           FlatButton(
-              onPressed: () => launch(mAboutFootballUrlLink),
+              onPressed: () => launch(mUrlLink),
               child: Text(
                 'Przejdź do strony internetowej',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -72,7 +69,7 @@ class FootballPage extends State<FootballPageWidget> {
           decoration: new BoxDecoration(
               image: new DecorationImage(
             image: new AssetImage(
-                "assets/images/offer/football/football_top_image.png"),
+                "assets/images/offer/incentive/incentive_top_image.png"),
             fit: BoxFit.cover,
           )),
           child: AppBar(
@@ -89,29 +86,30 @@ class FootballPage extends State<FootballPageWidget> {
             padding: EdgeInsets.all(10),
             child: Center(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(padding: EdgeInsets.all(10)),
-                  fPrintHeadingText("Wydarzenia sportowe"),
+                  fPrintHeadingText(" Incentive"),
                   Padding(padding: EdgeInsets.all(10)),
-                  fPrintJustifiedText(mAboutFootball1),
+                  fPrintJustifiedText(mText1),
                   Image(
                     image: AssetImage(
-                        "assets/images/offer/football/football_middle_image.png"),
+                        "assets/images/offer/incentive/incentive_middle_image.png"),
                   ),
                   Padding(padding: EdgeInsets.all(10)),
-                  fPrintJustifiedText(mAboutFootball2),
+                  fPrintJustifiedText(mText2),
                   Padding(padding: EdgeInsets.all(5)),
-                  fPrintOptionRow(mSportEventOption1),
+                  fPrintOptionRow(mOption1),
                   Padding(padding: EdgeInsets.all(5)),
-                  fPrintOptionRow(mSportEventOption2),
+                  fPrintOptionRow(mOption2),
                   Padding(padding: EdgeInsets.all(5)),
-                  fPrintOptionRow(mSportEventOption3),
+                  fPrintOptionRow(mOption3),
                   Padding(padding: EdgeInsets.all(5)),
-                  fPrintOptionRow(mSportEventOption4),
+                  fPrintOptionRow(mOption4),
                   Padding(padding: EdgeInsets.all(5)),
-                  fPrintOptionRow(mSportEventOption5),
+                  fPrintOptionRow(mOption5),
                   Padding(padding: EdgeInsets.all(5)),
-                  fPrintOptionRow(mSportEventOption6),
+                  fPrintOptionRow(mOption6),
                   Padding(padding: EdgeInsets.all(5)),
                   fBuildWebPageButton()
                 ],

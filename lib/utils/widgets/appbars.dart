@@ -7,5 +7,5 @@ AppBar fGetDefaultAppBar([String title = ""]) {
         color: Colors.black,
       ),
       backgroundColor: gBrownColor,
-      title: Text(title, style: TextStyle(color: Colors.black)));
+      title: Text(title, style: TextStyle(fontSize: 17, color: Colors.black)));
 }

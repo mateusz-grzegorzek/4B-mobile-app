@@ -19,13 +19,12 @@ import '../../utils/tile_info.dart';
 import '../../utils/widgets/menu_bar.dart';
 import '../../utils/widgets/appbars.dart';
 
-
-
 final List<TripInfo> gTripsList = new List<TripInfo>();
 String gAboutCountry;
 List<TileInfo> gVisitedPlaces;
 List<TileInfo> gImportantInfo;
 List<ContactInfo> gTripContacts;
+String gBackgroundImagePath;
 
 void fGetTripsFromMemory() {
   String tripsJson = gPrefs.getString(gTripsDatabaseKey);
@@ -58,7 +57,8 @@ void fGetTripsFromMemory() {
           aTripInfo['mAboutCountry'],
           visitedPlaces,
           importantInfo,
-          tripContacts);
+          tripContacts,
+          aTripInfo['mBackgroundImagePath']);
     }).toList());
   }
 }
@@ -93,7 +93,8 @@ void fAddTripToList(aTripId, aTripInfo) {
       aTripInfo["about_country"],
       visitedPlaces,
       importantInfo,
-      tripContacts);
+      tripContacts,
+      aTripInfo["background_image_path"]);
   tripInfo.fLog();
   gTripsList.add(tripInfo);
 }
@@ -105,6 +106,7 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
       gVisitedPlaces = tripInfo.mVisitedPlaces;
       gImportantInfo = tripInfo.mImportantInfo;
       gTripContacts = tripInfo.mContacts;
+      gBackgroundImagePath = tripInfo.mBackgroundImagePath;
       return true;
     }
   }
@@ -113,7 +115,7 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
 
 class TripsPage extends StatefulWidget {
   static const String Id = "TripsPage";
-  static const String Title = "Drogi uczestniku, witamy w aplikacji!";
+  static const String Title = "Uczestniku, witamy w aplikacji!";
   @override
   _TripsPageState createState() => _TripsPageState();
 }
@@ -128,14 +130,22 @@ class _TripsPageState extends State<TripsPage> {
     MenuItem(MapPage.Id, MapPage.Title),
     MenuItem(TripContactPage.Id, TripContactPage.Title),
     MenuItem(HomePage.Id, "Wyloguj się"),
-  ]
-  );
+  ]);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       appBar: fGetDefaultAppBar(TripsPage.Title),
       drawer: drawer,
-      body: null);
+      body: new Container(
+        decoration: new BoxDecoration(
+          image: new DecorationImage(
+            image: new AssetImage(gBackgroundImagePath),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: null /* add child content here */,
+      ),
+    );
   }
 }

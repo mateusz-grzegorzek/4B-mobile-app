@@ -6,8 +6,17 @@ part 'trip_info.g.dart';
 
 @JsonSerializable()
 class TripInfo extends Object {
-  TripInfo(this.mId, this.mTitle, this.mBody, this.mUserName, this.mPassword,
-      this.mAboutCountry, this.mVisitedPlaces, this.mImportantInfo, this.mContacts);
+  TripInfo(
+      this.mId,
+      this.mTitle,
+      this.mBody,
+      this.mUserName,
+      this.mPassword,
+      this.mAboutCountry,
+      this.mVisitedPlaces,
+      this.mImportantInfo,
+      this.mContacts,
+      this.mBackgroundImagePath);
 
   int mId;
   String mTitle;
@@ -18,6 +27,7 @@ class TripInfo extends Object {
   List<TileInfo> mVisitedPlaces;
   List<TileInfo> mImportantInfo;
   List<ContactInfo> mContacts;
+  String mBackgroundImagePath;
 
   TripInfo.fromTripInfo(TripInfo aNewsInfo) {
     this.mId = aNewsInfo.mId;
@@ -29,11 +39,12 @@ class TripInfo extends Object {
     this.mVisitedPlaces = aNewsInfo.mVisitedPlaces;
     this.mImportantInfo = aNewsInfo.mImportantInfo;
     this.mContacts = aNewsInfo.mContacts;
+    this.mBackgroundImagePath = aNewsInfo.mBackgroundImagePath;
   }
 
   void fLog() {
     print("TripInfo:mId=$mId,mTitle=$mTitle,mBody=$mBody,mUserName=$mUserName,"
-        "mPassword=$mPassword,mAboutCountry=$mAboutCountry,mVisitedPlaces=$mVisitedPlaces,mImportantInfo=$mImportantInfo,mContacts=$mContacts");
+        "mPassword=$mPassword,mAboutCountry=$mAboutCountry,mVisitedPlaces=$mVisitedPlaces,mImportantInfo=$mImportantInfo,mContacts=$mContacts,mBackgroundImagePath=$mBackgroundImagePath");
   }
 
   Map<String, dynamic> toJson() => _$TripInfoToJson(this);

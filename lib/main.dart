@@ -24,7 +24,7 @@ void main() {
 }
 
 class BusinessMobileApp extends StatelessWidget {
-  final routes = <String, WidgetBuilder> {
+  final routes = <String, WidgetBuilder>{
     // HOME
     HomePage.Id: (context) => HomePage(),
     AboutUsPage.Id: (context) => AboutUsPage(),
@@ -48,9 +48,6 @@ class BusinessMobileApp extends StatelessWidget {
     return MaterialApp(
         title: '4B Mobile App',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
         home: HomePage(),
         routes: routes);
   }

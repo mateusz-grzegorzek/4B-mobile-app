@@ -1,3 +1,4 @@
+import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
 
 import '../../trips/trips_page.dart';
@@ -51,42 +52,102 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        resizeToAvoidBottomPadding: false,
-        appBar: fGetDefaultAppBar(LoginPage.Title),
-        body: new Center(
-            child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new SizedBox(
-              width: 250.0,
-              height: 60.0,
-              child: new ListTile(
-                leading: const Icon(Icons.email),
-                title: new TextField(
-                  controller: mUserNameTextEditingController,
-                  decoration: new InputDecoration(
-                    hintText: "Nazwa użytkownika",
+    var scaf;
+    try {
+      scaf = Scaffold(
+          resizeToAvoidBottomPadding: false,
+          backgroundColor: Colors.black,
+          appBar: fGetDefaultAppBar(LoginPage.Title),
+          body: new Container(
+              padding: EdgeInsets.all(25.0),
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "Nazwa:",
+                    style: TextStyle(
+                        color: gBrownColor,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
                   ),
-                ),
-              ),
-            ),
-            new SizedBox(
-              width: 250.0,
-              height: 60.0,
-              child: new ListTile(
-                  leading: const Icon(Icons.security),
-                  title: new TextField(
-                    controller: mPasswordTextEditingController,
-                    obscureText: true,
-                    decoration: new InputDecoration(
-                      hintText: "Hasło",
+                  Padding(padding: EdgeInsets.all(5)),
+                  Container(
+                      height: 52,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.white,
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 6.0),
+                          child: TextField(
+                            controller: mUserNameTextEditingController,
+                            decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                border: InputBorder.none,
+                                hintText: 'Proszę, wprowadź nazwę'),
+                          ),
+                        ),
+                      )),
+                  Padding(padding: EdgeInsets.all(10)),
+                  Text(
+                    "Hasło:",
+                    style: TextStyle(
+                        color: gBrownColor,
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Padding(padding: EdgeInsets.all(5)),
+                  Container(
+                      height: 52,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.white,
+                      ),
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 6.0),
+                          child: TextField(
+                            controller: mPasswordTextEditingController,
+                            decoration: InputDecoration(
+                                fillColor: Colors.white,
+                                border: InputBorder.none,
+                                hintText: 'Proszę, wprowadź hasło'),
+                          ),
+                        ),
+                      )),
+                  new Padding(padding: new EdgeInsets.all(20.0)),
+                  Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    height: 52,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(18.0),
+                      color: gBrownColor,
                     ),
-                  )),
-            ),
-            new Padding(padding: new EdgeInsets.all(10.0)),
-            new RaisedButton(child: new Text("Zaloguj się"), onPressed: fLogin),
-          ],
-        )));
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        FlatButton(
+                            onPressed: fLogin,
+                            child: Text(
+                              'Zaloguj się',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            )),
+                        Image(
+                          image: AssetImage("assets/images/login_arrow.png"),
+                          width: 20,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )));
+    } catch (e) {
+      print(e);
+    }
+    return scaf;
   }
 }

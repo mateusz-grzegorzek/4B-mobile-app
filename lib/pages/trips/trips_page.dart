@@ -4,7 +4,6 @@ import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
 import 'package:flutter/material.dart';
 
 import 'trip_info.dart';
-import 'map/map_page.dart';
 import 'schedule/schedule_page.dart';
 import 'news/news_page.dart';
 import 'about_country/about_country_page.dart';
@@ -21,7 +20,7 @@ import '../../utils/tile_info.dart';
 import '../../utils/widgets/menu_bar.dart';
 import '../../utils/widgets/app_bar.dart';
 
-final List<TripInfo> gTripsList = new List<TripInfo>();
+final List<TripInfo> gTripsList = List<TripInfo>();
 String gAboutCountry;
 List<TileInfo> gVisitedPlaces;
 List<TileInfo> gImportantInfo;
@@ -33,12 +32,6 @@ void fGetTripsFromMemory() {
   String tripsJson = gPrefs.getString(gTripsDatabaseKey);
   if (tripsJson != null) {
     gTripsList.addAll(json.decode(tripsJson).map<TripInfo>((aTripInfo) {
-      var visitedPlaces = List<TileInfo>();
-      if (aTripInfo['mVisitedPlaces'] != null) {
-        aTripInfo['mVisitedPlaces'].forEach((aVisitedPlace) {
-          visitedPlaces.add(TileInfo.fromJson(aVisitedPlace));
-        });
-      }
       var tripContacts = List<ContactInfo>();
       if (aTripInfo['mContacts'] != null) {
         aTripInfo['mContacts'].forEach((aTripContacts) {
@@ -51,13 +44,12 @@ void fGetTripsFromMemory() {
           dayTiles.add(DayTile.fromJson(aDayTile));
         });
       }
-      return new TripInfo(
+      return TripInfo(
           aTripInfo['mId'],
           aTripInfo['mTitle'],
           aTripInfo['mUserName'],
           aTripInfo['mPassword'],
           aTripInfo['mAboutCountry'],
-          visitedPlaces,
           tripContacts,
           aTripInfo['mBackgroundImagePath'],
           dayTiles);
@@ -87,11 +79,6 @@ List<DayTile> fSortDayTileList(List<DayTile> aDayTiles) {
 void fAddTripToList(aTripId, aTripInfo) {
   int tripId = fGetDatabaseId(aTripId, 2);
   print("FirebaseData:fAddTripToList");
-  var visitedPlaces = List<TileInfo>();
-  aTripInfo["visited_places"].forEach((aPlaceId, aPlaceText) {
-    visitedPlaces.add(TileInfo(int.parse(aPlaceId), "visited_places",
-        aPlaceText["title"], aPlaceText["body"]));
-  });
   var tripContacts = List<ContactInfo>();
   aTripInfo["contacts"].forEach((aContactInfoId, aContactInfo) {
     tripContacts.add(ContactInfo(
@@ -120,7 +107,6 @@ void fAddTripToList(aTripId, aTripInfo) {
       aTripInfo["user_name"],
       aTripInfo["password"],
       aTripInfo["about_country"],
-      visitedPlaces,
       tripContacts,
       aTripInfo["background_image_path"],
       dayTiles);
@@ -133,7 +119,6 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
     if (tripInfo.mUserName == aUserName && tripInfo.mPassword == aPassword) {
       // ToDo: Do usunięcia
       gAboutCountry = tripInfo.mAboutCountry;
-      gVisitedPlaces = tripInfo.mVisitedPlaces;
       gTripContacts = tripInfo.mContacts;
       // ToDo: Przepisać, żeby reszta też korzystała z gTripInfo
       gTripInfo = tripInfo;
@@ -157,7 +142,6 @@ class _TripsPageState extends State<TripsPage> {
     MenuItem(SchedulePage.Id, SchedulePage.Title),
     MenuItem(ImporatantInfoPage.Id, ImporatantInfoPage.Title),
     MenuItem(NewsPage.Id, NewsPage.Title),
-    MenuItem(MapPage.Id, MapPage.Title),
     MenuItem(TripContactPage.Id, TripContactPage.Title),
     MenuItem(HomePage.Id, "Wyloguj się"),
   ]);

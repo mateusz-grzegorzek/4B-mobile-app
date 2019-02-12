@@ -14,7 +14,6 @@ import 'pages/trips/visited_places/visited_places_page.dart';
 import 'pages/trips/schedule/schedule_page.dart';
 import 'pages/trips/important_info/important_info_page.dart';
 import 'pages/trips/news/news_page.dart';
-import 'pages/trips/map/map_page.dart';
 import 'pages/trips/contact/contact_page.dart';
 
 void main() {
@@ -38,7 +37,6 @@ class BusinessMobileApp extends StatelessWidget {
     SchedulePage.Id: (context) => SchedulePage(),
     ImporatantInfoPage.Id: (context) => ImporatantInfoPage(),
     NewsPage.Id: (context) => NewsPage(),
-    MapPage.Id: (context) => MapPage(),
     TripContactPage.Id: (context) => TripContactPage(),
   };
 

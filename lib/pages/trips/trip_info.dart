@@ -13,7 +13,6 @@ class TripInfo extends Object {
       this.mUserName,
       this.mPassword,
       this.mAboutCountry,
-      this.mVisitedPlaces,
       this.mContacts,
       this.mBackgroundImagePath,
       this.mDayTiles);
@@ -23,7 +22,6 @@ class TripInfo extends Object {
   String mUserName;
   String mPassword;
   String mAboutCountry;
-  List<TileInfo> mVisitedPlaces;
   List<ContactInfo> mContacts;
   String mBackgroundImagePath;
   List<DayTile> mDayTiles;
@@ -34,7 +32,6 @@ class TripInfo extends Object {
     this.mUserName = aTripInfo.mUserName;
     this.mPassword = aTripInfo.mPassword;
     this.mAboutCountry = aTripInfo.mAboutCountry;
-    this.mVisitedPlaces = aTripInfo.mVisitedPlaces;
     this.mContacts = aTripInfo.mContacts;
     this.mBackgroundImagePath = aTripInfo.mBackgroundImagePath;
     this.mDayTiles = aTripInfo.mDayTiles;
@@ -42,7 +39,7 @@ class TripInfo extends Object {
 
   void fLog() {
     print("TripInfo:mId=$mId,mTitle=$mTitle,mUserName=$mUserName,"
-        "mPassword=$mPassword,mAboutCountry=$mAboutCountry,mVisitedPlaces=$mVisitedPlaces,mContacts=$mContacts,mBackgroundImagePath=$mBackgroundImagePath");
+        "mPassword=$mPassword,mAboutCountry=$mAboutCountry,mContacts=$mContacts,mBackgroundImagePath=$mBackgroundImagePath");
   }
 
   Map<String, dynamic> toJson() => _$TripInfoToJson(this);

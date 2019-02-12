@@ -13,10 +13,6 @@ TripInfo _$TripInfoFromJson(Map<String, dynamic> json) {
     json['mUserName'] as String,
     json['mPassword'] as String,
     json['mAboutCountry'] as String,
-    (json['mVisitedPlaces'] as List)
-        ?.map((e) =>
-            e == null ? null : TileInfo.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
     (json['mContacts'] as List)
         ?.map((e) =>
             e == null ? null : ContactInfo.fromJson(e as Map<String, dynamic>))
@@ -35,7 +31,6 @@ Map<String, dynamic> _$TripInfoToJson(TripInfo instance) => <String, dynamic>{
       'mUserName': instance.mUserName,
       'mPassword': instance.mPassword,
       'mAboutCountry': instance.mAboutCountry,
-      'mVisitedPlaces': instance.mVisitedPlaces,
       'mContacts': instance.mContacts,
       'mBackgroundImagePath': instance.mBackgroundImagePath
     };

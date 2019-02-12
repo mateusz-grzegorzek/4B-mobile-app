@@ -1,3 +1,4 @@
+import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
@@ -120,7 +121,7 @@ class AppExpansionTileState extends State<AppExpansionTile>
           color: _backgroundColor.evaluate(_easeOutAnimation) ??
               Colors.transparent,
           border: new Border(
-            top: new BorderSide(color: borderSideColor),
+            top: new BorderSide(color: gBrownColor),
             bottom: new BorderSide(color: borderSideColor),
           )),
       child: new Column(
@@ -152,6 +153,7 @@ class AppExpansionTileState extends State<AppExpansionTile>
               child: child,
             ),
           ),
+          Padding(padding: EdgeInsets.only(top: 7)),
         ],
       ),
     );

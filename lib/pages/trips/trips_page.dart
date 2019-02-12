@@ -168,14 +168,12 @@ class _TripsPageState extends State<TripsPage> {
       appBar: fGetDefaultAppBar(TripsPage.Title),
       drawer: drawer,
       body: new Container(
-        decoration: new BoxDecoration(
-          image: new DecorationImage(
-            image: new AssetImage(gTripInfo.mBackgroundImagePath),
-            fit: BoxFit.cover,
-          ),
+          decoration: new BoxDecoration(
+        image: new DecorationImage(
+          image: new AssetImage(gTripInfo.mBackgroundImagePath),
+          fit: BoxFit.cover,
         ),
-        child: null /* add child content here */,
-      ),
+      )),
     );
   }
 }

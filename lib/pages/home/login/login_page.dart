@@ -30,7 +30,6 @@ class _LoginPageState extends State<LoginPage> {
       if (fIsTripLoginDataCorrect(userName, password)) {
         gPrefs.setString("login_user_name", userName);
         gPrefs.setString("login_password", password);
-        await fShowAlert(context, "Sukces!", "Zalogowano pomyślnie!");
         Navigator.pop(context);
         Navigator.of(context).pushNamed(TripsPage.Id);
       } else {

@@ -8,14 +8,14 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../utils/widgets/app_bar.dart';
 
-class ImporatantInfoPage extends StatefulWidget {
+class ImportantInfoPage extends StatefulWidget {
   static const String Id = "ImporatantInfoPage";
-  static const String Title = "Ważne informacje przed wyjazdem";
+  static const String Title = "Ważne informacje";
   @override
-  _ImporatantInfoPageState createState() => _ImporatantInfoPageState();
+  _ImportantInfoPageState createState() => _ImportantInfoPageState();
 }
 
-class _ImporatantInfoPageState extends State<ImporatantInfoPage> {
+class _ImportantInfoPageState extends State<ImportantInfoPage> {
   var mExpansionTileList = List<GlobalKey<AppExpansionTileState>>();
 
   Row fBuildInsuranceRow(String aText) {

@@ -1,3 +1,5 @@
+import 'package:business_mobile_app/pages/home/home_page.dart';
+import 'package:business_mobile_app/pages/trips/schedule/schedule_page.dart';
 import 'package:business_mobile_app/pages/trips/visited_places/visited_places.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
@@ -56,7 +58,10 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
               fBuildPlace(gVisitedPlace4Title, gVisitedPlace4Body,
                   gVisitedPlace4ImagePath),
               fBuildPlace(gVisitedPlace5Title, gVisitedPlace5Body,
-                  gVisitedPlace5ImagePath)
+                  gVisitedPlace5ImagePath),
+              Padding(padding: EdgeInsets.only(top: 10)),
+              fBuildButton(() => fChangePage(context, SchedulePage.Id),
+                  "Zobacz agendę wyjazdu"),
             ],
           ),
         ));

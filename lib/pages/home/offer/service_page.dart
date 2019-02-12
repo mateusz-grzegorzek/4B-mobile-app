@@ -44,34 +44,6 @@ class _ServicePageState extends State<ServicePage> {
 
   _ServicePageState(this.mServiceInfo);
 
-  Widget fBuildWebPageButton() {
-    return Container(
-      alignment: Alignment.center,
-      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-      width: double.infinity,
-      height: 52,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(18.0),
-        color: gBrownColor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          FlatButton(
-              onPressed: () => launch(mServiceInfo.mMoreInfoUrlLink),
-              child: Text(
-                'Przejdź do strony internetowej',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              )),
-          Image(
-            image: AssetImage("assets/images/login_arrow.png"),
-            width: 20,
-          ),
-        ],
-      ),
-    );
-  }
-
   Column fBuildOptions() {
     return Column(
         children:
@@ -125,7 +97,8 @@ class _ServicePageState extends State<ServicePage> {
                   : fBuildNullWidget(),
               fPrintBoldText(mMoreInfoText),
               Padding(padding: EdgeInsets.all(5)),
-              fBuildWebPageButton()
+              fBuildButton(() => launch(mServiceInfo.mMoreInfoUrlLink),
+                  "Przejdź do strony internetowej"),
             ]));
   }
 

@@ -99,3 +99,31 @@ Widget fBuildExpansionTile(
   return AppExpansionTile(
       key: aKey, title: fPrintBoldText(aTitle), children: aChildrens);
 }
+
+Widget fBuildButton(VoidCallback aCallback, String aText) {
+  return Container(
+    alignment: Alignment.center,
+    margin: const EdgeInsets.only(left: 5.0, right: 5.0),
+    width: double.infinity,
+    height: 52,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(18.0),
+      color: gBrownColor,
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        FlatButton(
+            onPressed: aCallback,
+            child: Text(
+              aText,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            )),
+        Image(
+          image: AssetImage("assets/images/login_arrow.png"),
+          width: 20,
+        ),
+      ],
+    ),
+  );
+}

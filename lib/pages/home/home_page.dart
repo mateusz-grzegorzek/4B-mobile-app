@@ -9,6 +9,11 @@ import '../../utils/widgets/app_bar.dart';
 import '../../utils/widgets/menu_bar.dart';
 import '../../utils/fonts.dart';
 
+void fChangePage(BuildContext aContext, String aPageId) {
+  Navigator.pop(aContext);
+  Navigator.of(aContext).pushNamed(aPageId);
+}
+
 class HomePage extends StatefulWidget {
   static const String Id = "HomePage";
   static const String Title = "4Business Team";

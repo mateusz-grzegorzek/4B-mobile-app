@@ -35,7 +35,7 @@ class BusinessMobileApp extends StatelessWidget {
     AboutCountryPage.Id: (context) => AboutCountryPage(),
     VisitedPlacesPage.Id: (context) => VisitedPlacesPage(),
     SchedulePage.Id: (context) => SchedulePage(),
-    ImporatantInfoPage.Id: (context) => ImporatantInfoPage(),
+    ImportantInfoPage.Id: (context) => ImportantInfoPage(),
     NewsPage.Id: (context) => NewsPage(),
     TripContactPage.Id: (context) => TripContactPage(),
   };

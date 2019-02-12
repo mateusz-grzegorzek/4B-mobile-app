@@ -140,7 +140,7 @@ class _TripsPageState extends State<TripsPage> {
     MenuItem(AboutCountryPage.Id, AboutCountryPage.Title),
     MenuItem(VisitedPlacesPage.Id, VisitedPlacesPage.Title),
     MenuItem(SchedulePage.Id, SchedulePage.Title),
-    MenuItem(ImporatantInfoPage.Id, ImporatantInfoPage.Title),
+    MenuItem(ImportantInfoPage.Id, ImportantInfoPage.Title),
     MenuItem(NewsPage.Id, NewsPage.Title),
     MenuItem(TripContactPage.Id, TripContactPage.Title),
     MenuItem(HomePage.Id, "Wyloguj się"),

@@ -4,6 +4,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'contact_info.dart';
 
+import '../../../utils/fonts.dart';
+import '../../../utils/print.dart';
 import '../../../utils/firebase_data.dart';
 
 class ContactListWidget extends StatefulWidget {
@@ -15,7 +17,7 @@ class ContactListWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ContactListState createState() => new _ContactListState();
+  _ContactListState createState() => _ContactListState();
 }
 
 class _ContactListState extends State<ContactListWidget> {
@@ -53,56 +55,84 @@ class _ContactListState extends State<ContactListWidget> {
     print("ContactListPage:build:mContactsList.length=" +
         widget.mContactsList.length.toString());
     fSortContactList();
-    return new ListView.builder(
-        itemCount: widget.mContactsList.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return new Card(
-              child: new _ContactListItem(widget.mContactsList[index]));
-        });
+    return Column(
+        children: widget.mContactsList
+            .map((item) => _ContactListItem(item))
+            .toList());
   }
 }
 
 class _ContactListItem extends ListTile {
-  _ContactListItem(ContactInfo contactInfo)
-      : super(
-          leading: new Container(child: new Icon(Icons.person)),
-          title: new Container(
-              child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              new Text(contactInfo.mName,
-                  style: new TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18.0))
-            ],
-          )),
-          subtitle: new Container(
-              child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[new Text(contactInfo.mDescription)],
-          )),
-          trailing: new Container(
-            child: new Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                (contactInfo.mEmail != "")
-                    ? new IconButton(
-                        icon: Icon(Icons.email),
-                        onPressed: () =>
-                            launch("mailto://" + contactInfo.mEmail))
-                    : new Container(width: 0, height: 0),
-                new IconButton(
-                    icon: Icon(Icons.phone),
-                    padding: new EdgeInsets.all(1.0),
-                    onPressed: () =>
-                        launch("tel://" + contactInfo.mPhoneNumber))
-              ],
+  final ContactInfo contactInfo;
+
+  _ContactListItem(this.contactInfo);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Divider(height: 15, color: gBrownColor),
+          fPrintText(contactInfo.mName, gMenuItemTextStyle),
+          Padding(padding: EdgeInsets.only(top: 5.0)),
+          fBuildDescriptionRow(),
+          fBuildTelRow(),
+          (contactInfo.mEmail != "")
+              ? fBuildEmailRow()
+              : Container(width: 0, height: 0),
+        ],
+      ),
+    );
+  }
+
+  Widget fBuildDescriptionRow() {
+    return Padding(
+        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+        child: Row(
+          children: <Widget>[
+            Container(
+                height: 20,
+                width: 20,
+                child: Image.asset("assets/images/contacts/person.png")),
+            Padding(padding: EdgeInsets.only(left: 20.0)),
+            fPrintText(contactInfo.mDescription)
+          ],
+        ));
+  }
+
+  Widget fBuildTelRow() {
+    return Padding(
+        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+        child: Row(
+          children: <Widget>[
+            Container(
+                height: 20,
+                width: 20,
+                child: Image.asset("assets/images/contacts/phone.png")),
+            Padding(padding: EdgeInsets.only(left: 20.0)),
+            GestureDetector(
+              child: fPrintText("tel. " + contactInfo.mPhoneNumber),
+              onTap: () => launch("tel://" + contactInfo.mPhoneNumber),
             ),
-          ),
-        );
+          ],
+        ));
+  }
+
+  Widget fBuildEmailRow() {
+    return Padding(
+        padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+        child: Row(
+          children: <Widget>[
+            Container(
+                height: 20,
+                width: 20,
+                child: Image.asset("assets/images/contacts/email.png")),
+            Padding(padding: EdgeInsets.only(left: 20.0)),
+            GestureDetector(
+                child: fPrintText(contactInfo.mEmail),
+                onTap: () => launch("mailto://" + contactInfo.mEmail))
+          ],
+        ));
+  }
 }

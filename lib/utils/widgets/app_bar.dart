@@ -25,3 +25,14 @@ PreferredSize fBuildAppBar(String aPathToImage) {
         ),
       ));
 }
+
+SliverAppBar fBuildSilverAppBar(String aPathToImage) {
+  return SliverAppBar(
+      backgroundColor: Colors.transparent,
+      expandedHeight: 200.0,
+      floating: false,
+      pinned: false,
+      flexibleSpace: FlexibleSpaceBar(
+        background: Image.asset(aPathToImage,
+              fit: BoxFit.cover)));
+}

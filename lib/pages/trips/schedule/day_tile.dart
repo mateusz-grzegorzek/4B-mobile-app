@@ -11,18 +11,12 @@ class DayTile extends Object {
   int mDayNumber;
   List<EventInfo> mEventsList;
 
-  DayTile.fromDayTile(DayTile aDayTile) {
-    this.mId = aDayTile.mId;
-    this.mDayNumber = aDayTile.mDayNumber;
-    this.mEventsList = aDayTile.mEventsList;
-  }
-
   void fLog() {
     print("DayTile:mId=$mId,mDayNumber=$mDayNumber");
   }
 
-  Map<String, dynamic> toJson() => _$DayTileToJson(this);
-
   factory DayTile.fromJson(Map<String, dynamic> json) =>
       _$DayTileFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DayTileToJson(this);
 }

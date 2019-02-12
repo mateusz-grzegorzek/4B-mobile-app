@@ -8,7 +8,6 @@ import '../pages/trips/trips_page.dart';
 
 const String gNewsDatabaseKey = "news";
 const String gContactsDatabaseKey = "contacts";
-const String gTeamDatabaseKey = "team";
 const String gTripsDatabaseKey = "trips";
 
 class FirebaseData {
@@ -23,7 +22,7 @@ class FirebaseData {
       print("FirebaseDataController:fSubscribe:listen:" + aDatabaseKey);
       globalVariable.clear();
       event.snapshot.value.forEach(aFunction);
-      String globalVariableJson = json.encode(globalVariable);
+      String globalVariableJson = jsonEncode(globalVariable);
       gPrefs.setString(aDatabaseKey, globalVariableJson);
       mStreamController.add(true);
     });

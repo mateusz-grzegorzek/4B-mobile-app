@@ -45,7 +45,6 @@ class MenuBar extends StatelessWidget {
       data: Theme.of(context).copyWith(canvasColor: Color(0xFF231f20)),
       child: Drawer(
         child: ListView(
-            //children: mMenuItems,
             children: items),
       ),
     );

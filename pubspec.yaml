@@ -48,6 +48,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/images/
+  - assets/images/appbars/
   - assets/images/offer/
   - assets/images/offer/football/
   - assets/images/offer/incentive/
@@ -56,6 +57,7 @@ flutter:
   - assets/images/offer/journeys/
   - assets/images/offer/marketing/
   - assets/images/offer/program_for_firms/
+  - assets/images/contacts/
   - assets/images/trips/las_vegas/
   - assets/social_media/
 

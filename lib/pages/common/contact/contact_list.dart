@@ -80,7 +80,7 @@ class _ContactListItem extends ListTile {
           fBuildTelRow(),
           (contactInfo.mEmail != "")
               ? fBuildEmailRow()
-              : Container(width: 0, height: 0),
+              : fBuildNullWidget(),
         ],
       ),
     );
@@ -91,10 +91,7 @@ class _ContactListItem extends ListTile {
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         child: Row(
           children: <Widget>[
-            Container(
-                height: 20,
-                width: 20,
-                child: Image.asset("assets/images/contacts/person.png")),
+            fBuildImageWidget("assets/images/contacts/person.png", 20),
             Padding(padding: EdgeInsets.only(left: 20.0)),
             fPrintText(contactInfo.mDescription)
           ],
@@ -106,10 +103,7 @@ class _ContactListItem extends ListTile {
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         child: Row(
           children: <Widget>[
-            Container(
-                height: 20,
-                width: 20,
-                child: Image.asset("assets/images/contacts/phone.png")),
+            fBuildImageWidget("assets/images/contacts/phone.png", 20),
             Padding(padding: EdgeInsets.only(left: 20.0)),
             GestureDetector(
               child: fPrintText("tel. " + contactInfo.mPhoneNumber),
@@ -124,10 +118,7 @@ class _ContactListItem extends ListTile {
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         child: Row(
           children: <Widget>[
-            Container(
-                height: 20,
-                width: 20,
-                child: Image.asset("assets/images/contacts/email.png")),
+            fBuildImageWidget("assets/images/contacts/email.png", 20),
             Padding(padding: EdgeInsets.only(left: 20.0)),
             GestureDetector(
                 child: fPrintText(contactInfo.mEmail),

@@ -67,11 +67,10 @@ class _MainContactPageState extends State<MainContactPage> {
         slivers: <Widget>[
           fBuildSilverAppBar("assets/images/appbars/main_contacts.png"),
           SliverFillViewport(
-            delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return fBuildBody();
-                },
-                childCount: 1),
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return fBuildBody();
+            }, childCount: 1),
           )
         ],
       ),
@@ -94,29 +93,6 @@ class _MainContactPageState extends State<MainContactPage> {
         ));
   }
 
-/*
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: fBuildAppBar("assets/images/about_us_top_image.png"),
-      body: SingleChildScrollView(
-          child: new Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  fPrintHeadingText(MainContactPage.Title),
-                  fBuildSocialMediaRow(),
-                  fBuildAddressWidget(),
-                  new ContactListWidget(
-                      mDatabaseKey: gContactsDatabaseKey,
-                      mContactsList: gContactsList)
-                ],
-              ))),
-    );
-  }
-*/
-
   Widget fBuildSocialMediaRow() {
     double iconSize = 70.0;
 
@@ -125,30 +101,12 @@ class _MainContactPageState extends State<MainContactPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            IconButton(
-              iconSize: iconSize,
-              icon: Image.asset(
-                "assets/social_media/facebook.png",
-              ),
-              onPressed: () =>
-                  launch("https://www.facebook.com/4BusinessTeam/"),
-            ),
-            IconButton(
-              iconSize: iconSize,
-              icon: Image.asset(
-                "assets/social_media/instagram.png",
-              ),
-              onPressed: () =>
-                  launch("https://www.instagram.com/4business_team/"),
-            ),
-            IconButton(
-              iconSize: iconSize,
-              icon: Image.asset(
-                "assets/social_media/linkedin.png",
-              ),
-              onPressed: () =>
-                  launch("https://www.linkedin.com/company/3297050"),
-            )
+            fBuildImageButton("assets/social_media/facebook.png", iconSize,
+                "https://www.facebook.com/4BusinessTeam/"),
+            fBuildImageButton("assets/social_media/instagram.png", iconSize,
+                "https://www.instagram.com/4business_team/"),
+            fBuildImageButton("assets/social_media/linkedin.png", iconSize,
+                "https://www.linkedin.com/company/3297050"),
           ],
         ));
   }

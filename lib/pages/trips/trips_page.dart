@@ -26,7 +26,6 @@ String gAboutCountry;
 List<TileInfo> gVisitedPlaces;
 List<TileInfo> gImportantInfo;
 List<ContactInfo> gTripContacts;
-String gBackgroundImagePath;
 
 TripInfo gTripInfo;
 
@@ -38,12 +37,6 @@ void fGetTripsFromMemory() {
       if (aTripInfo['mVisitedPlaces'] != null) {
         aTripInfo['mVisitedPlaces'].forEach((aVisitedPlace) {
           visitedPlaces.add(TileInfo.fromJson(aVisitedPlace));
-        });
-      }
-      var importantInfo = List<TileInfo>();
-      if (aTripInfo['mImportantInfo'] != null) {
-        aTripInfo['mImportantInfo'].forEach((aImportantInfo) {
-          importantInfo.add(TileInfo.fromJson(aImportantInfo));
         });
       }
       var tripContacts = List<ContactInfo>();
@@ -61,12 +54,10 @@ void fGetTripsFromMemory() {
       return new TripInfo(
           aTripInfo['mId'],
           aTripInfo['mTitle'],
-          aTripInfo['mBody'],
           aTripInfo['mUserName'],
           aTripInfo['mPassword'],
           aTripInfo['mAboutCountry'],
           visitedPlaces,
-          importantInfo,
           tripContacts,
           aTripInfo['mBackgroundImagePath'],
           dayTiles);
@@ -74,29 +65,23 @@ void fGetTripsFromMemory() {
   }
 }
 
-List<DayTile> fSortDayTileList(List<DayTile> aDayTiles) {
-  aDayTiles.sort((firstDayTile, secondDayTile) {
-    if (firstDayTile.mId > secondDayTile.mId) {
+List<dynamic> fSortById(List<dynamic> aList) {
+  aList.sort((firstItem, secondItem) {
+    if (firstItem.mId > secondItem.mId) {
       return 1;
     } else {
       return -1;
     }
   });
-  aDayTiles.forEach((dayTile) {
-    fSortEventInfoList(dayTile.mEventsList);
-  });
-  return aDayTiles;
+  return aList;
 }
 
-List<EventInfo> fSortEventInfoList(List<EventInfo> aEventInfoList) {
-  aEventInfoList.sort((firstEventInfo, secondEventInfo) {
-    if (firstEventInfo.mId > secondEventInfo.mId) {
-      return 1;
-    } else {
-      return -1;
-    }
+List<DayTile> fSortDayTileList(List<DayTile> aDayTiles) {
+  aDayTiles = fSortById(aDayTiles);
+  aDayTiles.forEach((dayTile) {
+    fSortById(dayTile.mEventsList);
   });
-  return aEventInfoList;
+  return aDayTiles;
 }
 
 void fAddTripToList(aTripId, aTripInfo) {
@@ -106,11 +91,6 @@ void fAddTripToList(aTripId, aTripInfo) {
   aTripInfo["visited_places"].forEach((aPlaceId, aPlaceText) {
     visitedPlaces.add(TileInfo(int.parse(aPlaceId), "visited_places",
         aPlaceText["title"], aPlaceText["body"]));
-  });
-  var importantInfo = List<TileInfo>();
-  aTripInfo["important_info"].forEach((aInfoId, aInfoText) {
-    importantInfo.add(TileInfo(int.parse(aInfoId), "important_info",
-        aInfoText["title"], aInfoText["body"]));
   });
   var tripContacts = List<ContactInfo>();
   aTripInfo["contacts"].forEach((aContactInfoId, aContactInfo) {
@@ -137,12 +117,10 @@ void fAddTripToList(aTripId, aTripInfo) {
   var tripInfo = TripInfo(
       tripId,
       aTripInfo["title"],
-      aTripInfo["body"],
       aTripInfo["user_name"],
       aTripInfo["password"],
       aTripInfo["about_country"],
       visitedPlaces,
-      importantInfo,
       tripContacts,
       aTripInfo["background_image_path"],
       dayTiles);
@@ -156,9 +134,7 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
       // ToDo: Do usunięcia
       gAboutCountry = tripInfo.mAboutCountry;
       gVisitedPlaces = tripInfo.mVisitedPlaces;
-      gImportantInfo = tripInfo.mImportantInfo;
       gTripContacts = tripInfo.mContacts;
-      gBackgroundImagePath = tripInfo.mBackgroundImagePath;
       // ToDo: Przepisać, żeby reszta też korzystała z gTripInfo
       gTripInfo = tripInfo;
       return true;
@@ -194,7 +170,7 @@ class _TripsPageState extends State<TripsPage> {
       body: new Container(
         decoration: new BoxDecoration(
           image: new DecorationImage(
-            image: new AssetImage(gBackgroundImagePath),
+            image: new AssetImage(gTripInfo.mBackgroundImagePath),
             fit: BoxFit.cover,
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -11,7 +12,6 @@ class AppExpansionTile extends StatefulWidget {
     this.backgroundColor,
     this.onExpansionChanged,
     this.children: const <Widget>[],
-    this.trailing,
     this.initiallyExpanded: false,
   })  : assert(initiallyExpanded != null),
         super(key: key);
@@ -21,7 +21,7 @@ class AppExpansionTile extends StatefulWidget {
   final ValueChanged<bool> onExpansionChanged;
   final List<Widget> children;
   final Color backgroundColor;
-  final Widget trailing;
+
   final bool initiallyExpanded;
 
   @override
@@ -38,6 +38,7 @@ class AppExpansionTileState extends State<AppExpansionTile>
   ColorTween _iconColor;
   ColorTween _backgroundColor;
   Animation<double> _iconTurns;
+  Widget _trailing;
 
   bool _isExpanded = false;
 
@@ -58,7 +59,12 @@ class AppExpansionTileState extends State<AppExpansionTile>
 
     _isExpanded =
         PageStorage.of(context)?.readState(context) ?? widget.initiallyExpanded;
-    if (_isExpanded) _controller.value = 1.0;
+    if (_isExpanded) {
+      _trailing = fBuildImage("assets/images/expansion_arrow_up.png", 25);
+      _controller.value = 1.0;
+    } else {
+      _trailing = fBuildImage("assets/images/expansion_arrow_down.png", 25);
+    }
   }
 
   @override
@@ -80,17 +86,22 @@ class AppExpansionTileState extends State<AppExpansionTile>
   }
 
   void _setExpanded(bool isExpanded) {
+    print("asdasdasd");
     if (_isExpanded != isExpanded) {
       setState(() {
         _isExpanded = isExpanded;
-        if (_isExpanded)
+        if (_isExpanded) {
+          _trailing = fBuildImage("assets/images/expansion_arrow_up.png", 25);
           _controller.forward();
-        else
+        } else {
+          _trailing = fBuildImage("assets/images/expansion_arrow_down.png", 25);
           _controller.reverse().then<void>((value) {
             setState(() {
               // Rebuild without widget.children.
             });
           });
+        }
+
         PageStorage.of(context)?.writeState(context, _isExpanded);
       });
       if (widget.onExpansionChanged != null) {
@@ -128,7 +139,7 @@ class AppExpansionTileState extends State<AppExpansionTile>
                     .copyWith(color: titleColor),
                 child: widget.title,
               ),
-              trailing: widget.trailing ??
+              trailing: _trailing ??
                   new RotationTransition(
                     turns: _iconTurns,
                     child: const Icon(Icons.expand_more),

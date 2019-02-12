@@ -63,12 +63,12 @@ class AboutUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appBar = new PreferredSize(
+    final appBar = PreferredSize(
         preferredSize: Size.fromHeight(150.0),
         child: Container(
-          decoration: new BoxDecoration(
-              image: new DecorationImage(
-            image: new AssetImage("assets/images/about_us_top_image.png"),
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("assets/images/about_us_top_image.png"),
             fit: BoxFit.cover,
           )),
           child: AppBar(
@@ -77,24 +77,24 @@ class AboutUsPage extends StatelessWidget {
           ),
         ));
 
-    var about4BusinessText = new RichText(
+    var about4BusinessText = RichText(
       textAlign: TextAlign.justify,
-      text: new TextSpan(
-        style: new TextStyle(
+      text: TextSpan(
+        style: TextStyle(
           fontSize: 20.0,
           color: Colors.black,
         ),
         children: <TextSpan>[
-          new TextSpan(text: mAbout4BusinessPart1),
-          new TextSpan(
+          TextSpan(text: mAbout4BusinessPart1),
+          TextSpan(
               text: mAbout4BusinessPart2,
-              style: new TextStyle(fontWeight: FontWeight.bold)),
-          new TextSpan(text: mAbout4BusinessPart3),
+              style: TextStyle(fontWeight: FontWeight.bold)),
+          TextSpan(text: mAbout4BusinessPart3),
         ],
       ),
     );
 
-    return new Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: appBar,
         body: SingleChildScrollView(

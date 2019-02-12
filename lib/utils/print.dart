@@ -1,3 +1,4 @@
+import 'package:business_mobile_app/utils/expansion_tile.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,14 +55,14 @@ Image fPrintOkSign() {
   );
 }
 
-Column fPrintOptionRow(String option) {
+Column fPrintOptionRow(String aOption) {
   return Column(
     children: <Widget>[
       Row(
         children: <Widget>[
           fPrintOkSign(),
           Padding(padding: EdgeInsets.all(5)),
-          Expanded(child: fPrintText(option))
+          Expanded(child: fPrintText(aOption))
         ],
       ),
       Padding(padding: EdgeInsets.all(5)),
@@ -73,21 +74,28 @@ Widget fBuildNullWidget() {
   return Container(width: 0, height: 0);
 }
 
-Widget fBuildImageWidget(String path, double width, [double height]) {
-  height = (height != null) ? height : width;
-  return Container(
-    width: width,
-    height: height,
-    child: Image.asset(path),
+Image fBuildImage(String aPath, double aWidth, [double aHeight]) {
+  aHeight = (aHeight != null) ? aHeight : aWidth;
+  return Image(
+    width: aWidth,
+    height: aHeight,
+    image: AssetImage(aPath),
   );
 }
 
-Widget fBuildImageButton(String imagePath, double imageSize, String urlPath) {
+Widget fBuildImageButton(
+    String aImagePath, double aImageSize, String aUrlPath) {
   return IconButton(
-    iconSize: imageSize,
+    iconSize: aImageSize,
     icon: Image.asset(
-      imagePath,
+      aImagePath,
     ),
-    onPressed: () => launch(urlPath),
+    onPressed: () => launch(aUrlPath),
   );
+}
+
+Widget fBuildExpansionTile(
+    dynamic aKey, String aTitle, List<Widget> aChildrens) {
+  return AppExpansionTile(
+      key: aKey, title: fPrintBoldText(aTitle), children: aChildrens);
 }

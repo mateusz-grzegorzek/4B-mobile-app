@@ -121,11 +121,7 @@ class _OfferPageState extends State<OfferPage> {
         child: Row(
           children: <Widget>[
             Padding(padding: EdgeInsets.all(10)),
-            Image(
-              height: 30,
-              width: 30,
-              image: AssetImage(aServicePage.mServiceInfo.mPathToIcon),
-            ),
+            fBuildImage(aServicePage.mServiceInfo.mPathToIcon, 30),
             Padding(padding: EdgeInsets.all(10)),
             fPrintBoldText(aServicePage.mServiceInfo.mHeadingText)
           ],

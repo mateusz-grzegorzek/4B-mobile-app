@@ -358,21 +358,29 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: fBuildAppBar("assets/images/imp_info_top_image.png"),
-        body: SingleChildScrollView(
-          child: Container(
-            margin: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                fPrintHeadingText(" Ważne informacje"),
-                Padding(padding: EdgeInsets.all(5)),
-                fBuildExpandAllTiles(mExpansionTileList),
-                Padding(padding: EdgeInsets.all(5)),
-                fBuildInfoTiles()
-              ],
-            ),
-          ),
-        ));
+      body: CustomScrollView(
+        slivers: <Widget>[
+          fBuildSilverAppBar("assets/images/imp_info_top_image.png"),
+          SliverList(
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return Container(
+                margin: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    fPrintHeadingText(" Ważne informacje"),
+                    Padding(padding: EdgeInsets.all(5)),
+                    fBuildExpandAllTiles(mExpansionTileList),
+                    Padding(padding: EdgeInsets.all(5)),
+                    fBuildInfoTiles()
+                  ],
+                ),
+              );
+            }, childCount: 1),
+          )
+        ],
+      ),
+    );
   }
 }

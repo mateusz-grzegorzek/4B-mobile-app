@@ -99,27 +99,35 @@ class _ServicePageState extends State<ServicePage> {
               Padding(padding: EdgeInsets.all(5)),
               fBuildButton(() => launch(mServiceInfo.mMoreInfoUrlLink),
                   "Przejdź do strony internetowej"),
+              Padding(padding: EdgeInsets.only(top: 10))
             ]));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: fBuildAppBar(mServiceInfo.mPathToTopImage),
-        backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Container(
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  fBuildTop(),
-                  fBuildMiddleImage(),
-                  fBuildBottom()
-                ],
-              ),
-            ),
-          ),
-        ));
+      body: CustomScrollView(
+        slivers: <Widget>[
+          fBuildSilverAppBar(mServiceInfo.mPathToTopImage),
+          SliverList(
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return Container(
+                child: Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      fBuildTop(),
+                      fBuildMiddleImage(),
+                      fBuildBottom()
+                    ],
+                  ),
+                ),
+              );
+            }, childCount: 1),
+          )
+        ],
+      ),
+    );
   }
 }

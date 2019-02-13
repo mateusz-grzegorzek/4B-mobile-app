@@ -66,7 +66,7 @@ class _MainContactPageState extends State<MainContactPage> {
       body: CustomScrollView(
         slivers: <Widget>[
           fBuildSilverAppBar("assets/images/appbars/main_contacts.png"),
-          SliverFillViewport(
+          SliverList(
             delegate:
                 SliverChildBuilderDelegate((BuildContext context, int index) {
               return fBuildBody();

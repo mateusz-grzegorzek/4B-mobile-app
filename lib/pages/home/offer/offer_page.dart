@@ -140,17 +140,26 @@ class _OfferPageState extends State<OfferPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: fBuildAppBar("assets/images/offer/offer_top_image.png"),
-        body: SingleChildScrollView(
-            child: Container(
-                padding: EdgeInsets.all(10),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      fPrintHeadingText(" Oferta"),
-                      Padding(padding: EdgeInsets.all(10)),
-                      fBuildOffers()
-                    ]))));
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          fBuildSilverAppBar("assets/images/offer/offer_top_image.png"),
+          SliverList(
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return Container(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        fPrintHeadingText(" Oferta"),
+                        Padding(padding: EdgeInsets.all(10)),
+                        fBuildOffers()
+                      ]));
+            }, childCount: 1),
+          )
+        ],
+      ),
+    );
   }
 }

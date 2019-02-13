@@ -1,5 +1,6 @@
 import 'package:business_mobile_app/pages/trips/important_info/important_info.dart';
 import 'package:business_mobile_app/pages/trips/schedule/schedule_page.dart';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/expansion_tile.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
@@ -357,22 +358,23 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
 
   Widget fBuildBody() {
     return Container(
-                margin: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    fPrintHeadingText(" Ważne informacje"),
-                    Padding(padding: EdgeInsets.all(5)),
-                    fBuildExpandAllTiles(mExpansionTileList),
-                    Padding(padding: EdgeInsets.all(5)),
-                    fBuildInfoTiles()
-                  ],
-                ),
-              );
+      margin: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          fPrintHeadingText(" Ważne informacje"),
+          Padding(padding: EdgeInsets.all(5)),
+          fBuildExpandAllTiles(mExpansionTileList),
+          Padding(padding: EdgeInsets.all(5)),
+          fBuildInfoTiles()
+        ],
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage("assets/images/imp_info_top_image.png", fBuildBody());
+    return fBuildSilverPage(
+        "assets/images/imp_info_top_image.png", fBuildBody(), TripsPage.drawer);
   }
 }

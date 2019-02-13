@@ -1,4 +1,5 @@
 import 'package:business_mobile_app/pages/common/contact/contact_info.dart';
+import 'package:business_mobile_app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../common/contact/contact_info.dart';
@@ -11,16 +12,22 @@ class MainContactPage extends StatelessWidget {
   static const String Title = "Kontakt";
 
   final List<ContactInfo> mContactInfoList = [
-    ContactInfo(0, "Grzegorz Bartosz", "Prezes Zarządu", "+48 602 462 677", "gb@4b.com.pl"),
-    ContactInfo(1, "Michał Kobylarczyk", "Wiceprezes Zarządu", "+48 602 50 60 90", "mk@4b.com.pl"),
-    ContactInfo(2, "Karolina Lapczyk", "Specjalista ds. Incentive", "+48 606 712 444", "karolina@4b.com.pl"),
-    ContactInfo(3, "Katarzyna Drążek", "Event Manager", "+48 796 109 610", "katarzyna@4b.com.pl"),
-    ContactInfo(4, "Damian Urbaniec", "Manager ds. Sponsoringu", "+48 733 777 777", "sport@4b.com.pl")
+    ContactInfo(0, "Grzegorz Bartosz", "Prezes Zarządu", "+48 602 462 677",
+        "gb@4b.com.pl"),
+    ContactInfo(1, "Michał Kobylarczyk", "Wiceprezes Zarządu",
+        "+48 602 50 60 90", "mk@4b.com.pl"),
+    ContactInfo(2, "Karolina Lapczyk", "Specjalista ds. Incentive",
+        "+48 606 712 444", "karolina@4b.com.pl"),
+    ContactInfo(3, "Katarzyna Drążek", "Event Manager", "+48 796 109 610",
+        "katarzyna@4b.com.pl"),
+    ContactInfo(4, "Damian Urbaniec", "Manager ds. Sponsoringu",
+        "+48 733 777 777", "sport@4b.com.pl")
   ];
 
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage("assets/images/appbars/main_contacts.png", fBuildBody());
+    return fBuildSilverPage("assets/images/appbars/main_contacts.png",
+        fBuildBody(), HomePage.drawer);
   }
 
   Widget fBuildBody() {

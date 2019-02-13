@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import '../../../utils/fonts.dart';
 import '../../../utils/print.dart';
@@ -15,8 +16,8 @@ class TripContactPage extends StatefulWidget {
 class _TripContactPageState extends State<TripContactPage> {
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage(
-        "assets/images/appbars/trip_contacts.png", fBuildBody());
+    return fBuildSilverPage("assets/images/appbars/trip_contacts.png",
+        fBuildBody(), TripsPage.drawer);
   }
 
   Widget fBuildBody() {

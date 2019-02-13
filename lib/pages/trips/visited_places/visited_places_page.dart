@@ -1,4 +1,5 @@
 import 'package:business_mobile_app/pages/home/home_page.dart';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/pages/trips/schedule/schedule_page.dart';
 import 'package:business_mobile_app/pages/trips/visited_places/visited_places.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
@@ -68,9 +69,11 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
 
   @override
   Widget build(BuildContext context) {
-    //return fBuildSilverPage("imagePath", fBuildBody()); TODO
+    //return fBuildSilverPage("imagePath", fBuildBody(), TripsPage.drawer); TODO
 
     return new Scaffold(
-        appBar: fGetDefaultAppBar(VisitedPlacesPage.Title), body: fBuildBody());
+        appBar: fGetDefaultAppBar(VisitedPlacesPage.Title),
+        drawer: TripsPage.drawer,
+        body: fBuildBody());
   }
 }

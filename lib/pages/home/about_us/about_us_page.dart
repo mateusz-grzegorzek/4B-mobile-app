@@ -65,7 +65,8 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return fBuildSilverPage(
-        "assets/images/about_us_top_image.png", fBuildBody(context));
+        "assets/images/about_us_top_image.png", fBuildBody(context),
+        HomePage.drawer);
   }
 
   Widget fBuildBody(BuildContext context) {

@@ -136,6 +136,8 @@ class _SchedulePageState extends State<SchedulePage>
   Widget build(BuildContext aContext) {
     mExpansionTileList.clear();
     return fBuildSilverPage(
-        "assets/images/trips/las_vegas/schedule_top_image.png", fBuildBody());
+        "assets/images/trips/las_vegas/schedule_top_image.png",
+        fBuildBody(),
+        TripsPage.drawer);
   }
 }

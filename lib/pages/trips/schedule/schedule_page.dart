@@ -120,22 +120,30 @@ class _SchedulePageState extends State<SchedulePage>
   Widget build(BuildContext aContext) {
     mExpansionTileList.clear();
     return Scaffold(
-        appBar: fBuildAppBar(
-            "assets/images/trips/las_vegas/schedule_top_image.png"),
-        body: SingleChildScrollView(
-          child: Container(
-            margin: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                fPrintHeadingText(" Agenda wyjazdu"),
-                Padding(padding: EdgeInsets.all(5)),
-                fBuildExpandAllTiles(mExpansionTileList),
-                Padding(padding: EdgeInsets.all(5)),
-                fBuildDayTiles()
-              ],
-            ),
-          ),
-        ));
+      body: CustomScrollView(
+        slivers: <Widget>[
+          fBuildSilverAppBar(
+              "assets/images/trips/las_vegas/schedule_top_image.png"),
+          SliverList(
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return Container(
+                margin: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    fPrintHeadingText(" Agenda wyjazdu"),
+                    Padding(padding: EdgeInsets.all(5)),
+                    fBuildExpandAllTiles(mExpansionTileList),
+                    Padding(padding: EdgeInsets.all(5)),
+                    fBuildDayTiles()
+                  ],
+                ),
+              );
+            }, childCount: 1),
+          )
+        ],
+      ),
+    );
   }
 }

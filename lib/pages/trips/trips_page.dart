@@ -93,12 +93,7 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
 class TripsPage extends StatefulWidget {
   static const String Id = "TripsPage";
   static const String Title = "Uczestniku, witamy w aplikacji!";
-  @override
-  _TripsPageState createState() => _TripsPageState();
-}
-
-class _TripsPageState extends State<TripsPage> {
-  final drawer = MenuBar(<MenuItem>[
+  static MenuBar drawer = MenuBar(<MenuItem>[
     MenuItem(AboutCountryPage.Id, AboutCountryPage.Title),
     MenuItem(VisitedPlacesPage.Id, VisitedPlacesPage.Title),
     MenuItem(SchedulePage.Id, SchedulePage.Title),
@@ -107,12 +102,16 @@ class _TripsPageState extends State<TripsPage> {
     MenuItem(TripContactPage.Id, TripContactPage.Title),
     MenuItem(HomePage.Id, "Wyloguj się"),
   ]);
+  @override
+  _TripsPageState createState() => _TripsPageState();
+}
 
+class _TripsPageState extends State<TripsPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: fGetDefaultAppBar(TripsPage.Title),
-      drawer: drawer,
+      drawer: TripsPage.drawer,
       body: new Container(
           decoration: new BoxDecoration(
         image: new DecorationImage(

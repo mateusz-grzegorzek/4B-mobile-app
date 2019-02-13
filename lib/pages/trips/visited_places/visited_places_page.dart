@@ -1,10 +1,12 @@
 import 'package:business_mobile_app/pages/home/home_page.dart';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/pages/trips/schedule/schedule_page.dart';
 import 'package:business_mobile_app/pages/trips/visited_places/visited_places.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/widgets/app_bar.dart';
+import '../../../utils/widgets/app_bar.dart'; // TODO to remove
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 
 class VisitedPlacesPage extends StatefulWidget {
   static const String Id = "VisitedPlacesPage";
@@ -39,53 +41,39 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-
-    return new Scaffold(
-        appBar: fGetDefaultAppBar(VisitedPlacesPage.Title),
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              fPrintHeadingText(" Odwiedzane miejsca"),
-              Padding(padding: EdgeInsets.only(top: 10)),
-              fBuildPlace(gVisitedPlace1Title, gVisitedPlace1Body,
-                  gVisitedPlace1ImagePath),
-              fBuildPlace(gVisitedPlace2Title, gVisitedPlace2Body,
-                  gVisitedPlace2ImagePath),
-              fBuildPlace(gVisitedPlace3Title, gVisitedPlace3Body,
-                  gVisitedPlace3ImagePath),
-              fBuildPlace(gVisitedPlace4Title, gVisitedPlace4Body,
-                  gVisitedPlace4ImagePath),
-              fBuildPlace(gVisitedPlace5Title, gVisitedPlace5Body,
-                  gVisitedPlace5ImagePath),
-              Padding(padding: EdgeInsets.only(top: 10)),
-              fBuildButton(() => fChangePage(context, SchedulePage.Id),
-                  "Zobacz agendę wyjazdu"),
-            ],
-          ),
-        ));
-  }
-/*
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar("assets/images/about_us_top_image.png"),
-          SliverFillViewport(
-            delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return fBuildBody();
-                },
-                childCount: 1),
-          )
+  Widget fBuildBody() {
+    //return Container(  TODO
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          fPrintHeadingText(" Odwiedzane miejsca"),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          fBuildPlace(
+              gVisitedPlace1Title, gVisitedPlace1Body, gVisitedPlace1ImagePath),
+          fBuildPlace(
+              gVisitedPlace2Title, gVisitedPlace2Body, gVisitedPlace2ImagePath),
+          fBuildPlace(
+              gVisitedPlace3Title, gVisitedPlace3Body, gVisitedPlace3ImagePath),
+          fBuildPlace(
+              gVisitedPlace4Title, gVisitedPlace4Body, gVisitedPlace4ImagePath),
+          fBuildPlace(
+              gVisitedPlace5Title, gVisitedPlace5Body, gVisitedPlace5ImagePath),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          fBuildButton(() => fChangePage(context, SchedulePage.Id),
+              "Zobacz agendę wyjazdu"),
         ],
-      ),      
+      ),
     );
   }
 
-  Widget fBuildBody() {
-    return Container();
+  @override
+  Widget build(BuildContext context) {
+    //return fBuildSilverPage("imagePath", fBuildBody(), TripsPage.drawer); TODO
+
+    return new Scaffold(
+        appBar: fGetDefaultAppBar(VisitedPlacesPage.Title),
+        drawer: TripsPage.drawer,
+        body: fBuildBody());
   }
-*/
 }

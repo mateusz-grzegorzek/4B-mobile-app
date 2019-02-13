@@ -17,6 +17,14 @@ void fChangePage(BuildContext aContext, String aPageId) {
 class HomePage extends StatefulWidget {
   static const String Id = "HomePage";
   static const String Title = "4Business Team";
+
+  static MenuBar drawer = MenuBar(<MenuItem>[
+    MenuItem(AboutUsPage.Id, AboutUsPage.Title),
+    MenuItem(OfferPage.Id, OfferPage.Title),
+    MenuItem(MainContactPage.Id, MainContactPage.Title),
+    MenuItem(LoginPage.Id, LoginPage.Title)
+  ]);
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -48,17 +56,10 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
-    final drawer = MenuBar(<MenuItem>[
-      MenuItem(AboutUsPage.Id, AboutUsPage.Title),
-      MenuItem(OfferPage.Id, OfferPage.Title),
-      MenuItem(MainContactPage.Id, MainContactPage.Title),
-      MenuItem(LoginPage.Id, LoginPage.Title)
-    ]);
-
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: fGetDefaultAppBar(),
-        drawer: drawer,
+        drawer: HomePage.drawer,
         body: body);
   }
 }

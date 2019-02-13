@@ -1,3 +1,4 @@
+import 'package:business_mobile_app/pages/common/contact/contact_info.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../common/contact/contact_list.dart';
@@ -12,6 +13,8 @@ class MainContactPage extends StatefulWidget {
 }
 
 class _MainContactPageState extends State<MainContactPage> {
+  var mContactInfoList = List<ContactInfo>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +41,7 @@ class _MainContactPageState extends State<MainContactPage> {
             fPrintHeadingText(MainContactPage.Title),
             fBuildSocialMediaRow(),
             fBuildAddressWidget(),
-            ContactListWidget()
+            ContactListWidget(mContactsList: mContactInfoList)
           ],
         ));
   }

@@ -4,8 +4,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../common/contact/contact_info.dart';
 import '../../common/contact/contact_list.dart';
 import '../../../utils/print.dart';
-import '../../../utils/firebase_data.dart';
-import '../../../utils/shared_preferences.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 
 class MainContactPage extends StatefulWidget {
@@ -21,7 +19,8 @@ class _MainContactPageState extends State<MainContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: fBuildSilverPage("assets/images/appbars/main_contacts.png", fBuildBody()));
+        body: fBuildSilverPage(
+            "assets/images/appbars/main_contacts.png", fBuildBody()));
   }
 
   Widget fBuildBody() {

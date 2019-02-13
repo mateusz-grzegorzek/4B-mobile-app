@@ -81,7 +81,10 @@ flutter:
   fonts:
     - family: Amithen
       fonts:
-        - asset: assets/fonts/amithen.ttf
+        - asset: assets/fonts/Amithen.ttf
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

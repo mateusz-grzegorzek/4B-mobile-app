@@ -67,10 +67,6 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     );
   }
 
-  void _handleTap(BuildContext aContext, String aUrl) {
-    launch(aUrl);
-  }
-
   Column fBuildInfoTiles() {
     mExpansionTileList.clear();
 

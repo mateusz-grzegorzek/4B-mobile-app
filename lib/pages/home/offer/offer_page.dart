@@ -88,7 +88,7 @@ class _OfferPageState extends State<OfferPage> {
         null)),
     ServicePage(ServiceInfo(
         "assets/images/offer/program_for_firms.png",
-        "Programy dla firm",
+        "Program dla firm",
         gProgramForFirmsText1,
         true,
         gProgramForFirmsText2,
@@ -123,7 +123,8 @@ class _OfferPageState extends State<OfferPage> {
             Padding(padding: EdgeInsets.all(10)),
             fBuildImage(aServicePage.mServiceInfo.mPathToIcon, 30),
             Padding(padding: EdgeInsets.all(10)),
-            fPrintBoldText(aServicePage.mServiceInfo.mHeadingText)
+            fPrintText(
+                aServicePage.mServiceInfo.mHeadingText, gBoldOswaldTextStyle)
           ],
         ),
       ),

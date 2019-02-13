@@ -3,22 +3,34 @@ import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const TextStyle gSuperscriptTextStyle =
+const gSuperscriptTextStyle =
     TextStyle(fontSize: 11.0, color: Colors.black, fontWeight: FontWeight.bold);
 
-const TextStyle gNormalTextStyle = TextStyle(
+const gNormalTextStyle = TextStyle(
   fontSize: 20.0,
   color: Colors.black,
 );
 
-const TextStyle gBoldTextStyle =
+const gBoldTextStyle =
     TextStyle(fontSize: 20.0, color: Colors.black, fontWeight: FontWeight.bold);
 
-const TextStyle gMenuItemTextStyle =
-    TextStyle(fontSize: 20.0, color: gBrownColor, fontWeight: FontWeight.bold);
+const gBoldOswaldTextStyle = TextStyle(
+    fontSize: 20.0,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Oswald');
 
-const TextStyle gHeadingTextStyle =
-    TextStyle(fontSize: 33.0, color: Colors.black, fontWeight: FontWeight.bold);
+const gMenuItemTextStyle = TextStyle(
+    fontSize: 20.0,
+    color: gBrownColor,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Oswald');
+
+const gHeadingTextStyle = TextStyle(
+    fontSize: 33.0,
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Oswald');
 
 Text fPrintSuperscriptText(String aText,
     [TextStyle aTextStyle = gSuperscriptTextStyle,
@@ -117,7 +129,10 @@ Widget fBuildButton(VoidCallback aCallback, String aText) {
         children: <Widget>[
           Text(
             aText,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Oswald'),
           ),
           Padding(padding: EdgeInsets.only(left: 20)),
           Image(

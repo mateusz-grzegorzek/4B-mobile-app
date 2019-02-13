@@ -1,13 +1,7 @@
-import 'package:business_mobile_app/pages/trips/trip_info.dart';
-import 'package:business_mobile_app/utils/firebase_data.dart';
-import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
-
 import '../../trips/trips_page.dart';
-
 import '../../../utils/shared_preferences.dart';
-import '../../../utils/alerts.dart';
 import '../../../utils/widgets/app_bar.dart';
 
 class LoginPage extends StatefulWidget {

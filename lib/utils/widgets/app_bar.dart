@@ -7,7 +7,9 @@ AppBar fGetDefaultAppBar([String title = ""]) {
         color: Colors.black,
       ),
       backgroundColor: gBrownColor,
-      title: Text(title, style: TextStyle(fontSize: 17, color: Colors.black)));
+      title: Text(title,
+          style: TextStyle(
+              fontSize: 17, color: Colors.black, fontFamily: 'Oswald')));
 }
 
 PreferredSize fBuildAppBar(String aPathToImage) {
@@ -33,6 +35,5 @@ SliverAppBar fBuildSilverAppBar(String aPathToImage) {
       floating: false,
       pinned: false,
       flexibleSpace: FlexibleSpaceBar(
-        background: Image.asset(aPathToImage,
-              fit: BoxFit.cover)));
+          background: Image.asset(aPathToImage, fit: BoxFit.cover)));
 }

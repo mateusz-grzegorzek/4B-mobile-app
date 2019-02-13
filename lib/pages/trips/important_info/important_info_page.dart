@@ -6,7 +6,7 @@ import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../utils/widgets/app_bar.dart';
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 
 class ImportantInfoPage extends StatefulWidget {
   static const String Id = "ImporatantInfoPage";
@@ -355,16 +355,8 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     ]);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar("assets/images/imp_info_top_image.png"),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return Container(
+  Widget fBuildBody() {
+    return Container(
                 margin: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -377,10 +369,10 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
                   ],
                 ),
               );
-            }, childCount: 1),
-          )
-        ],
-      ),
-    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return fBuildSilverPage("assets/images/imp_info_top_image.png", fBuildBody());
   }
 }

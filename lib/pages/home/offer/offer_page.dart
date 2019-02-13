@@ -8,7 +8,7 @@ import 'package:business_mobile_app/pages/home/offer/service_page.dart';
 import 'package:business_mobile_app/pages/home/offer/trainings_info.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
-import 'package:business_mobile_app/utils/widgets/app_bar.dart';
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:flutter/material.dart';
 
 class OfferPage extends StatefulWidget {
@@ -140,26 +140,19 @@ class _OfferPageState extends State<OfferPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar("assets/images/offer/offer_top_image.png"),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return Container(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        fPrintHeadingText(" Oferta"),
-                        Padding(padding: EdgeInsets.all(10)),
-                        fBuildOffers()
-                      ]));
-            }, childCount: 1),
-          )
-        ],
-      ),
-    );
+    return fBuildSilverPage(
+        "assets/images/offer/offer_top_image.png", fBuildBody());
+  }
+
+  Widget fBuildBody() {
+    return Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              fPrintHeadingText(" Oferta"),
+              Padding(padding: EdgeInsets.all(10)),
+              fBuildOffers()
+            ]));
   }
 }

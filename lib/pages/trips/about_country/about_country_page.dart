@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../utils/widgets/app_bar.dart';
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:business_mobile_app/pages/home/home_page.dart';
 import 'package:business_mobile_app/pages/trips/visited_places/visited_places_page.dart';
@@ -19,19 +19,8 @@ class AboutCountryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar("assets/images/appbars/about_country.png"),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return fBuildBody(context);
-            }, childCount: 1),
-          )
-        ],
-      ),
-    );
+    return fBuildSilverPage(
+        "assets/images/appbars/about_country.png", fBuildBody(context));
   }
 
   Widget fBuildBody(BuildContext context) {

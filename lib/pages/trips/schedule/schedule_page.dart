@@ -5,7 +5,7 @@ import 'package:business_mobile_app/utils/expansion_tile.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/widgets/app_bar.dart';
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 
 Widget fBuildExpandAllTiles(
     List<GlobalKey<AppExpansionTileState>> aExpansionTileList) {
@@ -116,34 +116,26 @@ class _SchedulePageState extends State<SchedulePage>
     }));
   }
 
-  @override
-  Widget build(BuildContext aContext) {
-    mExpansionTileList.clear();
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar(
-              "assets/images/trips/las_vegas/schedule_top_image.png"),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return Container(
-                margin: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    fPrintHeadingText(" Agenda wyjazdu"),
-                    Padding(padding: EdgeInsets.all(5)),
-                    fBuildExpandAllTiles(mExpansionTileList),
-                    Padding(padding: EdgeInsets.all(5)),
-                    fBuildDayTiles()
-                  ],
-                ),
-              );
-            }, childCount: 1),
-          )
+  Widget fBuildBody() {
+    return Container(
+      margin: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          fPrintHeadingText(" Agenda wyjazdu"),
+          Padding(padding: EdgeInsets.all(5)),
+          fBuildExpandAllTiles(mExpansionTileList),
+          Padding(padding: EdgeInsets.all(5)),
+          fBuildDayTiles()
         ],
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext aContext) {
+    mExpansionTileList.clear();
+    return fBuildSilverPage(
+        "assets/images/trips/las_vegas/schedule_top_image.png", fBuildBody());
   }
 }

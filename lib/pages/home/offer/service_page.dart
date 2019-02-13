@@ -1,6 +1,5 @@
-import 'package:business_mobile_app/utils/fonts.dart';
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/utils/print.dart';
-import 'package:business_mobile_app/utils/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -105,28 +104,16 @@ class _ServicePageState extends State<ServicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar(mServiceInfo.mPathToTopImage),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return Container(
-                child: Center(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      fBuildTop(),
-                      fBuildMiddleImage(),
-                      fBuildBottom()
-                    ],
-                  ),
-                ),
-              );
-            }, childCount: 1),
-          )
-        ],
+    return fBuildSilverPage(mServiceInfo.mPathToTopImage, fBuildBody());
+  }
+
+  Widget fBuildBody() {
+    return Container(
+      child: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[fBuildTop(), fBuildMiddleImage(), fBuildBottom()],
+        ),
       ),
     );
   }

@@ -3,13 +3,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+
+
 import '../../common/contact/contact_info.dart';
 import '../../common/contact/contact_list.dart';
 
 import '../../../utils/print.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
-import '../../../utils/widgets/app_bar.dart';
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 
 List<ContactInfo> gContactsList = new List<ContactInfo>();
 
@@ -63,18 +65,7 @@ class _MainContactPageState extends State<MainContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar("assets/images/appbars/main_contacts.png"),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return fBuildBody();
-            }, childCount: 1),
-          )
-        ],
-      ),
-    );
+      body: fBuildSilverPage("assets/images/appbars/main_contacts.png", fBuildBody()));
   }
 
   Widget fBuildBody() {

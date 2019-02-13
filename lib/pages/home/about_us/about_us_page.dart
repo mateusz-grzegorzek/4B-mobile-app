@@ -1,7 +1,7 @@
 import 'package:business_mobile_app/pages/home/home_page.dart';
 import 'package:business_mobile_app/pages/home/offer/offer_page.dart';
 import 'package:business_mobile_app/utils/print.dart';
-import 'package:business_mobile_app/utils/widgets/app_bar.dart';
+import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:flutter/material.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -65,18 +65,7 @@ class AboutUsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          fBuildSilverAppBar("assets/images/about_us_top_image.png"),
-          SliverList(
-            delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-              return fBuildBody(context);
-            }, childCount: 1),
-          )
-        ],
-      ),
-    );
+      body: fBuildSilverPage("assets/images/about_us_top_image.png", fBuildBody(context)));
   }
 
   Widget fBuildBody(BuildContext context) {

@@ -1,39 +1,8 @@
-import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../common/contact/contact_info.dart';
 import '../../common/contact/contact_list.dart';
-
 import '../../../utils/print.dart';
-import '../../../utils/firebase_data.dart';
-import '../../../utils/shared_preferences.dart';
 import '../../../utils/widgets/app_bar.dart';
-
-List<ContactInfo> gContactsList = new List<ContactInfo>();
-
-void fGetContactsFromMemory() {
-  String contactsJson = gPrefs.getString(gContactsDatabaseKey);
-  if (contactsJson != null) {
-    gContactsList
-        .addAll(json.decode(contactsJson).map<ContactInfo>((aContactInfo) {
-      return ContactInfo.fromJson(aContactInfo);
-    }).toList());
-  }
-}
-
-void fAddContactToList(aContactId, aContactInfo) {
-  print("fAddContactToList");
-  ContactInfo contactInfo = new ContactInfo(
-      fGetDatabaseId(aContactId, 2),
-      aContactInfo["name"],
-      aContactInfo["description"],
-      aContactInfo['phone_number'],
-      aContactInfo['email']);
-  contactInfo.log();
-  gContactsList.add(contactInfo);
-}
 
 class MainContactPage extends StatefulWidget {
   static const String Id = "MainContactPage";
@@ -43,23 +12,6 @@ class MainContactPage extends StatefulWidget {
 }
 
 class _MainContactPageState extends State<MainContactPage> {
-  StreamSubscription<bool> mStreamSub;
-
-  @override
-  void initState() {
-    super.initState();
-    mStreamSub = fGetStream(gContactsDatabaseKey).listen((aContactInfo) {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    mStreamSub.cancel();
-    fCloseStream(gContactsDatabaseKey);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,9 +38,7 @@ class _MainContactPageState extends State<MainContactPage> {
             fPrintHeadingText(MainContactPage.Title),
             fBuildSocialMediaRow(),
             fBuildAddressWidget(),
-            new ContactListWidget(
-                mDatabaseKey: gContactsDatabaseKey,
-                mContactsList: gContactsList)
+            ContactListWidget()
           ],
         ));
   }
@@ -96,7 +46,7 @@ class _MainContactPageState extends State<MainContactPage> {
   Widget fBuildSocialMediaRow() {
     double iconSize = 70.0;
 
-    return new Container(
+    return Container(
         padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

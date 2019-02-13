@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -6,40 +5,18 @@ import 'contact_info.dart';
 
 import '../../../utils/fonts.dart';
 import '../../../utils/print.dart';
-import '../../../utils/firebase_data.dart';
 
 class ContactListWidget extends StatefulWidget {
   static const String Id = "ContactListPage";
   final List<ContactInfo> mContactsList;
-  final String mDatabaseKey;
 
-  const ContactListWidget({Key key, this.mContactsList, this.mDatabaseKey})
-      : super(key: key);
+  const ContactListWidget({Key key, this.mContactsList}) : super(key: key);
 
   @override
   _ContactListState createState() => _ContactListState();
 }
 
 class _ContactListState extends State<ContactListWidget> {
-  StreamSubscription<bool> mStreamSub;
-
-  @override
-  void initState() {
-    print("ContactListPage:initState");
-    super.initState();
-    mStreamSub = fGetStream(widget.mDatabaseKey).listen((aContactInfo) {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    print("ContactListPage:dispose");
-    super.dispose();
-    mStreamSub.cancel();
-    fCloseStream(widget.mDatabaseKey);
-  }
-
   void fSortContactList() {
     widget.mContactsList.sort((firstContact, secondContact) {
       if (firstContact.mId > secondContact.mId) {

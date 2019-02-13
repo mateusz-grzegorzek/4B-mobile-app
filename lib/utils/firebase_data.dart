@@ -2,12 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
-import '../pages/home/contact/contact_page.dart';
 import '../pages/trips/news/news_page.dart';
 import '../pages/trips/trips_page.dart';
 
 const String gNewsDatabaseKey = "news";
-const String gContactsDatabaseKey = "contacts";
 const String gTripsDatabaseKey = "trips";
 
 class FirebaseData {
@@ -39,8 +37,6 @@ Map<String, FirebaseData> gFirebaseDataMap = new Map<String, FirebaseData>();
 void fInitFirebaseData() {
   gFirebaseDataMap[gNewsDatabaseKey] =
       new FirebaseData(gNewsDatabaseKey, fAddNewsToList, gNewsList);
-  gFirebaseDataMap[gContactsDatabaseKey] =
-      new FirebaseData(gContactsDatabaseKey, fAddContactToList, gContactsList);
   gFirebaseDataMap[gTripsDatabaseKey] =
       new FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
 }

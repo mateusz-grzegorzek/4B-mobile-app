@@ -41,6 +41,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return new Scaffold(
         appBar: fGetDefaultAppBar(VisitedPlacesPage.Title),
         body: SingleChildScrollView(
@@ -66,4 +67,25 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
           ),
         ));
   }
+/*
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          fBuildSilverAppBar("assets/images/about_us_top_image.png"),
+          SliverFillViewport(
+            delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  return fBuildBody();
+                },
+                childCount: 1),
+          )
+        ],
+      ),      
+    );
+  }
+
+  Widget fBuildBody() {
+    return Container();
+  }
+*/
 }

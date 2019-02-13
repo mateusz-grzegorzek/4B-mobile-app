@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../trips_page.dart';
-import '../../common/contact/contact_list.dart';
-import '../../../utils/firebase_data.dart';
+import '../../../utils/fonts.dart';
 import '../../../utils/widgets/app_bar.dart';
+import '../../../utils/print.dart';
 
 class TripContactPage extends StatefulWidget {
   static const String Id = "TripContactPage";
@@ -17,73 +16,79 @@ class _TripContactPageState extends State<TripContactPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: fGetDefaultAppBar(TripContactPage.Title),
-        body: Center(
-            child: ListView(
-          children: <Widget>[
-            ContactListWidget(
-              mDatabaseKey: gTripsDatabaseKey,
-              mContactsList: gTripContacts,
-            ),
-            HotelInformationCard()
-          ],
-        )));
-  }
-}
-
-class HotelInformationCard extends StatelessWidget {
-  final String name = "EXCALIBUR HOTEL & CASINO***";
-  final String phoneNumber = "+17025977777";
-  final String locationLink = "https://goo.gl/maps/p9rh5spB3nk";
-  final List address = [
-    "3850 S Las Vegas Blvd, Las Vegas",
-    "NV 89109, Stany Zjednoczone"
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return new Card(
-        child: new Column(
-      children: <Widget>[
-        fBuildHotelName(),
-        new Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[fBuildAddress(), fBuildContactColumn()],
-        )
-      ],
-    ));
-  }
-
-  Text fBuildHotelName() {
-    return new Text(
-      name,
-      style: new TextStyle(
-          color: Colors.blue, fontWeight: FontWeight.bold, fontSize: 18.0),
-    );
-  }
-
-  Container fBuildAddress() {
-    return new Container(
-      child: new Flexible(
-        child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: address.map((item) => new Text(item)).toList()),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          fBuildSilverAppBar("assets/images/appbars/trip_contacts.png"),
+          SliverFillViewport(
+            delegate:
+                SliverChildBuilderDelegate((BuildContext context, int index) {
+              return fBuildBody();
+            }, childCount: 1),
+          )
+        ],
       ),
     );
   }
 
-  Container fBuildContactColumn() {
-    return new Container(
-      child: new Column(
+  Widget fBuildBody() {
+    return Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            fPrintHeadingText(TripContactPage.Title),
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: fPrintBoldText("Koordynatorzy wyjazdu"),
+            ),
+            fBuildContactInfo("Grzegorz Bartosz", "+48 602 462 677"),
+            fBuildContactInfo("Katarzyna Drążek", "+48 796 109 610"),
+            Divider(height: 10, color: gBrownColor),
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: fPrintBoldText("Przewodnik"),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5, bottom: 10),
+              child: fPrintText("Informacje zostaną podane już wkrótce"),
+            ),
+            Divider(height: 10, color: gBrownColor),
+            Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: fPrintBoldText("Adres hotelu"),
+            ),
+            GestureDetector(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  fPrintText("EXCALIBUR HOTEL & CASINO***"),
+                  fPrintText("3850 S Las Vegas Blvd")
+                ],
+              ),
+              onTap: () => launch("https://goo.gl/maps/p9rh5spB3nk"),
+            )
+          ],
+        ));
+  }
+
+  Widget fBuildContactInfo(String name, String phoneNumber) {
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new IconButton(
-            icon: Icon(Icons.phone),
-            onPressed: () => launch("tel://" + phoneNumber),
-          ),
-          new IconButton(
-            icon: Icon(Icons.map),
-            onPressed: () => launch(locationLink),
-          )
+          fPrintText(name, gMenuItemTextStyle),
+          Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 15),
+              child: Row(
+                children: <Widget>[
+                  fBuildImage("assets/images/contacts/phone.png", 20),
+                  Padding(padding: EdgeInsets.only(left: 20.0)),
+                  GestureDetector(
+                    child: fPrintText("tel. " + phoneNumber),
+                    onTap: () => launch("tel://" + phoneNumber),
+                  ),
+                ],
+              ))
         ],
       ),
     );

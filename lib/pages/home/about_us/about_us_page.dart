@@ -64,8 +64,9 @@ class AboutUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: fBuildSilverPage("assets/images/about_us_top_image.png", fBuildBody(context)));
+    return fBuildSilverPage(
+        "assets/images/about_us_top_image.png", fBuildBody(context),
+        HomePage.drawer);
   }
 
   Widget fBuildBody(BuildContext context) {

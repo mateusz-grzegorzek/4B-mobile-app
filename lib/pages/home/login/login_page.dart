@@ -1,3 +1,4 @@
+import 'package:business_mobile_app/pages/home/home_page.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
 import '../../trips/trips_page.dart';
@@ -92,6 +93,7 @@ class _LoginPageState extends State<LoginPage> {
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.black,
         appBar: fGetDefaultAppBar(LoginPage.Title),
+        drawer: HomePage.drawer,
         body: new Container(
             padding: EdgeInsets.all(25.0),
             child: new Column(

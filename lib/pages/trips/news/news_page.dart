@@ -5,6 +5,7 @@ import 'package:business_mobile_app/utils/print.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/pages/trips/news/news_info.dart';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import '../../../utils/firebase_data.dart';
 import '../../../utils/shared_preferences.dart';
 
@@ -22,7 +23,8 @@ void fGetNewsFromMemory() {
 void fAddNewsToList(aNewsId, aNewsInfo) {
   int newsId = fGetDatabaseId(aNewsId, 3);
   print("FirebaseData:fAddNewsToList");
-  NewsInfo newsInfo = NewsInfo(newsId, aNewsInfo["title"], aNewsInfo["body"], aNewsInfo["date"]);
+  NewsInfo newsInfo = NewsInfo(
+      newsId, aNewsInfo["title"], aNewsInfo["body"], aNewsInfo["date"]);
   newsInfo.fLog();
   gNewsList.add(newsInfo);
 }
@@ -66,8 +68,8 @@ class _NewsPageState extends State<NewsPage> {
       }
     });
 
-    return Scaffold(
-        body: fBuildSilverPage("assets/images/appbars/news.png", fBuildBody()));
+    return fBuildSilverPage(
+        "assets/images/appbars/news.png", fBuildBody(), TripsPage.drawer);
   }
 
   Widget fBuildBody() {
@@ -98,11 +100,13 @@ class _NewsItem extends StatelessWidget {
           Row(
             children: <Widget>[
               fPrintText(newsItem.mDate, gMenuItemTextStyle),
-              Padding(padding: EdgeInsets.only(left: 10),),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+              ),
               Expanded(
-                child: Container(
-                  color: gBrownColor,
-                  height: 1,
+                  child: Container(
+                color: gBrownColor,
+                height: 1,
               ))
             ],
           ),

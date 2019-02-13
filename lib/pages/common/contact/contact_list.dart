@@ -6,19 +6,14 @@ import 'contact_info.dart';
 import '../../../utils/fonts.dart';
 import '../../../utils/print.dart';
 
-class ContactListWidget extends StatefulWidget {
+class ContactListWidget extends StatelessWidget {
   static const String Id = "ContactListPage";
   final List<ContactInfo> mContactsList;
 
   const ContactListWidget({Key key, this.mContactsList}) : super(key: key);
 
-  @override
-  _ContactListState createState() => _ContactListState();
-}
-
-class _ContactListState extends State<ContactListWidget> {
   void fSortContactList() {
-    widget.mContactsList.sort((firstContact, secondContact) {
+    mContactsList.sort((firstContact, secondContact) {
       if (firstContact.mId > secondContact.mId) {
         return 1;
       } else {
@@ -30,10 +25,10 @@ class _ContactListState extends State<ContactListWidget> {
   @override
   Widget build(BuildContext context) {
     print("ContactListPage:build:mContactsList.length=" +
-        widget.mContactsList.length.toString());
+        mContactsList.length.toString());
     fSortContactList();
     return Column(
-        children: widget.mContactsList
+        children: mContactsList
             .map((item) => _ContactListItem(item))
             .toList());
   }

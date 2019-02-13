@@ -1,6 +1,7 @@
 import 'package:business_mobile_app/pages/trips/trip_info.dart';
 import 'package:business_mobile_app/utils/firebase_data.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
+import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
 
 import '../../trips/trips_page.dart';
@@ -22,23 +23,20 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController mPasswordTextEditingController =
       TextEditingController();
 
+  Widget mWrongCredentialsWindow = fBuildNullWidget();
+
   void fLogin() async {
     print("LoginPage::fLogin");
     String userName = mUserNameTextEditingController.text;
     String password = mPasswordTextEditingController.text;
-    if (userName.length > 0 && password.length > 0) {
-      if (fIsTripLoginDataCorrect(userName, password)) {
-        gPrefs.setString("login_user_name", userName);
-        gPrefs.setString("login_password", password);
-        Navigator.pop(context);
-        Navigator.of(context).pushNamed(TripsPage.Id);
-      } else {
-        await fShowAlert(
-            context, "Błąd!", "Niepoprawna nazwa użytkownia lub hasło!");
-      }
+    if (fIsTripLoginDataCorrect(userName, password)) {
+      gPrefs.setString("login_user_name", userName);
+      gPrefs.setString("login_password", password);
+      Navigator.pop(context);
+      Navigator.of(context).pushNamed(TripsPage.Id);
     } else {
-      await fShowAlert(
-          context, "Błąd!", "Proszę podaj nazwę użytkownika oraz hasło!");
+      mWrongCredentialsWindow = fBuildWrongCredentialsWindow();
+      setState(() {});
     }
   }
 
@@ -49,6 +47,49 @@ class _LoginPageState extends State<LoginPage> {
         gPrefs.getString("login_user_name") ?? "";
     mPasswordTextEditingController.text =
         gPrefs.getString("login_password") ?? "";
+  }
+
+  Widget fBuildTextField(TextEditingController aController, String aHintText,
+      {aObscureText = false}) {
+    return Container(
+        height: 52,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          color: Colors.white,
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 6.0),
+            child: TextField(
+              controller: aController,
+              obscureText: aObscureText,
+              decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  border: InputBorder.none,
+                  hintText: aHintText),
+            ),
+          ),
+        ));
+  }
+
+  Widget fBuildWrongCredentialsWindow() {
+    return Column(
+      children: <Widget>[
+        Padding(padding: EdgeInsets.only(top: 20)),
+        Container(
+          height: 65,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: Colors.red,
+          ),
+          child: Center(
+            child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: fPrintBoldText("Wprowadzono błędną nazwę lub hasło.")),
+          ),
+        ),
+      ],
+    );
   }
 
   @override
@@ -63,90 +104,19 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  "Nazwa:",
-                  style: TextStyle(
-                      color: gBrownColor,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                Padding(padding: EdgeInsets.all(5)),
-                Container(
-                    height: 52,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 6.0),
-                        child: TextField(
-                          controller: mUserNameTextEditingController,
-                          decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              border: InputBorder.none,
-                              hintText: 'Proszę, wprowadź nazwę'),
-                        ),
-                      ),
-                    )),
-                Padding(padding: EdgeInsets.all(10)),
-                Text(
-                  "Hasło:",
-                  style: TextStyle(
-                      color: gBrownColor,
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                Padding(padding: EdgeInsets.all(5)),
-                Container(
-                    height: 52,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 6.0),
-                        child: TextField(
-                          controller: mPasswordTextEditingController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                              fillColor: Colors.white,
-                              border: InputBorder.none,
-                              hintText: 'Proszę, wprowadź hasło'),
-                        ),
-                      ),
-                    )),
-                Padding(padding: EdgeInsets.all(20.0)),
-                GestureDetector(
-                  onTap: () {
-                    fLogin();
-                  },
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: double.infinity,
-                    height: 52,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(18.0),
-                      color: gBrownColor,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          'Zaloguj się',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Padding(padding: EdgeInsets.all(20.0)),
-                        Image(
-                          image: AssetImage("assets/images/login_arrow.png"),
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                fPrintText("Nazwa:", gMenuItemTextStyle),
+                Padding(padding: EdgeInsets.only(top: 5)),
+                fBuildTextField(
+                    mUserNameTextEditingController, 'Proszę, wprowadź nazwę'),
+                Padding(padding: EdgeInsets.only(top: 10)),
+                fPrintText("Hasło:", gMenuItemTextStyle),
+                Padding(padding: EdgeInsets.only(top: 5)),
+                fBuildTextField(
+                    mPasswordTextEditingController, 'Proszę, wprowadź hasło',
+                    aObscureText: true),
+                mWrongCredentialsWindow,
+                Padding(padding: EdgeInsets.only(top: 20)),
+                fBuildButton(() => fLogin(), 'Zaloguj się')
               ],
             )));
   }

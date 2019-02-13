@@ -115,14 +115,12 @@ void fAddTripToList(aTripId, aTripInfo) {
 }
 
 bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
-  for (TripInfo tripInfo in gTripsList) {
-    if (tripInfo.mUserName == aUserName && tripInfo.mPassword == aPassword) {
-      // ToDo: Do usunięcia
-      gAboutCountry = tripInfo.mAboutCountry;
-      gTripContacts = tripInfo.mContacts;
-      // ToDo: Przepisać, żeby reszta też korzystała z gTripInfo
-      gTripInfo = tripInfo;
-      return true;
+  if (aUserName.length > 0 && aPassword.length > 0) {
+    for (TripInfo tripInfo in gTripsList) {
+      if (tripInfo.mUserName == aUserName && tripInfo.mPassword == aPassword) {
+        gTripInfo = tripInfo;
+        return true;
+      }
     }
   }
   return false;

@@ -1,5 +1,6 @@
 import 'package:business_mobile_app/pages/home/home_page.dart';
 import 'package:business_mobile_app/utils/print.dart';
+import 'package:business_mobile_app/utils/widgets/menu_bar.dart';
 import 'package:flutter/material.dart';
 import '../../trips/trips_page.dart';
 import '../../../utils/shared_preferences.dart';
@@ -87,8 +88,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget fBuildPage() {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.black,
@@ -115,5 +115,10 @@ class _LoginPageState extends State<LoginPage> {
                 fBuildButton(() => fLogin(), 'Zaloguj się')
               ],
             )));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return fBuildWillPopScope(fBuildPage());
   }
 }

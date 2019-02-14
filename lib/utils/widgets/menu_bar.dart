@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
-
 import '../print.dart';
+
+StatefulWidget fBuildWillPopScope(Widget page) {
+  return WillPopScope(
+    onWillPop: () async {
+      return true;
+    },
+    child: page
+  );
+}
 
 class MenuItem extends StatelessWidget {
   final String mId;

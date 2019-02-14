@@ -56,10 +56,14 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
-    return Scaffold(
-        backgroundColor: Colors.black,
-        appBar: fGetDefaultAppBar(),
-        drawer: HomePage.drawer,
-        body: body);
+    Widget fBuildPage() {
+      return Scaffold(
+          backgroundColor: Colors.black,
+          appBar: fGetDefaultAppBar(),
+          drawer: HomePage.drawer,
+          body: body);
+    }
+
+    return fBuildWillPopScope(fBuildPage());
   }
 }

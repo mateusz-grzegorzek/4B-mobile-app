@@ -69,11 +69,9 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
 
   @override
   Widget build(BuildContext context) {
-    //return fBuildSilverPage("imagePath", fBuildBody(), TripsPage.drawer); TODO
-
-    return new Scaffold(
-        appBar: fGetDefaultAppBar(VisitedPlacesPage.Title),
-        drawer: TripsPage.drawer,
-        body: fBuildBody());
+    return fBuildSilverPage(
+        "assets/images/trips/las_vegas/places/visited_places_top_image.png",
+        fBuildBody(),
+        TripsPage.drawer);
   }
 }

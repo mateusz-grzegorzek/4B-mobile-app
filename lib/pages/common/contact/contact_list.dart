@@ -28,9 +28,7 @@ class ContactListWidget extends StatelessWidget {
         mContactsList.length.toString());
     fSortContactList();
     return Column(
-        children: mContactsList
-            .map((item) => _ContactListItem(item))
-            .toList());
+        children: mContactsList.map((item) => _ContactListItem(item)).toList());
   }
 }
 
@@ -77,7 +75,8 @@ class _ContactListItem extends ListTile {
             Padding(padding: EdgeInsets.only(left: 20.0)),
             GestureDetector(
               child: fPrintText("tel. " + contactInfo.mPhoneNumber),
-              onTap: () => launch("tel://" + contactInfo.mPhoneNumber),
+              onTap: () => launch("tel://" +
+                  contactInfo.mPhoneNumber.replaceAll(new RegExp(r' '), '')),
             ),
           ],
         ));

@@ -5,7 +5,6 @@ import 'package:business_mobile_app/pages/trips/visited_places/visited_places.da
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
-import '../../../utils/widgets/app_bar.dart'; // TODO to remove
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 
 class VisitedPlacesPage extends StatefulWidget {
@@ -42,8 +41,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
   }
 
   Widget fBuildBody() {
-    //return Container(  TODO
-    return SingleChildScrollView(
+    return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -62,6 +60,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
           Padding(padding: EdgeInsets.only(top: 10)),
           fBuildButton(() => fChangePage(context, SchedulePage.Id),
               "Zobacz agendę wyjazdu"),
+          Padding(padding: EdgeInsets.only(top: 10)),
         ],
       ),
     );

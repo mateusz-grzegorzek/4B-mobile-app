@@ -122,7 +122,7 @@ class _SchedulePageState extends State<SchedulePage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          fPrintHeadingText(" Agenda wyjazdu"),
+          fPrintHeadingText("Agenda wyjazdu"),
           Padding(padding: EdgeInsets.all(5)),
           fBuildExpandAllTiles(mExpansionTileList),
           Padding(padding: EdgeInsets.all(5)),

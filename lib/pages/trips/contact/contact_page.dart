@@ -75,7 +75,8 @@ class _TripContactPageState extends State<TripContactPage> {
                   Padding(padding: EdgeInsets.only(left: 20.0)),
                   GestureDetector(
                     child: fPrintText("tel. " + phoneNumber),
-                    onTap: () => launch("tel://" + phoneNumber),
+                    onTap: () => launch("tel://" +
+                        phoneNumber.replaceAll(new RegExp(r' '), '')),
                   ),
                 ],
               ))

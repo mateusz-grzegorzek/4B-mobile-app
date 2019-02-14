@@ -107,18 +107,22 @@ class TripsPage extends StatefulWidget {
 }
 
 class _TripsPageState extends State<TripsPage> {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
+  Widget fBuildPage() {
+    return Scaffold(
       appBar: fGetDefaultAppBar(TripsPage.Title),
       drawer: TripsPage.drawer,
-      body: new Container(
-          decoration: new BoxDecoration(
-        image: new DecorationImage(
-          image: new AssetImage("assets/images/trips/las_vegas/background.png"),
+      body: Container(
+          decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/trips/las_vegas/background.png"),
           fit: BoxFit.cover,
         ),
       )),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return fBuildWillPopScope(fBuildPage());
   }
 }

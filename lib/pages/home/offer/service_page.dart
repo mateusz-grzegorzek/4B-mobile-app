@@ -104,7 +104,8 @@ class _ServicePageState extends State<ServicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage(mServiceInfo.mPathToTopImage, fBuildBody());
+    return fBuildSilverPage(
+        mServiceInfo.mPathToTopImage, fBuildBody(), null, false);
   }
 
   Widget fBuildBody() {

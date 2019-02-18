@@ -48,7 +48,7 @@ class _NewsPageState extends State<NewsPage> {
     ];
     items.addAll(fGetNewsList().map((item) => _NewsItem(item)));
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       child:
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: items),
     );
@@ -63,7 +63,6 @@ class _NewsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -7,8 +7,7 @@ import 'package:business_mobile_app/pages/common/contact/contact_list.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/utils/firebase_data.dart';
-import '../../../utils/fonts.dart';
-import '../../../utils/print.dart';
+import 'package:business_mobile_app/utils/print.dart';
 
 class TripContactPage extends StatefulWidget {
   static const String Id = "TripContactPage";
@@ -52,7 +51,7 @@ class _TripContactPageState extends State<TripContactPage> {
         .toList();
 
     return Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

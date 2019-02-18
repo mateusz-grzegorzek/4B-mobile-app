@@ -69,7 +69,7 @@ class _MainContactPageState extends State<MainContactPage> {
 
   Widget fBuildBody() {
     return Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

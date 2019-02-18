@@ -90,14 +90,14 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget fBuildPage() {
     return Scaffold(
-        resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.black,
         appBar: fGetDefaultAppBar(LoginPage.Title),
         drawer: HomePage.drawer,
-        body: new Container(
-            padding: EdgeInsets.all(25.0),
-            child: new Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+        body: Center(
+          child: SingleChildScrollView(
+              child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 fPrintText("Nazwa:", gMenuItemTextStyle),
@@ -114,7 +114,9 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(padding: EdgeInsets.only(top: 20)),
                 fBuildButton(() => fLogin(), 'Zaloguj się')
               ],
-            )));
+            ),
+          )),
+        ));
   }
 
   @override

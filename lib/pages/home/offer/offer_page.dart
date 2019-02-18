@@ -111,7 +111,6 @@ class _OfferPageState extends State<OfferPage> {
   Column fCreateEventRow(ServicePage aServicePage) {
     return Column(children: <Widget>[
       fCreateDivider(),
-      Padding(padding: EdgeInsets.all(10)),
       GestureDetector(
         onTap: () {
           Navigator.push(
@@ -119,17 +118,20 @@ class _OfferPageState extends State<OfferPage> {
             MaterialPageRoute(builder: (context) => aServicePage),
           );
         },
-        child: Row(
+        child: Container(
+          padding: EdgeInsets.only(top: 20, bottom: 20),
+          child: Row(
           children: <Widget>[
             Padding(padding: EdgeInsets.all(10)),
             fBuildImage(aServicePage.mServiceInfo.mPathToIcon, 30),
             Padding(padding: EdgeInsets.all(10)),
-            fPrintText(
+            Expanded(
+              child: fPrintText(
                 aServicePage.mServiceInfo.mHeadingText, gBoldOswaldTextStyle)
+            )
           ],
         ),
-      ),
-      Padding(padding: EdgeInsets.all(10))
+      )),
     ]);
   }
 

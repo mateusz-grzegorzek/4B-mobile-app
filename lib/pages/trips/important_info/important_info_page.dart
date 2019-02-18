@@ -70,6 +70,9 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
 
   Column fBuildInfoTiles(String groupName) {
     int groupIndex = gImportantInfoGroups.indexOf(groupName);
+    if(groupIndex == -1) {
+      groupIndex = 0;
+    }
 
     mExpansionTileList.clear();
 

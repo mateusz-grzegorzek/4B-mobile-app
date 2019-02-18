@@ -52,7 +52,7 @@ class _SchedulePageState extends State<SchedulePage>
       children: <Widget>[
         fPrintBoldText(aStartTime.hour.toString()),
         fPrintTime(aStartTime.minute.toString().padLeft(2, '0')),
-        fPrintBoldText("-"),
+        fPrintBoldText(" - "),
         fPrintBoldText(aEndTime.hour.toString()),
         fPrintTime(aEndTime.minute.toString().padLeft(2, '0'))
       ],
@@ -62,18 +62,19 @@ class _SchedulePageState extends State<SchedulePage>
   Column fBuildEventRow(EventInfo aEventInfo) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             fPrintOkSign(),
             Padding(padding: EdgeInsets.all(5)),
-            fBuildTimeRow(aEventInfo.mStartTime, aEventInfo.mEndTime),
-            fPrintBoldText(" - "),
-            Expanded(child: fPrintText(aEventInfo.mTitle))
+            fBuildTimeRow(aEventInfo.mStartTime, aEventInfo.mEndTime)
           ],
         ),
-        Padding(padding: EdgeInsets.all(5)),
+        Padding(padding: EdgeInsets.only(top: 5)),
+        fPrintText(aEventInfo.mTitle),
+        Padding(padding: EdgeInsets.only(top: 5)),
       ],
     );
   }

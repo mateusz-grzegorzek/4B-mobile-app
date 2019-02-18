@@ -40,6 +40,7 @@ build/
 android/key.jks
 android/key.properties
 android/local.properties
+android/app/proguard-rules.pro
 
 # iOS/XCode related
 **/ios/**/*.mode1v3

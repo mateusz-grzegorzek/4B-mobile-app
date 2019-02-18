@@ -1,5 +1,40 @@
-const String gAirConnectionTitle = "Połączenie lotnicze";
-const String gAirConnectionBody = "Informacje w późniejszym terminie";
+const List<String> gImportantInfoGroups = [
+  "LasVegas1",
+  "LasVegas2",
+  "LasVegas3"
+];
+
+const String gAirConnectionTitle = "Połączenia lotnicze";
+const List<List<String>> gAirConnectionBody = [
+  gAirConnectionBodyContent1,
+  gAirConnectionBodyContent2,
+  gAirConnectionBodyContent3
+];
+const List<String> gAirConnectionBodyContent1 = [
+  "AF 1247 L 23FEB WAW - CDG 06:35 - 09:10",
+  "AF 066 V 23FEB CDG - LAX 10:20 - 13:05",
+  "AF 065 V 28FEB LAX - CDG 15:30 - 11:15 (+1)",
+  "AF 1046 L 01MAR CDG - WAW 14:10 - 16:25"
+];
+const List<String> gAirConnectionBodyContent2 = [
+  "KL1362 L 23FEB WAW - AMS 06:05 - 08:15",
+  "KL 601 L 23FEB AMS - LAX 09:55 - 11:55",
+  "DL5828 K 23FEB LAX - LAS 15:00 - 16:14",
+  "DL2651 T 28FEB LAS - LAX 11:04 - 12:14",
+  "KL 602 N 28FEB LAX - AMS 13:50 - 09:05 (+1)",
+  "KL 1363 L 01MAR AMS - WAW 10:05 - 12:00"
+];
+const List<String> gAirConnectionBodyContent3 = [
+  "KL 1362 L 23FEB WAW - AMS 06:05 - 08:15",
+  "DL 143 L 23FEB AMS - SEA 09:50 - 11:18",
+  "DL 1743 T 23FEB SEA - LAS 16:00 - 18:36",
+  "DL 2211 T 28FEB LAS - ATL 14:07 - 21:00",
+  "KL 622 N 28FEB ATL - AMS 22:25 - 12:25 (+1)",
+  "KL 1365 L 01MAR AMS - WAW 14:20 - 16:10"
+];
+
+const String gAirLineTitle = "Linia lotnicza";
+const List<String> gAirLineBody = ["Air France", "KLM i Delta", "KLM i Delta"];
 
 const String gTravelLuggageTitle = "Bagaż podróżny";
 const String gTravelLuggageBody1 = "Bagaż główny: ";
@@ -42,7 +77,7 @@ const String gRoomsBody2 =
 
 const String gTempTitle = "Temperatury";
 const String gTempBody =
-    "Średnie temperatury w Las Vegas w lutym: Średnie temperatury w ciągu dnia raczej mieszczą się między 9℃ oraz 14℃";
+    "Średnia temperatura w Las Vegas w lutym to: 20℃ (dzień), 7℃ (noc).";
 
 const String gMoneyTitle = "Pieniądze";
 const String gMoneyBody =
@@ -66,11 +101,13 @@ const String gVoltageBody2 = "konieczne jest zabranie  ze sobą adaptera. ";
 const String gVoltageBody3 = "Cena w Las Vegas to ok. 10-25 USD";
 
 const String gOutfitTitle = "Ubiór";
-const String gOutfitBody =
-    "Jeśli planują Państwo wizyty w nocnych klubach, dyskotece, eleganckich restauracjach "
-    "to przydadzą się długie spodnie, koszule, pełne buty- nie sportowe, "
-    "nakrycia głowy na wycieczki i kremy z filtrem, okulary przeciwsłoneczne "
-    "oraz strój na basen.";
+const List<String> gOutfitBody1 = [
+  "Biorąc pod uwagę prognozę pogody rekomendujemy zabrać ze sobą ciepłe rzeczy wraz z zimowym obuwiem, przystosowanym do trekkingu – wycieczka na Grand Canyon. Dodatkowo zalecamy zabrać ze sobą nakrycia głowy oraz okulary przeciwsłoneczne.",
+  "Biorąc pod uwagę prognozę pogody rekomendujemy zabrać ze sobą ciepłe rzeczy wraz z zimowym obuwiem, przystosowanym do trekkingu – wycieczka do Zion Park. Dodatkowo zalecamy zabrać ze sobą nakrycia głowy oraz okulary przeciwsłoneczne.",
+  "Biorąc pod uwagę prognozę pogody rekomendujemy zabrać ze sobą ciepłe rzeczy wraz z zimowym obuwiem, przystosowanym do trekkingu – wycieczka do Zion Park. Dodatkowo zalecamy zabrać ze sobą nakrycia głowy oraz okulary przeciwsłoneczne."
+];
+const String gOutfitBody2 =
+    "Jeśli planują Państwo wizyty w nocnych klubach, dyskotece czy eleganckich restauracjach rekomendujemy zabrać ze sobą ubrania typu SMART CASUAL np. długie spodnie, koszula, marynarka, pełne buty - nie sportowe. Biorąc pod uwagę prognozę pogody rekomendujemy zabrać ze sobą ciepłe rzeczy, w szczególności podczas wycieczki do Parków Narodowych, gdzie, jak również nakrycia głowy na wycieczki czy okulary przeciwsłoneczne.";
 
 const String gShoppingTitle = "Zakupy";
 const String gShoppingBody1 =

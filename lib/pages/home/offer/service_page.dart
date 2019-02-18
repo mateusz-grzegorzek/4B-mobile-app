@@ -53,7 +53,7 @@ class _ServicePageState extends State<ServicePage> {
 
   Widget fBuildTop() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -83,7 +83,7 @@ class _ServicePageState extends State<ServicePage> {
 
   Widget fBuildBottom() {
     return Padding(
-        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

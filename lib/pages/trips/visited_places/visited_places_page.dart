@@ -23,7 +23,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
         ),
         Padding(padding: EdgeInsets.only(top: 10)),
         Padding(
-          padding: EdgeInsets.all(10),
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -32,10 +32,12 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
                     TextStyle(
                         color: gBrownColor,
                         fontSize: 22,
-                        fontWeight: FontWeight.bold)),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Oswald')),
                 fPrintJustifiedText(aBody)
               ]),
         ),
+        Padding(padding: EdgeInsets.only(top: 10)),
       ],
     );
   }

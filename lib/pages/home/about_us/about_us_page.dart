@@ -64,14 +64,13 @@ class AboutUsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage(
-        "assets/images/about_us_top_image.png", fBuildBody(context),
-        HomePage.drawer);
+    return fBuildSilverPage("assets/images/about_us_top_image.png",
+        fBuildBody(context), HomePage.drawer);
   }
 
   Widget fBuildBody(BuildContext context) {
     return Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

@@ -29,7 +29,7 @@ class AboutCountryPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -45,7 +45,7 @@ class AboutCountryPage extends StatelessWidget {
           ),
           Image.asset("assets/images/trips/las_vegas/about_country.png"),
           Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[

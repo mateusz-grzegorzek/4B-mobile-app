@@ -1,33 +1,12 @@
-import 'dart:convert';
 import 'dart:async';
+
+import 'package:business_mobile_app/utils/firebase_data.dart';
 import 'package:flutter/material.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/pages/trips/news/news_info.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
-import '../../../utils/firebase_data.dart';
-import '../../../utils/shared_preferences.dart';
-
-final List<NewsInfo> gNewsList = new List<NewsInfo>();
-
-void fGetNewsFromMemory() {
-  String newsJson = gPrefs.getString(gNewsDatabaseKey);
-  if (newsJson != null) {
-    gNewsList.addAll(json.decode(newsJson).map<NewsInfo>((aNewsInfo) {
-      return NewsInfo.fromJson(aNewsInfo);
-    }).toList());
-  }
-}
-
-void fAddNewsToList(aNewsId, aNewsInfo) {
-  int newsId = fGetDatabaseId(aNewsId, 3);
-  print("FirebaseData:fAddNewsToList");
-  NewsInfo newsInfo = NewsInfo(
-      newsId, aNewsInfo["title"], aNewsInfo["body"], aNewsInfo["date"]);
-  newsInfo.fLog();
-  gNewsList.add(newsInfo);
-}
 
 class NewsPage extends StatefulWidget {
   static const String Id = "NewsPage";
@@ -37,13 +16,13 @@ class NewsPage extends StatefulWidget {
 }
 
 class _NewsPageState extends State<NewsPage> {
-  StreamSubscription<bool> mNewsStreamSubscription;
+  StreamSubscription<bool> mStreamSubscription;
 
   @override
   void initState() {
     print("_NewsPageState:initState");
     super.initState();
-    mNewsStreamSubscription = fGetStream(gNewsDatabaseKey).listen((aNewsInfo) {
+    mStreamSubscription = fGetStream(gTripsDatabaseKey).listen((aNewsInfo) {
       setState(() {});
     });
   }
@@ -52,22 +31,12 @@ class _NewsPageState extends State<NewsPage> {
   void dispose() {
     print("_NewsPageState:dispose");
     super.dispose();
-    mNewsStreamSubscription.cancel();
-    fCloseStream(gNewsDatabaseKey);
+    mStreamSubscription.cancel();
+    fCloseStream(gTripsDatabaseKey);
   }
 
   @override
   Widget build(BuildContext context) {
-    print(
-        "_NewsPageState:build:gNewsList.length=" + gNewsList.length.toString());
-    gNewsList.sort((firstNews, secondNews) {
-      if (firstNews.mId > secondNews.mId) {
-        return 1;
-      } else {
-        return -1;
-      }
-    });
-
     return fBuildSilverPage(
         "assets/images/appbars/news.png", fBuildBody(), TripsPage.drawer);
   }
@@ -77,7 +46,7 @@ class _NewsPageState extends State<NewsPage> {
       fPrintHeadingText(NewsPage.Title),
       Padding(padding: EdgeInsets.only(top: 10)),
     ];
-    items.addAll(gNewsList.map((item) => _NewsItem(item)));
+    items.addAll(fGetNewsList().map((item) => _NewsItem(item)));
     return Container(
       padding: EdgeInsets.all(10),
       child:

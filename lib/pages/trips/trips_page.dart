@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:business_mobile_app/pages/trips/news/news_info.dart';
 import 'package:business_mobile_app/pages/trips/schedule/day_tile.dart';
 import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
 import 'package:flutter/material.dart';
@@ -16,23 +17,23 @@ import '../../utils/shared_preferences.dart';
 import '../../utils/widgets/menu_bar.dart';
 import '../../utils/widgets/app_bar.dart';
 
-final List<TripInfo> gTripsList = List<TripInfo>();
+var gTripsList = List<TripInfo>();
+var gCurrentTripIndex = -1;
 
-TripInfo gTripInfo;
+// ToDo: Do it prettier
+List<NewsInfo> fGetNewsList() {
+  return gTripsList[gCurrentTripIndex].mNewsList;
+}
+
+List<DayTile> fGetDayTilesList() {
+  return gTripsList[gCurrentTripIndex].mDayTiles;
+}
 
 void fGetTripsFromMemory() {
   String tripsJson = gPrefs.getString(gTripsDatabaseKey);
   if (tripsJson != null) {
-    gTripsList.addAll(json.decode(tripsJson).map<TripInfo>((aTripInfo) {
-      var dayTiles = List<DayTile>();
-      if (aTripInfo['mDayTiles'] != null) {
-        aTripInfo['mDayTiles'].forEach((aDayTile) {
-          dayTiles.add(DayTile.fromJson(aDayTile));
-        });
-      }
-      return TripInfo(aTripInfo['mId'], aTripInfo['mTitle'],
-          aTripInfo['mUserName'], aTripInfo['mPassword'], dayTiles);
-    }).toList());
+    gTripsList.addAll(List<TripInfo>.from(jsonDecode(tripsJson)
+        .map((aTripInfo) => TripInfo.fromJson(aTripInfo))));
   }
 }
 
@@ -55,6 +56,7 @@ List<DayTile> fSortDayTileList(List<DayTile> aDayTiles) {
   return aDayTiles;
 }
 
+// ToDo: refactor this to use jsonDecode
 void fAddTripToList(aTripId, aTripInfo) {
   int tripId = fGetDatabaseId(aTripId, 2);
   print("FirebaseData:fAddTripToList");
@@ -72,17 +74,26 @@ void fAddTripToList(aTripId, aTripInfo) {
         fGetDatabaseId(aDayTileId, 2), eventInfoList));
   });
   dayTiles = fSortDayTileList(dayTiles);
+  var news = List<NewsInfo>();
+  if (aTripInfo["news"] != null) {
+    aTripInfo["news"].forEach((aNewsId, aNewsInfo) {
+      news.add(NewsInfo(fGetDatabaseId(aNewsId, 3), aNewsInfo['title'],
+          aNewsInfo['body'], aNewsInfo['date']));
+    });
+  }
+  news = fSortById(news);
   var tripInfo = TripInfo(tripId, aTripInfo["title"], aTripInfo["user_name"],
-      aTripInfo["password"], dayTiles);
+      aTripInfo["password"], dayTiles, news);
   tripInfo.fLog();
   gTripsList.add(tripInfo);
 }
 
 bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
   if (aUserName.length > 0 && aPassword.length > 0) {
-    for (TripInfo tripInfo in gTripsList) {
-      if (tripInfo.mUserName == aUserName && tripInfo.mPassword == aPassword) {
-        gTripInfo = tripInfo;
+    for (var tripIndex = 0; tripIndex < gTripsList.length; tripIndex++) {
+      if (gTripsList[tripIndex].mUserName == aUserName &&
+          gTripsList[tripIndex].mPassword == aPassword) {
+        gCurrentTripIndex = tripIndex;
         return true;
       }
     }

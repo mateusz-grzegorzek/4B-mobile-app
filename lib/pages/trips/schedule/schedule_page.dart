@@ -1,7 +1,9 @@
+import 'dart:async';
 import 'dart:core';
 import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/expansion_tile.dart';
+import 'package:business_mobile_app/utils/firebase_data.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
@@ -46,17 +48,23 @@ class SchedulePage extends StatefulWidget {
 class _SchedulePageState extends State<SchedulePage>
     with TickerProviderStateMixin {
   var mExpansionTileList = List<GlobalKey<AppExpansionTileState>>();
+  StreamSubscription<bool> mStreamSubscription;
 
   @override
   void initState() {
     print("_SchedulePageState:initState");
     super.initState();
+    mStreamSubscription = fGetStream(gTripsDatabaseKey).listen((aNewsInfo) {
+      setState(() {});
+    });
   }
 
   @override
   void dispose() {
     print("_SchedulePageState:dispose");
     super.dispose();
+    mStreamSubscription.cancel();
+    fCloseStream(gTripsDatabaseKey);
   }
 
   Widget fPrintTime(String time) {
@@ -102,16 +110,15 @@ class _SchedulePageState extends State<SchedulePage>
   Column fBuildDayTiles() {
     return Column(
         children:
-            List<Widget>.generate(gTripInfo.mDayTiles.length, (int dayIndex) {
+            List<Widget>.generate(fGetDayTilesList().length, (int dayIndex) {
       mExpansionTileList.add(GlobalKey());
       return fBuildExpansionTile(
           mExpansionTileList[dayIndex],
-          "Dzień " + gTripInfo.mDayTiles[dayIndex].mDayNumber.toString(),
-          List<Widget>.generate(
-              gTripInfo.mDayTiles[dayIndex].mEventsList.length,
+          "Dzień " + fGetDayTilesList()[dayIndex].mDayNumber.toString(),
+          List<Widget>.generate(fGetDayTilesList()[dayIndex].mEventsList.length,
               (int eventIndex) {
             return fBuildEventRow(
-                gTripInfo.mDayTiles[dayIndex].mEventsList[eventIndex]);
+                fGetDayTilesList()[dayIndex].mEventsList[eventIndex]);
           }));
     }));
   }

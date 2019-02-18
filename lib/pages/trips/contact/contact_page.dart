@@ -62,13 +62,11 @@ class _TripContactPageState extends State<TripContactPage> {
               child: fPrintBoldText("Koordynatorzy wyjazdu"),
             ),
             ContactListWidget(mContactsList: coordinators),
-            //Divider(height: 10, color: gBrownColor),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Przewodnik"),
             ),
             ContactListWidget(mContactsList: guides),
-            //Divider(height: 10, color: gBrownColor),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Adres hotelu"),

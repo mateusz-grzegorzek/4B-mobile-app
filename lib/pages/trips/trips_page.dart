@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:business_mobile_app/pages/trips/news/news_info.dart';
+import 'package:business_mobile_app/pages/common/contact/contact_info.dart';
 import 'package:business_mobile_app/pages/trips/schedule/day_tile.dart';
 import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ var gCurrentTripIndex = -1;
 // ToDo: Do it prettier
 List<NewsInfo> fGetNewsList() {
   return gTripsList[gCurrentTripIndex].mNewsList;
+}
+
+List<ContactInfo> fGetContactsList() {
+  return gTripsList[gCurrentTripIndex].mContactsList;
 }
 
 List<DayTile> fGetDayTilesList() {
@@ -82,8 +87,18 @@ void fAddTripToList(aTripId, aTripInfo) {
     });
   }
   news = fSortById(news);
+  var contacts = List<ContactInfo>();
+  if (aTripInfo["contacts"] != null) {
+    aTripInfo["contacts"].forEach((aContactId, aContactInfo) {
+      contacts.add(ContactInfo(
+          fGetDatabaseId(aContactId, 2),
+          aContactInfo['name'],
+          aContactInfo['description'],
+          aContactInfo['phone_number']));
+    });
+  }
   var tripInfo = TripInfo(tripId, aTripInfo["title"], aTripInfo["user_name"],
-      aTripInfo["password"], dayTiles, news);
+      aTripInfo["password"], dayTiles, news, contacts);
   tripInfo.fLog();
   gTripsList.add(tripInfo);
 }

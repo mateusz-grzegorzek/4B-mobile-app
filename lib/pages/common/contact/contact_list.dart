@@ -48,13 +48,17 @@ class _ContactListItem extends ListTile {
           Padding(padding: EdgeInsets.only(top: 5.0)),
           fBuildDescriptionRow(),
           fBuildTelRow(),
-          (contactInfo.mEmail != "") ? fBuildEmailRow() : fBuildNullWidget(),
+          fBuildEmailRow()
         ],
       ),
     );
   }
 
   Widget fBuildDescriptionRow() {
+    if (contactInfo.mDescription == "" ||
+        ["coordinator", "guide"].contains(contactInfo.mDescription)) {
+      return fBuildNullWidget();
+    }
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         child: Row(
@@ -67,6 +71,9 @@ class _ContactListItem extends ListTile {
   }
 
   Widget fBuildTelRow() {
+    if (contactInfo.mPhoneNumber == "") {
+      return fBuildNullWidget();
+    }
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         child: Row(
@@ -83,6 +90,9 @@ class _ContactListItem extends ListTile {
   }
 
   Widget fBuildEmailRow() {
+    if (contactInfo.mEmail == "") {
+      return fBuildNullWidget();
+    }
     return Padding(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         child: Row(

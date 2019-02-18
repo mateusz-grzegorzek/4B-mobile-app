@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:business_mobile_app/pages/common/contact/contact_list.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
+import 'package:business_mobile_app/utils/firebase_data.dart';
 import '../../../utils/fonts.dart';
 import '../../../utils/print.dart';
 
@@ -14,6 +18,25 @@ class TripContactPage extends StatefulWidget {
 }
 
 class _TripContactPageState extends State<TripContactPage> {
+  StreamSubscription<bool> mStreamSubscription;
+
+  @override
+  void initState() {
+    print("_NewsPageState:initState");
+    super.initState();
+    mStreamSubscription = fGetStream(gTripsDatabaseKey).listen((aContactInfo) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    print("_NewsPageState:dispose");
+    super.dispose();
+    mStreamSubscription.cancel();
+    fCloseStream(gTripsDatabaseKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return fBuildSilverPage("assets/images/appbars/trip_contacts.png",
@@ -21,6 +44,13 @@ class _TripContactPageState extends State<TripContactPage> {
   }
 
   Widget fBuildBody() {
+    var coordinators = fGetContactsList()
+        .where((item) => item.mDescription == "coordinator")
+        .toList();
+    var guides = fGetContactsList()
+        .where((item) => item.mDescription == "guide")
+        .toList();
+
     return Container(
         padding: EdgeInsets.all(10),
         child: Column(
@@ -31,18 +61,14 @@ class _TripContactPageState extends State<TripContactPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Koordynatorzy wyjazdu"),
             ),
-            fBuildContactInfo("Grzegorz Bartosz", "+48 602 462 677"),
-            fBuildContactInfo("Katarzyna Drążek", "+48 796 109 610"),
-            Divider(height: 10, color: gBrownColor),
+            ContactListWidget(mContactsList: coordinators),
+            //Divider(height: 10, color: gBrownColor),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Przewodnik"),
             ),
-            Padding(
-              padding: EdgeInsets.only(top: 5, bottom: 10),
-              child: fPrintText("Informacje zostaną podane już wkrótce"),
-            ),
-            Divider(height: 10, color: gBrownColor),
+            ContactListWidget(mContactsList: guides),
+            //Divider(height: 10, color: gBrownColor),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Adres hotelu"),

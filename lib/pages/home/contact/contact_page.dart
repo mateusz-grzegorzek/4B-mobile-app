@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:business_mobile_app/pages/common/contact/contact_info.dart';
 import 'package:business_mobile_app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -6,23 +7,48 @@ import '../../common/contact/contact_info.dart';
 import '../../common/contact/contact_list.dart';
 import '../../../utils/print.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
+import 'package:business_mobile_app/utils/firebase_data.dart';
 
-class MainContactPage extends StatelessWidget {
+List<ContactInfo> gContactsList = List<ContactInfo>();
+
+void fAddContactToList(aContactId, aContactInfo) {
+  print("fAddContactToList");
+  ContactInfo contactInfo = new ContactInfo(
+      fGetDatabaseId(aContactId, 2),
+      aContactInfo["name"],
+      aContactInfo["description"],
+      aContactInfo['phone_number'],
+      aContactInfo['email']);
+  contactInfo.log();
+  gContactsList.add(contactInfo);
+}
+
+class MainContactPage extends StatefulWidget {
   static const String Id = "MainContactPage";
   static const String Title = "Kontakt";
 
-  final List<ContactInfo> mContactInfoList = [
-    ContactInfo(0, "Grzegorz Bartosz", "Prezes Zarządu", "+48 602 462 677",
-        "gb@4b.com.pl"),
-    ContactInfo(1, "Michał Kobylarczyk", "Wiceprezes Zarządu",
-        "+48 602 50 60 90", "mk@4b.com.pl"),
-    ContactInfo(2, "Karolina Lapczyk", "Specjalista ds. Incentive",
-        "+48 606 712 444", "karolina@4b.com.pl"),
-    ContactInfo(3, "Katarzyna Drążek", "Event Manager", "+48 796 109 610",
-        "katarzyna@4b.com.pl"),
-    ContactInfo(4, "Damian Urbaniec", "Manager ds. Sponsoringu",
-        "+48 733 777 777", "sport@4b.com.pl")
-  ];
+  @override
+  _MainContactPageState createState() => _MainContactPageState();
+}
+
+class _MainContactPageState extends State<MainContactPage> {
+  StreamSubscription<bool> mStreamSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    mStreamSubscription =
+        fGetStream(gContactsDatabaseKey).listen((aContactInfo) {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    mStreamSubscription.cancel();
+    fCloseStream(gContactsDatabaseKey);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +65,7 @@ class MainContactPage extends StatelessWidget {
             fPrintHeadingText(MainContactPage.Title),
             fBuildSocialMediaRow(),
             fBuildAddressWidget(),
-            ContactListWidget(mContactsList: mContactInfoList)
+            ContactListWidget(mContactsList: gContactsList)
           ],
         ));
   }

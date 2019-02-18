@@ -116,7 +116,7 @@ bool fIsTripLoginDataCorrect(String aUserName, String aPassword) {
   return false;
 }
 
-class TripsPage extends StatefulWidget {
+class TripsPage extends StatelessWidget {
   static const String Id = "TripsPage";
   static const String Title = "Uczestniku, witamy w aplikacji!";
   static MenuBar drawer = MenuBar(<MenuItem>[
@@ -128,11 +128,7 @@ class TripsPage extends StatefulWidget {
     MenuItem(TripContactPage.Id, TripContactPage.Title),
     MenuItem(HomePage.Id, "Wyloguj się"),
   ]);
-  @override
-  _TripsPageState createState() => _TripsPageState();
-}
 
-class _TripsPageState extends State<TripsPage> {
   Widget fBuildPage() {
     return Scaffold(
       appBar: fGetDefaultAppBar(TripsPage.Title),

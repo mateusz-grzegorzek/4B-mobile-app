@@ -28,20 +28,11 @@ class ServiceInfo {
       this.mPathToMiddleImage);
 }
 
-class ServicePage extends StatefulWidget {
+class ServicePage extends StatelessWidget {
   final ServiceInfo mServiceInfo;
+  final String mMoreInfoText = "Więcej informacji na stronie internetowej: ";
 
   ServicePage(this.mServiceInfo);
-
-  @override
-  _ServicePageState createState() => _ServicePageState(mServiceInfo);
-}
-
-class _ServicePageState extends State<ServicePage> {
-  ServiceInfo mServiceInfo;
-  String mMoreInfoText = "Więcej informacji na stronie internetowej: ";
-
-  _ServicePageState(this.mServiceInfo);
 
   Column fBuildOptions() {
     return Column(

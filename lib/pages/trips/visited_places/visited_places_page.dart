@@ -7,14 +7,10 @@ import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 
-class VisitedPlacesPage extends StatefulWidget {
+class VisitedPlacesPage extends StatelessWidget {
   static const String Id = "VisitedPlacesPage";
   static const String Title = "Odwiedzane miejsca";
-  @override
-  _VisitedPlacesPageState createState() => new _VisitedPlacesPageState();
-}
 
-class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
   Column fBuildPlace(String aTitle, String aBody, String aImagePath) {
     return Column(
       children: <Widget>[
@@ -42,7 +38,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
     );
   }
 
-  Widget fBuildBody() {
+  Widget fBuildBody(BuildContext context) {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +68,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
   Widget build(BuildContext context) {
     return fBuildSilverPage(
         "assets/images/trips/las_vegas/places/visited_places_top_image.png",
-        fBuildBody(),
+        fBuildBody(context),
         TripsPage.drawer);
   }
 }

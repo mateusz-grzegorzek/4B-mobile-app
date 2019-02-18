@@ -68,14 +68,28 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     );
   }
 
-  Column fBuildInfoTiles() {
+  Column fBuildInfoTiles(String groupName) {
+    int groupIndex = gImportantInfoGroups.indexOf(groupName);
+
     mExpansionTileList.clear();
 
     // Air Connection
     mExpansionTileList.add(GlobalKey());
     var airConnectionTile = fBuildExpansionTile(
-        mExpansionTileList[0], gAirConnectionTitle, <Widget>[
-      fPrintText(gAirConnectionBody),
+        mExpansionTileList[0], gAirConnectionTitle, List<Widget>.from(
+      gAirConnectionBody[groupIndex].map((flight) => fBuildInsuranceRow(flight)))
+    );
+
+    // Air line
+    mExpansionTileList.add(GlobalKey());
+    var airLineTile =
+        fBuildExpansionTile(mExpansionTileList[1], gAirLineTitle, <Widget>[
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          fPrintText(gAirLineBody[groupIndex]),
+        ],
+      )
     ]);
 
     // Travel Luggage
@@ -111,7 +125,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     );
 
     var travelLuggageTile = fBuildExpansionTile(
-        mExpansionTileList[1], gTravelLuggageTitle, <Widget>[
+        mExpansionTileList[2], gTravelLuggageTitle, <Widget>[
       Column(
         children: <Widget>[
           Row(children: <Widget>[
@@ -132,7 +146,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     // Insurance
     mExpansionTileList.add(GlobalKey());
     var insuranceTile =
-        fBuildExpansionTile(mExpansionTileList[2], gInsuranceTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[3], gInsuranceTitle, <Widget>[
       Column(children: <Widget>[
         fPrintText(gInsuranceBody1),
         Padding(padding: EdgeInsets.only(top: 10)),
@@ -151,12 +165,12 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     // Safety
     mExpansionTileList.add(GlobalKey());
     var safetyTile = fBuildExpansionTile(
-        mExpansionTileList[3], gSafetyTitle, <Widget>[fPrintText(gSafetyBody)]);
+        mExpansionTileList[4], gSafetyTitle, <Widget>[fPrintText(gSafetyBody)]);
 
     // Phones
     mExpansionTileList.add(GlobalKey());
     var phonesTile = fBuildExpansionTile(
-        mExpansionTileList[4], gPhonesTitle, <Widget>[fPrintText(gPhonesBody)]);
+        mExpansionTileList[5], gPhonesTitle, <Widget>[fPrintText(gPhonesBody)]);
 
     // Rooms
     mExpansionTileList.add(GlobalKey());
@@ -176,7 +190,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     );
 
     var roomsTile =
-        fBuildExpansionTile(mExpansionTileList[5], gRoomsTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[6], gRoomsTitle, <Widget>[
       Row(
         children: <Widget>[
           Expanded(child: roomsTileRow),
@@ -188,7 +202,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     mExpansionTileList.add(GlobalKey());
 
     var tempTile =
-        fBuildExpansionTile(mExpansionTileList[6], gTempTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[7], gTempTitle, <Widget>[
       Row(
         children: <Widget>[
           Expanded(child: fPrintText(gTempBody)),
@@ -200,7 +214,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     mExpansionTileList.add(GlobalKey());
 
     var moneyTile =
-        fBuildExpansionTile(mExpansionTileList[7], gMoneyTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[8], gMoneyTitle, <Widget>[
       Row(
         children: <Widget>[
           Expanded(child: fPrintText(gMoneyBody)),
@@ -226,7 +240,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     );
 
     var timeTile =
-        fBuildExpansionTile(mExpansionTileList[8], gTimeTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[9], gTimeTitle, <Widget>[
       Row(
         children: <Widget>[
           Expanded(child: timeTileRow),
@@ -254,7 +268,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     );
 
     var voltageTile =
-        fBuildExpansionTile(mExpansionTileList[9], gVoltageTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[10], gVoltageTitle, <Widget>[
       Row(
         children: <Widget>[
           Expanded(child: voltageTileRow),
@@ -266,10 +280,12 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     mExpansionTileList.add(GlobalKey());
 
     var outfitTile =
-        fBuildExpansionTile(mExpansionTileList[10], gOutfitTitle, <Widget>[
-      Row(
+        fBuildExpansionTile(mExpansionTileList[11], gOutfitTitle, <Widget>[
+      Column(
         children: <Widget>[
-          Expanded(child: fPrintText(gOutfitBody)),
+          fPrintText(gOutfitBody1[groupIndex]),
+          fPrintText(""),
+          fPrintText(gOutfitBody2),
         ],
       )
     ]);
@@ -278,7 +294,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     mExpansionTileList.add(GlobalKey());
 
     var shoppingTile =
-        fBuildExpansionTile(mExpansionTileList[11], gShoppingTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[12], gShoppingTitle, <Widget>[
       Column(
         children: <Widget>[
           fPrintText(gShoppingBody1),
@@ -296,7 +312,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
     mExpansionTileList.add(GlobalKey());
 
     var freeTimeTile =
-        fBuildExpansionTile(mExpansionTileList[12], gFreeTimeTitle, <Widget>[
+        fBuildExpansionTile(mExpansionTileList[13], gFreeTimeTitle, <Widget>[
       Column(
         children: <Widget>[
           fBuildFreeTimeRow(gFreeTimeBody1, gFreeTimeBody2),
@@ -337,6 +353,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
 
     return Column(children: [
       airConnectionTile,
+      airLineTile,
       travelLuggageTile,
       insuranceTile,
       safetyTile,
@@ -362,7 +379,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
           Padding(padding: EdgeInsets.all(5)),
           ExpandAllTilesWidget(mExpansionTileList),
           Padding(padding: EdgeInsets.all(5)),
-          fBuildInfoTiles()
+          fBuildInfoTiles(gTripsList[gCurrentTripIndex].mUserName)
         ],
       ),
     );

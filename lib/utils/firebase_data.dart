@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'shared_preferences.dart';
 import 'package:firebase_database/firebase_database.dart';
-import '../pages/trips/trips_page.dart';
+import 'package:business_mobile_app/pages/home/contact/contact_page.dart';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
 
+const String gContactsDatabaseKey = "contacts";
 const String gTripsDatabaseKey = "trips";
 
 class FirebaseData {
@@ -35,6 +37,7 @@ Map<String, FirebaseData> gFirebaseDataMap = new Map<String, FirebaseData>();
 void fInitFirebaseData() {
   gFirebaseDataMap[gTripsDatabaseKey] =
       new FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
+  gFirebaseDataMap[gContactsDatabaseKey] = FirebaseData(gContactsDatabaseKey, fAddContactToList, gContactsList);
 }
 
 Stream<bool> fGetStream(String key) {

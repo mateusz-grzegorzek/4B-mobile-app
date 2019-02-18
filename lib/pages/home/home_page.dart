@@ -14,7 +14,7 @@ void fChangePage(BuildContext aContext, String aPageId) {
   Navigator.of(aContext).pushNamed(aPageId);
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   static const String Id = "HomePage";
   static const String Title = "4Business Team";
 
@@ -25,11 +25,6 @@ class HomePage extends StatefulWidget {
     MenuItem(LoginPage.Id, LoginPage.Title)
   ]);
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext aContext) {
     final body = Center(

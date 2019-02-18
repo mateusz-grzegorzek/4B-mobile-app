@@ -17,7 +17,7 @@ void fGetContactsFromMemory() {
   String contactsJson = gPrefs.getString(gContactsDatabaseKey);
   if (contactsJson != null) {
     gContactsList.addAll(jsonDecode(contactsJson)
-        .map((aContactInfo) => ContactInfo.fromJson(aContactInfo))
+        .map<ContactInfo>((aContactInfo) => ContactInfo.fromJson(aContactInfo))
         .toList());
   }
 }

@@ -28,12 +28,30 @@ PreferredSize fBuildAppBar(String aPathToImage) {
       ));
 }
 
-SliverAppBar fBuildSilverAppBar(String aPathToImage) {
-  return SliverAppBar(
-      backgroundColor: Colors.transparent,
-      expandedHeight: 200.0,
-      floating: false,
-      pinned: false,
-      flexibleSpace: FlexibleSpaceBar(
-          background: Image.asset(aPathToImage, fit: BoxFit.cover)));
+Builder fBuildSilverAppBar(String aPathToImage, [bool withPopScope = true]) {
+  return Builder(builder: (context) {
+    return SliverAppBar(
+        leading: Container(
+          color: gBrownColor,
+          child: IconButton(
+              icon: Icon(
+                withPopScope ? Icons.menu : Icons.arrow_back,
+                size: 30,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                if (withPopScope) {
+                  Scaffold.of(context).openDrawer();
+                } else {
+                  Navigator.pop(context);
+                }
+              }),
+        ),
+        backgroundColor: Colors.transparent,
+        expandedHeight: 200.0,
+        floating: false,
+        pinned: false,
+        flexibleSpace: FlexibleSpaceBar(
+            background: Image.asset(aPathToImage, fit: BoxFit.cover)));
+  });
 }

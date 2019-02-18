@@ -112,26 +112,25 @@ class _OfferPageState extends State<OfferPage> {
     return Column(children: <Widget>[
       fCreateDivider(),
       GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => aServicePage),
-          );
-        },
-        child: Container(
-          padding: EdgeInsets.only(top: 20, bottom: 20),
-          child: Row(
-          children: <Widget>[
-            Padding(padding: EdgeInsets.all(10)),
-            fBuildImage(aServicePage.mServiceInfo.mPathToIcon, 30),
-            Padding(padding: EdgeInsets.all(10)),
-            Expanded(
-              child: fPrintText(
-                aServicePage.mServiceInfo.mHeadingText, gBoldOswaldTextStyle)
-            )
-          ],
-        ),
-      )),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => aServicePage),
+            );
+          },
+          child: Container(
+            padding: EdgeInsets.only(top: 20, bottom: 20),
+            child: Row(
+              children: <Widget>[
+                Padding(padding: EdgeInsets.all(10)),
+                fBuildImage(aServicePage.mServiceInfo.mPathToIcon, 30),
+                Padding(padding: EdgeInsets.all(10)),
+                Expanded(
+                    child: fPrintText(aServicePage.mServiceInfo.mHeadingText,
+                        gBoldOswaldTextStyle))
+              ],
+            ),
+          )),
     ]);
   }
 

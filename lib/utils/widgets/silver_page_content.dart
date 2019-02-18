@@ -3,11 +3,11 @@ import 'package:business_mobile_app/utils/widgets/app_bar.dart';
 import 'package:business_mobile_app/utils/widgets/menu_bar.dart';
 
 StatefulWidget fBuildSilverPage(String appBarImagePath, Widget body,
-    [MenuBar drawer, bool withPopScope=true]) {
+    [MenuBar drawer, bool withPopScope = true]) {
   CustomScrollView fBuildBody() {
     return CustomScrollView(
       slivers: <Widget>[
-        fBuildSilverAppBar(appBarImagePath),
+        fBuildSilverAppBar(appBarImagePath, withPopScope),
         SliverList(
           delegate:
               SliverChildBuilderDelegate((BuildContext context, int index) {
@@ -24,18 +24,16 @@ StatefulWidget fBuildSilverPage(String appBarImagePath, Widget body,
         drawer: drawer,
         body: fBuildBody(),
       );
-    }
-    else {
+    } else {
       return Scaffold(
         body: fBuildBody(),
       );
     }
   }
-  
+
   if (withPopScope) {
     return fBuildWillPopScope(fBuildPage());
-  }
-  else {
+  } else {
     return fBuildPage();
   }
 }

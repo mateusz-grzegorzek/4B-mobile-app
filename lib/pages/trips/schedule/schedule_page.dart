@@ -99,7 +99,7 @@ class _SchedulePageState extends State<SchedulePage>
             Padding(padding: EdgeInsets.all(5)),
             fBuildTimeRow(aEventInfo.mStartTime, aEventInfo.mEndTime),
             fPrintBoldText(" - "),
-            fPrintText(aEventInfo.mTitle)
+            Expanded(child: fPrintText(aEventInfo.mTitle))
           ],
         ),
         Padding(padding: EdgeInsets.all(5)),

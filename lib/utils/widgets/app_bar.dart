@@ -50,7 +50,7 @@ Builder fBuildSilverAppBar(String aPathToImage, [bool withPopScope = true]) {
         backgroundColor: Colors.transparent,
         expandedHeight: 200.0,
         floating: false,
-        pinned: false,
+        pinned: true,
         flexibleSpace: FlexibleSpaceBar(
             background: Image.asset(aPathToImage, fit: BoxFit.cover)));
   });

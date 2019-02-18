@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:business_mobile_app/pages/common/contact/contact_info.dart';
 import 'package:business_mobile_app/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,18 @@ import '../../common/contact/contact_list.dart';
 import '../../../utils/print.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/utils/firebase_data.dart';
+import 'package:business_mobile_app/utils/shared_preferences.dart';
 
 List<ContactInfo> gContactsList = List<ContactInfo>();
+
+void fGetContactsFromMemory() {
+  String contactsJson = gPrefs.getString(gContactsDatabaseKey);
+  if (contactsJson != null) {
+    gContactsList.addAll(jsonDecode(contactsJson)
+        .map((aContactInfo) => ContactInfo.fromJson(aContactInfo))
+        .toList());
+  }
+}
 
 void fAddContactToList(aContactId, aContactInfo) {
   print("fAddContactToList");

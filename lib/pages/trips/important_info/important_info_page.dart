@@ -1,9 +1,9 @@
 import 'package:business_mobile_app/pages/trips/important_info/important_info.dart';
-import 'package:business_mobile_app/pages/trips/schedule/schedule_page.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/expansion_tile.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
+import 'package:business_mobile_app/utils/widgets/expand_all_tiles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -360,7 +360,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
         children: <Widget>[
           fPrintHeadingText(" Ważne informacje"),
           Padding(padding: EdgeInsets.all(5)),
-          fBuildExpandAllTiles(mExpansionTileList),
+          ExpandAllTilesWidget(mExpansionTileList),
           Padding(padding: EdgeInsets.all(5)),
           fBuildInfoTiles()
         ],

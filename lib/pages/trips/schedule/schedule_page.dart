@@ -4,39 +4,10 @@ import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/expansion_tile.dart';
 import 'package:business_mobile_app/utils/firebase_data.dart';
-import 'package:business_mobile_app/utils/fonts.dart';
 import 'package:business_mobile_app/utils/print.dart';
+import 'package:business_mobile_app/utils/widgets/expand_all_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
-
-Widget fBuildExpandAllTiles(
-    List<GlobalKey<AppExpansionTileState>> aExpansionTileList) {
-  return GestureDetector(
-    onTap: () {
-      aExpansionTileList.forEach((expansionTile) {
-        expansionTile.currentState.expand();
-      });
-    },
-    child: Container(
-        height: 52,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: gBrownColor,
-            width: 3,
-          ),
-          borderRadius: BorderRadius.circular(18.0),
-        ),
-        child: Row(children: <Widget>[
-          Padding(padding: EdgeInsets.all(5)),
-          Padding(
-              padding: const EdgeInsets.only(left: 6.0),
-              child: fPrintBoldText("Rozwiń wszystkie informacje")),
-          Padding(padding: EdgeInsets.all(10)),
-          Image(
-              image: AssetImage("assets/images/expand_arrows.png"), height: 20)
-        ])),
-  );
-}
 
 class SchedulePage extends StatefulWidget {
   static const String Id = "SchedulePage";
@@ -131,7 +102,7 @@ class _SchedulePageState extends State<SchedulePage>
         children: <Widget>[
           fPrintHeadingText("Agenda wyjazdu"),
           Padding(padding: EdgeInsets.all(5)),
-          fBuildExpandAllTiles(mExpansionTileList),
+          ExpandAllTilesWidget(mExpansionTileList),
           Padding(padding: EdgeInsets.all(5)),
           fBuildDayTiles()
         ],

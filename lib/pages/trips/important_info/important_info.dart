@@ -69,6 +69,14 @@ abstract class ImportantInfoWidget {
     );
   }
 
+  List<Widget> fBuildSimpleTextTile(String aAirLine) {
+    return <Widget>[
+      Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+        Expanded(child: fPrintText(aAirLine)),
+      ])
+    ];
+  }
+
   Column fBuildInfoTiles();
 
   List<Widget> fBuild() {

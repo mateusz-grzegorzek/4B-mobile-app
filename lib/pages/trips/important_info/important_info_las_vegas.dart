@@ -158,14 +158,6 @@ class ImportantInfoLasVegasWidget extends ImportantInfoWidget {
         .map((flight) => fBuildInsuranceRow(flight)));
   }
 
-  List<Widget> fBuildAirLineTile(int groupIndex) {
-    return <Widget>[
-      Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-        fPrintText(gAirLineBody[groupIndex]),
-      ])
-    ];
-  }
-
   List<Widget> fBuildTravelLuggageTile() {
     var travelLuggageTileRow1 = RichText(
       text: TextSpan(
@@ -415,7 +407,7 @@ class ImportantInfoLasVegasWidget extends ImportantInfoWidget {
     }
     fAddExpansionTileToList(
         gAirConnectionTitle, fBuildAirConnectionTile(groupIndex));
-    fAddExpansionTileToList(gAirLineTitle, fBuildAirLineTile(groupIndex));
+    fAddExpansionTileToList(gAirLineTitle, fBuildSimpleTextTile(gAirLineBody[groupIndex]));
     fAddExpansionTileToList(gTravelLuggageTitle, fBuildTravelLuggageTile());
     fAddExpansionTileToList(gInsuranceTitle, fBuildInsuranceTile());
     fAddExpansionTileToList(gSafetyTitle, fBuildSafetyTile());

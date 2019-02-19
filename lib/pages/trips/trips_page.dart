@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:business_mobile_app/pages/trips/news/news_info.dart';
 import 'package:business_mobile_app/pages/common/contact/contact_info.dart';
 import 'package:business_mobile_app/pages/trips/schedule/day_tile.dart';
 import 'package:business_mobile_app/pages/trips/schedule/event_info.dart';
-import 'package:flutter/material.dart';
+
+import 'package:business_mobile_app/utils/trips_handlers.dart';
 
 import 'trip_info.dart';
 import 'schedule/schedule_page.dart';
@@ -130,9 +132,9 @@ class TripsPage extends StatelessWidget {
   ]);
 
   AssetImage fGetBackgroundImage() {
-    if (gTripsList[gCurrentTripIndex].mUserName.contains("LasVegas")) {
+    if (isLasVegasTrip()) {
       return AssetImage("assets/images/trips/las_vegas/background.png");
-    } else if (gTripsList[gCurrentTripIndex].mUserName == "Mitsubishi") {
+    } else if (isThailandTrip()) {
       return AssetImage("assets/images/trips/thailand/background.png");
     }
   }

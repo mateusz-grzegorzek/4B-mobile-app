@@ -8,6 +8,7 @@ import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/utils/firebase_data.dart';
 import 'package:business_mobile_app/utils/print.dart';
+import 'package:business_mobile_app/utils/trips_handlers.dart';
 
 class TripContactPage extends StatefulWidget {
   static const String Id = "TripContactPage";
@@ -50,7 +51,7 @@ class _TripContactPageState extends State<TripContactPage> {
   }
 
   Widget fBuildHotelInfo() {
-    if (gTripsList[gCurrentTripIndex].mUserName.contains("LasVegas")) {
+    if (isLasVegasTrip()) {
       return GestureDetector(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +62,7 @@ class _TripContactPageState extends State<TripContactPage> {
         ),
         onTap: () => launch("https://goo.gl/maps/p9rh5spB3nk"),
       );
-    } else if (gTripsList[gCurrentTripIndex].mUserName == "Mitsubishi") {
+    } else if (isThailandTrip()) {
       return Column(children: <Widget>[
         GestureDetector(
           child: Row(
@@ -71,11 +72,15 @@ class _TripContactPageState extends State<TripContactPage> {
           ),
           onTap: () => launch("https://goo.gl/maps/EdaeRZKBddL2"),
         ),
-        Padding(padding: EdgeInsets.all(10),),
+        Padding(
+          padding: EdgeInsets.all(10),
+        ),
         GestureDetector(
           child: Row(
             children: <Widget>[
-              Expanded(child: fPrintText("Pattaya: Hotel Ravindra Beach Resort & Spa 4*"))
+              Expanded(
+                  child: fPrintText(
+                      "Pattaya: Hotel Ravindra Beach Resort & Spa 4*"))
             ],
           ),
           onTap: () => launch("https://goo.gl/maps/AV65aivaFtz"),

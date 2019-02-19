@@ -1,3 +1,5 @@
+import 'package:business_mobile_app/pages/trips/visited_places/visited_place.dart';
+
 const String gVisitedPlace1ImagePath =
     "assets/images/trips/las_vegas/places/place_1.png";
 const String gVisitedPlace1Title = "Santa Monica ";
@@ -55,3 +57,22 @@ const String gVisitedPlace5Body =
     "Charakterystyczna, betonowa ściana spiętrzająca rzekę Kolorado to ni tylko jeden z symboli Stanów Zjednoczonych. "
     "Konstrukcja, wzniesiona w czasach wielkiego kryzysu jest zarazem dowodem kunsztu inżynierów, a przy okazji miejscem, "
     "które przyczyniło się do śmierci wielu swoich budowniczych.";
+
+final place1 = VisitedPlace(
+    gVisitedPlace1Title, gVisitedPlace1Body, gVisitedPlace1ImagePath);
+final place2 = VisitedPlace(
+    gVisitedPlace2Title, gVisitedPlace2Body, gVisitedPlace2ImagePath);
+final place3 = VisitedPlace(
+    gVisitedPlace3Title, gVisitedPlace3Body, gVisitedPlace3ImagePath);
+final place4 = VisitedPlace(
+    gVisitedPlace4Title, gVisitedPlace4Body, gVisitedPlace4ImagePath);
+final place5 = VisitedPlace(
+    gVisitedPlace5Title, gVisitedPlace5Body, gVisitedPlace5ImagePath);
+
+List<VisitedPlace> gVisitedPlacesLasVegas = [
+  place1,
+  place2,
+  place3,
+  place4,
+  place5
+];

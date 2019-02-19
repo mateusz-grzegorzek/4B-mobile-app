@@ -4,6 +4,7 @@ import 'package:business_mobile_app/utils/firebase_data.dart';
 import 'package:flutter/material.dart';
 import 'package:business_mobile_app/utils/print.dart';
 import 'package:business_mobile_app/utils/fonts.dart';
+import 'package:business_mobile_app/utils/trips_handlers.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
 import 'package:business_mobile_app/pages/trips/news/news_info.dart';
 import 'package:business_mobile_app/pages/trips/trips_page.dart';
@@ -35,12 +36,6 @@ class _NewsPageState extends State<NewsPage> {
     fCloseStream(gTripsDatabaseKey);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return fBuildSilverPage(
-        "assets/images/appbars/news.png", fBuildBody(), TripsPage.drawer);
-  }
-
   Widget fBuildBody() {
     List<Widget> items = [
       fPrintHeadingText(NewsPage.Title),
@@ -52,6 +47,19 @@ class _NewsPageState extends State<NewsPage> {
       child:
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: items),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    var appBarImageAssetPath;
+    if (isLasVegasTrip()) {
+      appBarImageAssetPath = "assets/images/appbars/news.png";
+    } else if (isThailandTrip()) {
+      appBarImageAssetPath =
+          "assets/images/trips/thailand/appbar.jpg";
+    }
+    return fBuildSilverPage(
+        appBarImageAssetPath, fBuildBody(), TripsPage.drawer);
   }
 }
 

@@ -124,7 +124,14 @@ class _TripContactPageState extends State<TripContactPage> {
 
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage("assets/images/appbars/trip_contacts.png",
-        fBuildBody(), TripsPage.drawer);
+    var appBarImageAssetPath;
+    if (isLasVegasTrip()) {
+      appBarImageAssetPath = "assets/images/appbars/trip_contacts.png";
+    } else if (isThailandTrip()) {
+      appBarImageAssetPath =
+          "assets/images/trips/thailand/appbar.jpg";
+    }
+    return fBuildSilverPage(
+        appBarImageAssetPath, fBuildBody(), TripsPage.drawer);
   }
 }

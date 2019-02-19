@@ -5,6 +5,7 @@ import 'package:business_mobile_app/pages/trips/trips_page.dart';
 import 'package:business_mobile_app/utils/expansion_tile.dart';
 import 'package:business_mobile_app/utils/firebase_data.dart';
 import 'package:business_mobile_app/utils/print.dart';
+import 'package:business_mobile_app/utils/trips_handlers.dart';
 import 'package:business_mobile_app/utils/widgets/expand_all_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:business_mobile_app/utils/widgets/silver_page_content.dart';
@@ -113,10 +114,15 @@ class _SchedulePageState extends State<SchedulePage>
 
   @override
   Widget build(BuildContext aContext) {
+    var appBarImageAssetPath;
+    if (isLasVegasTrip()) {
+      appBarImageAssetPath =
+          "assets/images/trips/las_vegas/schedule_top_image.png";
+    } else if (isThailandTrip()) {
+      appBarImageAssetPath = "assets/images/trips/thailand/appbar.jpg";
+    }
     mExpansionTileList.clear();
     return fBuildSilverPage(
-        "assets/images/trips/las_vegas/schedule_top_image.png",
-        fBuildBody(),
-        TripsPage.drawer);
+        appBarImageAssetPath, fBuildBody(), TripsPage.drawer);
   }
 }

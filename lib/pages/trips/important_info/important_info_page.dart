@@ -27,16 +27,20 @@ class ImportantInfoPage extends StatefulWidget {
 }
 
 class _ImportantInfoPageState extends State<ImportantInfoPage> {
-  var mImportantInfoLasVegasWidget = ImportantInfoLasVegasWidget();
+  String appBarImageAssetPath;
+  var importantInfoTiles;
+
+  _ImportantInfoPageState() {
+    if (isLasVegasTrip()) {
+      importantInfoTiles = ImportantInfoLasVegasWidget().fBuild();
+      appBarImageAssetPath = "assets/images/imp_info_top_image.png";
+    } else if (isThailandTrip()) {
+      importantInfoTiles = <Widget>[fBuildNullWidget()];
+      appBarImageAssetPath = "assets/images/trips/thailand/appbar.jpg";
+    }
+  }
 
   Widget fBuildBody() {
-    var importantInfoTiles;
-    if (isLasVegasTrip()) {
-      importantInfoTiles = mImportantInfoLasVegasWidget.fBuild();
-    } else {
-      importantInfoTiles = fBuildNullWidget(); // ToDo: Add Thailand
-    }
-
     return Container(
       margin: const EdgeInsets.all(10.0),
       child: Column(
@@ -48,6 +52,6 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
   @override
   Widget build(BuildContext context) {
     return fBuildSilverPage(
-        "assets/images/imp_info_top_image.png", fBuildBody(), TripsPage.drawer);
+        appBarImageAssetPath, fBuildBody(), TripsPage.drawer);
   }
 }

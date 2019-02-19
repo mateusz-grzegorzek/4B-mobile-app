@@ -75,6 +75,11 @@ const String gRoomsBody2 =
     "w pokojach wyposażonych w telewizor, łazienkę z prysznicem, suszarką do włosów, dwa łóżka, zegar z alarmem "
     "i wejściem na iPoda, żelazko, telefon (rozmowy lokalne bezpłatne).";
 
+const String gHotelRestaurantTitle = "Godziny otwarcia hotelowej restauracji";
+const String gHotelRestaurantBody = """ŚNIADANIE: 07:00 - 11:00
+LUNCH: 11:00 - 16:00
+KOLACJA: 16:00 - 22:00""";
+
 const String gTempTitle = "Temperatury";
 const String gTempBody =
     "Średnia temperatura w Las Vegas w lutym to: 20℃ (dzień), 7℃ (noc).";
@@ -407,12 +412,15 @@ class ImportantInfoLasVegasWidget extends ImportantInfoWidget {
     }
     fAddExpansionTileToList(
         gAirConnectionTitle, fBuildAirConnectionTile(groupIndex));
-    fAddExpansionTileToList(gAirLineTitle, fBuildSimpleTextTile(gAirLineBody[groupIndex]));
+    fAddExpansionTileToList(
+        gAirLineTitle, fBuildSimpleTextTile(gAirLineBody[groupIndex]));
     fAddExpansionTileToList(gTravelLuggageTitle, fBuildTravelLuggageTile());
     fAddExpansionTileToList(gInsuranceTitle, fBuildInsuranceTile());
     fAddExpansionTileToList(gSafetyTitle, fBuildSafetyTile());
     fAddExpansionTileToList(gPhonesTitle, fBuildPhonesTile());
     fAddExpansionTileToList(gRoomsTitle, fBuildRoomsTile());
+    fAddExpansionTileToList(
+        gHotelRestaurantTitle, fBuildSimpleTextTile(gHotelRestaurantBody));
     fAddExpansionTileToList(gTempTitle, fBuildTempTile());
     fAddExpansionTileToList(gMoneyTitle, fBuildMoneyTile());
     fAddExpansionTileToList(gTimeTitle, fBuildTimeTile());

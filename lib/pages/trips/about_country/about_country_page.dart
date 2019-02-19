@@ -82,6 +82,16 @@ class AboutCountryPage extends StatelessWidget {
               Padding(padding: EdgeInsets.only(top: 10)),
               fPrintText(mAboutCountryPart1),
               Padding(padding: EdgeInsets.only(top: 10)),
+            ]
+          )
+        ),
+        Image.asset("assets/images/trips/thailand/about_country/body1.jpg"),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(padding: EdgeInsets.only(top: 10)),
               fPrintText(mAboutCountryPart2),
               Padding(padding: EdgeInsets.only(top: 10)),
               fPrintText(mAboutCountryPart3),
@@ -108,7 +118,7 @@ class AboutCountryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage("assets/images/appbars/about_country.png",
+    return fBuildSilverPage("assets/images/trips/thailand/about_country/appbar.jpg",
         fBuildBody(context), TripsPage.drawer);
   }
 }

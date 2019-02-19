@@ -66,6 +66,7 @@ flutter:
   - assets/images/trips/las_vegas/
   - assets/images/trips/las_vegas/places/
   - assets/images/trips/thailand/
+  - assets/images/trips/thailand/about_country/
   - assets/social_media/
 
   # An image asset can refer to one or more resolution-specific "variants", see

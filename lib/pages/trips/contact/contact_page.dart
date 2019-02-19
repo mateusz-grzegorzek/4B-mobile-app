@@ -36,10 +36,52 @@ class _TripContactPageState extends State<TripContactPage> {
     fCloseStream(gTripsDatabaseKey);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return fBuildSilverPage("assets/images/appbars/trip_contacts.png",
-        fBuildBody(), TripsPage.drawer);
+  Widget fBuildContacts(var contacts) {
+    if (contacts.length == 0) {
+      return Container(
+        child: Row(
+          children: <Widget>[
+            Expanded(child: fPrintText("Informacje zostaną podane wkrótce"))
+          ],
+        ),
+      );
+    }
+    return ContactListWidget(mContactsList: contacts);
+  }
+
+  Widget fBuildHotelInfo() {
+    if (gTripsList[gCurrentTripIndex].mUserName.contains("LasVegas")) {
+      return GestureDetector(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            fPrintText("EXCALIBUR HOTEL & CASINO***"),
+            fPrintText("3850 S Las Vegas Blvd")
+          ],
+        ),
+        onTap: () => launch("https://goo.gl/maps/p9rh5spB3nk"),
+      );
+    } else if (gTripsList[gCurrentTripIndex].mUserName == "Mitsubishi") {
+      return Column(children: <Widget>[
+        GestureDetector(
+          child: Row(
+            children: <Widget>[
+              Expanded(child: fPrintText("Bangkok: Hotel Amara 5*"))
+            ],
+          ),
+          onTap: () => launch("https://goo.gl/maps/EdaeRZKBddL2"),
+        ),
+        Padding(padding: EdgeInsets.all(10),),
+        GestureDetector(
+          child: Row(
+            children: <Widget>[
+              Expanded(child: fPrintText("Pattaya: Hotel Ravindra Beach Resort & Spa 4*"))
+            ],
+          ),
+          onTap: () => launch("https://goo.gl/maps/AV65aivaFtz"),
+        ),
+      ]);
+    }
   }
 
   Widget fBuildBody() {
@@ -60,51 +102,24 @@ class _TripContactPageState extends State<TripContactPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Koordynatorzy wyjazdu"),
             ),
-            ContactListWidget(mContactsList: coordinators),
+            fBuildContacts(coordinators),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Przewodnik"),
             ),
-            ContactListWidget(mContactsList: guides),
+            fBuildContacts(guides),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Adres hotelu"),
             ),
-            GestureDetector(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  fPrintText("EXCALIBUR HOTEL & CASINO***"),
-                  fPrintText("3850 S Las Vegas Blvd")
-                ],
-              ),
-              onTap: () => launch("https://goo.gl/maps/p9rh5spB3nk"),
-            )
+            fBuildHotelInfo()
           ],
         ));
   }
 
-  Widget fBuildContactInfo(String name, String phoneNumber) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          fPrintText(name, gMenuItemTextStyle),
-          Padding(
-              padding: EdgeInsets.only(top: 10, bottom: 15),
-              child: Row(
-                children: <Widget>[
-                  fBuildImage("assets/images/contacts/phone.png", 20),
-                  Padding(padding: EdgeInsets.only(left: 20.0)),
-                  GestureDetector(
-                    child: fPrintText("tel. " + phoneNumber),
-                    onTap: () => launch("tel://" +
-                        phoneNumber.replaceAll(new RegExp(r' '), '')),
-                  ),
-                ],
-              ))
-        ],
-      ),
-    );
+  @override
+  Widget build(BuildContext context) {
+    return fBuildSilverPage("assets/images/appbars/trip_contacts.png",
+        fBuildBody(), TripsPage.drawer);
   }
 }

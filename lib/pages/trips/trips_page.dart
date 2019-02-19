@@ -129,6 +129,14 @@ class TripsPage extends StatelessWidget {
     MenuItem(HomePage.Id, "Wyloguj się"),
   ]);
 
+  AssetImage fGetBackgroundImage() {
+    if (gTripsList[gCurrentTripIndex].mUserName.contains("LasVegas")) {
+      return AssetImage("assets/images/trips/las_vegas/background.png");
+    } else if (gTripsList[gCurrentTripIndex].mUserName == "Mitsubishi") {
+      return AssetImage("assets/images/trips/thailand/background.png");
+    }
+  }
+
   Widget fBuildPage() {
     return Scaffold(
       appBar: fGetDefaultAppBar(TripsPage.Title),
@@ -136,7 +144,7 @@ class TripsPage extends StatelessWidget {
       body: Container(
           decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/trips/las_vegas/background.png"),
+          image: fGetBackgroundImage(),
           fit: BoxFit.cover,
         ),
       )),

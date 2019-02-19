@@ -10,7 +10,7 @@ description: 4Business Mobile App
 version: 1.0.0+8
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.1.0-dev.9.4.flutter-f9ebf21297 <3.0.0"
 
 dependencies:
   flutter:
@@ -65,6 +65,7 @@ flutter:
   - assets/images/contacts/
   - assets/images/trips/las_vegas/
   - assets/images/trips/las_vegas/places/
+  - assets/images/trips/thailand/
   - assets/social_media/
 
   # An image asset can refer to one or more resolution-specific "variants", see

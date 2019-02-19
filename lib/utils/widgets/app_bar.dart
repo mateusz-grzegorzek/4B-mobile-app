@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import '../fonts.dart';
 
@@ -31,7 +30,6 @@ PreferredSize fBuildAppBar(String aPathToImage) {
 
 Builder fBuildSilverAppBar(String aPathToImage, [bool withPopScope = true]) {
   return Builder(builder: (context) {
-    print(MediaQuery.of(context).size.height * 0.3);
     return SliverAppBar(
         leading: Container(
           color: gBrownColor,

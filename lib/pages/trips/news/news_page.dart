@@ -42,6 +42,7 @@ class _NewsPageState extends State<NewsPage> {
       Padding(padding: EdgeInsets.only(top: 10)),
     ];
     items.addAll(fGetNewsList().map((item) => _NewsItem(item)));
+    items.add(Padding(padding: EdgeInsets.only(top: 20)));
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child:

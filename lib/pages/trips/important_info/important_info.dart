@@ -85,7 +85,8 @@ abstract class ImportantInfoWidget {
       Padding(padding: EdgeInsets.all(5)),
       ExpandAllTilesWidget(mExpansionTileKeyList),
       Padding(padding: EdgeInsets.all(5)),
-      fBuildInfoTiles()
+      fBuildInfoTiles(),
+      Padding(padding: EdgeInsets.only(top: 20)),
     ];
   }
 }

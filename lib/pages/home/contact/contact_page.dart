@@ -76,7 +76,8 @@ class _MainContactPageState extends State<MainContactPage> {
             fPrintHeadingText(MainContactPage.Title),
             fBuildSocialMediaRow(),
             fBuildAddressWidget(),
-            ContactListWidget(mContactsList: gContactsList)
+            ContactListWidget(mContactsList: gContactsList),
+            Padding(padding: EdgeInsets.only(top: 20))
           ],
         ));
   }

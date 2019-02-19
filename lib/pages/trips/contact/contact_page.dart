@@ -117,7 +117,8 @@ class _TripContactPageState extends State<TripContactPage> {
               padding: EdgeInsets.only(top: 10, bottom: 10),
               child: fPrintBoldText("Adres hotelu"),
             ),
-            fBuildHotelInfo()
+            fBuildHotelInfo(),
+            Padding(padding: EdgeInsets.only(top: 20))
           ],
         ));
   }

@@ -94,7 +94,7 @@ class AboutUsPage extends StatelessWidget {
             Padding(padding: EdgeInsets.only(top: 10)),
             fBuildButton(() => fChangePage(context, OfferPage.Id),
                 "Sprawdź naszą ofertę"),
-            Padding(padding: EdgeInsets.only(top: 10)),
+            Padding(padding: EdgeInsets.only(top: 20)),
           ],
         ));
   }

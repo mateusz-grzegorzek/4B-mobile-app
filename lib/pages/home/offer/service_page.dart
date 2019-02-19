@@ -89,7 +89,7 @@ class ServicePage extends StatelessWidget {
               Padding(padding: EdgeInsets.all(5)),
               fBuildButton(() => launch(mServiceInfo.mMoreInfoUrlLink),
                   "Przejdź do strony internetowej"),
-              Padding(padding: EdgeInsets.only(top: 10))
+              Padding(padding: EdgeInsets.only(top: 20))
             ]));
   }
 

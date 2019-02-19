@@ -36,8 +36,9 @@ Map<String, FirebaseData> gFirebaseDataMap = new Map<String, FirebaseData>();
 
 void fInitFirebaseData() {
   gFirebaseDataMap[gTripsDatabaseKey] =
-      new FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
-  gFirebaseDataMap[gContactsDatabaseKey] = FirebaseData(gContactsDatabaseKey, fAddContactToList, gContactsList);
+      FirebaseData(gTripsDatabaseKey, fAddTripToList, gTripsList);
+  gFirebaseDataMap[gContactsDatabaseKey] =
+      FirebaseData(gContactsDatabaseKey, fAddContactToList, gContactsList);
 }
 
 Stream<bool> fGetStream(String key) {

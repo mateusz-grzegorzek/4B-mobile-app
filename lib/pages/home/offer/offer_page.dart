@@ -155,7 +155,8 @@ class _OfferPageState extends State<OfferPage> {
             children: <Widget>[
               fPrintHeadingText(" Oferta"),
               Padding(padding: EdgeInsets.all(10)),
-              fBuildOffers()
+              fBuildOffers(),
+              Padding(padding: EdgeInsets.only(top: 20))
             ]));
   }
 }

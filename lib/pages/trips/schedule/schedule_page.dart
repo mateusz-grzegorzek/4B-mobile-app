@@ -106,7 +106,8 @@ class _SchedulePageState extends State<SchedulePage>
           Padding(padding: EdgeInsets.all(5)),
           ExpandAllTilesWidget(mExpansionTileList),
           Padding(padding: EdgeInsets.all(5)),
-          fBuildDayTiles()
+          fBuildDayTiles(),
+          Padding(padding: EdgeInsets.only(top: 20)),
         ],
       ),
     );

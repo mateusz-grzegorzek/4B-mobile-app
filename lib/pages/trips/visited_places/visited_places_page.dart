@@ -29,7 +29,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
     } else if (isThailandTrip()) {
       places = gVisitedPlacesThailand;
       appBarImageAssetPath =
-          "assets/images/trips/thailand/about_country/appbar.jpg";
+          "assets/images/trips/thailand/appbar.jpg";
     }
   }
 

@@ -71,20 +71,18 @@ class AboutCountryPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(padding: EdgeInsets.only(top: 10)),
-              fPrintHeadingText(AboutCountryPage.Title),
-              Padding(padding: EdgeInsets.only(top: 10)),
-              fPrintBoldText(mAboutCountryIntro),
-              Padding(padding: EdgeInsets.only(top: 10)),
-              fPrintText(mAboutCountryPart1),
-              Padding(padding: EdgeInsets.only(top: 10)),
-            ]
-          )
-        ),
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.only(top: 10)),
+                  fPrintHeadingText(AboutCountryPage.Title),
+                  Padding(padding: EdgeInsets.only(top: 10)),
+                  fPrintBoldText(mAboutCountryIntro),
+                  Padding(padding: EdgeInsets.only(top: 10)),
+                  fPrintText(mAboutCountryPart1),
+                  Padding(padding: EdgeInsets.only(top: 10)),
+                ])),
         Image.asset("assets/images/trips/thailand/about_country/body1.jpg"),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -108,17 +106,19 @@ class AboutCountryPage extends StatelessWidget {
     );
   }
 
-  Widget fBuildBody(BuildContext context) {
-    if (isLasVegasTrip()) {
-      return fBuildContentForLV(context);
-    } else if (isThailandTrip()) {
-      return fBuildContentForThailand(context);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return fBuildSilverPage("assets/images/trips/thailand/about_country/appbar.jpg",
-        fBuildBody(context), TripsPage.drawer);
+    var appBarImageAssetPath;
+    var body;
+    if (isLasVegasTrip()) {
+      appBarImageAssetPath = "assets/images/appbars/about_country.png";
+      body = fBuildContentForLV(context);
+    } else if (isThailandTrip()) {
+      appBarImageAssetPath =
+          "assets/images/trips/thailand/appbar.jpg";
+      body = fBuildContentForThailand(context);
+    }
+
+    return fBuildSilverPage(appBarImageAssetPath, body, TripsPage.drawer);
   }
 }

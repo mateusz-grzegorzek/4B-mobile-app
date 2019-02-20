@@ -9,8 +9,10 @@ const List<String> gAirConnectionBodyContent = [
 const String gAirLineBody = "Emirates Airline";
 
 const String gTravelLuggageTitle = "Limity bagażowe";
-const String gTravelLuggageBody1 = "20 kg bagaż rejestrowany";
-const String gTravelLuggageBody2 = "5 kg bagaż podręczny (55 x 38 x 20 cm)";
+const List<String> gTravelLuggageBody = [
+  "20 kg bagaż rejestrowany",
+  "5 kg bagaż podręczny (55 x 38 x 20 cm)"
+];
 
 const String gAccommodationTitle = "Zakwaterowanie";
 const List<String> gAccommodationBody = [
@@ -62,17 +64,18 @@ const String gSafetyTitle = "Bezpieczeństwo";
 const String gSafetyBody = "Tajlandia jest krajem na ogół bezpiecznym. Jak w każdym kraju, głównie w turystycznych miejscach, należy być czujnym na tzw. kieszonkowców. Prosimy pilnować swoich wartościowych rzeczy. Warto w razie czego mieć przy sobie, lub zapamiętać numer telefonu na policję, która obsługuje turystów w języku angielskim: 1155.";
 
 const String gVaccinationsTitle = "Szczepienia";
-const String gVaccinationsBody = """Obowiązkowe szczepienia przy podróży z Polski – nie obowiązują. 
+const String gVaccinationsBody1 = """Obowiązkowe szczepienia przy podróży z Polski – nie obowiązują.
 
-Szczepienia zalecane – przeciwko następującym chorobom:
-•	wirusowe zapalenie wątroby typu A
-•	wirusowe zapalenie wątroby typu B
-•	tężec + błonica
-•	choroba Heinego-Medina (inaczej: poliomyelitis)
-•	dur brzuszny
-•	japońskie zapalenie mózgu
-•	inne według zaleceń lekarza w bardzo rzadkich sytuacjach
-""";
+Szczepienia zalecane – przeciwko następującym chorobom:""";
+const List<String> gVaccinationsBody2 = [
+  "wirusowe zapalenie wątroby typu A",
+  "wirusowe zapalenie wątroby typu B",
+  "tężec + błonica",
+  "choroba Heinego-Medina (inaczej: poliomyelitis)",
+  "dur brzuszny",
+  "japońskie zapalenie mózgu",
+  "inne według zaleceń lekarza w bardzo rzadkich sytuacjach"
+];
 
 const String gSouvenirsTitle = "Pamiątki";
 const String gSouvenirsBody = "Warto przywieźć z Tajlandii oryginalne wyroby rzemieślnicze oraz rękodzielnicze, które będą stanowiły cenną pamiątkę z pobytu w tym niezwykłym kraju. Tajskie stragany są pełne przeróżnych ciekawych produktów.";
@@ -106,17 +109,6 @@ class ImportantInfoThailandWidget extends ImportantInfoWidget {
         items.map((item) => fBuildInsuranceRow(item)));
   }
 
-  List<Widget> fBuildTravelLuggageTile() {
-    return <Widget>[
-      Row(
-        children: <Widget>[Expanded(child: fPrintText(gTravelLuggageBody1))],
-      ),
-      Row(
-        children: <Widget>[Expanded(child: fPrintText(gTravelLuggageBody2))],
-      )
-    ];
-  }
-
   List<Widget> fBuildAccommodationTile() {
     return List<Widget>.from(gAccommodationBody.map((hotel) {
       return Row(
@@ -138,14 +130,19 @@ class ImportantInfoThailandWidget extends ImportantInfoWidget {
     }));
   }
 
-//#########################################
+  List<Widget> fBuildVaccinationsTile() {
+    List<Widget> items = fBuildSimpleTextTile(gVaccinationsBody1);
+    items.add(Padding(padding: EdgeInsets.all(10),));
+    items.addAll(gVaccinationsBody2.map((item) => fBuildInsuranceRow(item)));
+    return items;
+  }
 
   Column fBuildInfoTiles() {
     mExpansionTileKeyList.clear();
 
     fAddExpansionTileToList(gAirConnectionTitle, fBuildListOfItemsTile(gAirConnectionBodyContent));
     fAddExpansionTileToList(gAirLineTitle, fBuildSimpleTextTile(gAirLineBody));
-    fAddExpansionTileToList(gTravelLuggageTitle, fBuildTravelLuggageTile());
+    fAddExpansionTileToList(gTravelLuggageTitle, fBuildListOfItemsTile(gTravelLuggageBody));
     fAddExpansionTileToList(gAccommodationTitle, fBuildAccommodationTile());
     fAddExpansionTileToList(gWisaTitle, fBuildSimpleTextTile(gWisaBody));
     fAddExpansionTileToList(gWelcomeTitle, fBuildListOfItemsTile(gWelcomeBody));
@@ -159,7 +156,7 @@ class ImportantInfoThailandWidget extends ImportantInfoWidget {
     fAddExpansionTileToList(gReligionTitle, fBuildSimpleTextTile(gReligionBody));
     fAddExpansionTileToList(gOutfitTitle, fBuildSimpleTextTile(gOutfitBody));
     fAddExpansionTileToList(gSafetyTitle, fBuildSimpleTextTile(gSafetyBody));
-    fAddExpansionTileToList(gVaccinationsTitle, fBuildSimpleTextTile(gVaccinationsBody));
+    fAddExpansionTileToList(gVaccinationsTitle, fBuildVaccinationsTile());
     fAddExpansionTileToList(gSouvenirsTitle, fBuildSimpleTextTile(gSouvenirsBody));
     fAddExpansionTileToList(gForbiddenSouvenirsTitle, fBuildSimpleTextTile(gForbiddenSouvenirsBody));
     fAddExpansionTileToList(gInsuranceTitle, fBuildSimpleTextTile(gInsuranceBody));

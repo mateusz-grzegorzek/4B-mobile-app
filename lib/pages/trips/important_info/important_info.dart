@@ -20,12 +20,14 @@ abstract class ImportantInfoWidget {
         aChildrens));
   }
 
-  Row fBuildInsuranceRow(String aText) {
-    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
+  Padding fBuildInsuranceRow(String aText) {
+    return Padding(
+      padding: EdgeInsets.only(top: 5, bottom: 5),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
       fPrintOkSign(),
       Padding(padding: EdgeInsets.only(left: 15)),
       Expanded(child: fPrintText(aText))
-    ]);
+    ]));
   }
 
   Row fBuildShoppingRow(String aText, String aUrl) {

@@ -117,7 +117,6 @@ Widget fBuildButton(VoidCallback aCallback, String aText) {
     onTap: aCallback,
     child: Container(
       alignment: Alignment.center,
-      margin: const EdgeInsets.only(left: 5.0, right: 5.0),
       width: double.infinity,
       height: 52,
       decoration: BoxDecoration(

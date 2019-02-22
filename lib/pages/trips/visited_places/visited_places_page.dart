@@ -28,8 +28,7 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
           "assets/images/trips/las_vegas/places/visited_places_top_image.png";
     } else if (isThailandTrip()) {
       places = gVisitedPlacesThailand;
-      appBarImageAssetPath =
-          "assets/images/trips/thailand/appbar.jpg";
+      appBarImageAssetPath = "assets/images/trips/thailand/appbar.jpg";
     }
   }
 
@@ -42,8 +41,10 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
     items.addAll(places);
     items.addAll([
       Padding(padding: EdgeInsets.only(top: 10)),
-      fBuildButton(
-          () => fChangePage(context, SchedulePage.Id), "Zobacz agendę wyjazdu"),
+      Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: fBuildButton(() => fChangePage(context, SchedulePage.Id),
+              "Zobacz agendę wyjazdu")),
       Padding(padding: EdgeInsets.only(top: 20)),
     ]);
 

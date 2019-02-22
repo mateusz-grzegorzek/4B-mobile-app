@@ -38,6 +38,7 @@ class _NewsPageState extends State<NewsPage> {
 
   Widget fBuildBody() {
     List<Widget> items = [
+      Padding(padding: EdgeInsets.only(top: 10)),
       fPrintHeadingText(NewsPage.Title),
       Padding(padding: EdgeInsets.only(top: 10)),
     ];

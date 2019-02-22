@@ -149,11 +149,12 @@ class _OfferPageState extends State<OfferPage> {
 
   Widget fBuildBody() {
     return Container(
-        padding: EdgeInsets.all(10),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              fPrintHeadingText(" Oferta"),
+              Padding(padding: EdgeInsets.only(top: 10)),
+              fPrintHeadingText("Oferta"),
               Padding(padding: EdgeInsets.all(10)),
               fBuildOffers(),
               Padding(padding: EdgeInsets.only(top: 20))

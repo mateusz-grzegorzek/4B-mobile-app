@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:business_mobile_app/pages/trips/important_info/important_info.dart';
-import 'package:business_mobile_app/utils/print.dart';
 
 const List<String> gAirConnectionBodyContent = [
   "24.02.2019 Warszawa – Dubaj 13:25-22:05           Dubaj – Bangkok 03:05-12:05 (+1)",
@@ -132,7 +131,7 @@ class ImportantInfoThailandWidget extends ImportantInfoWidget {
 
   List<Widget> fBuildVaccinationsTile() {
     List<Widget> items = fBuildSimpleTextTile(gVaccinationsBody1);
-    items.add(Padding(padding: EdgeInsets.all(10),));
+    items.add(Padding(padding: EdgeInsets.symmetric(vertical: 10)));
     items.addAll(gVaccinationsBody2.map((item) => fBuildInsuranceRow(item)));
     return items;
   }

@@ -87,7 +87,6 @@ class AppExpansionTileState extends State<AppExpansionTile>
   }
 
   void _setExpanded(bool isExpanded) {
-    print("asdasdasd");
     if (_isExpanded != isExpanded) {
       setState(() {
         _isExpanded = isExpanded;
@@ -131,6 +130,7 @@ class AppExpansionTileState extends State<AppExpansionTile>
             data:
                 new IconThemeData(color: _iconColor.evaluate(_easeInAnimation)),
             child: new ListTile(
+              contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
               onTap: toggle,
               leading: widget.leading,
               title: new DefaultTextStyle(
@@ -153,7 +153,7 @@ class AppExpansionTileState extends State<AppExpansionTile>
               child: child,
             ),
           ),
-          Padding(padding: EdgeInsets.only(top: 7)),
+          Padding(padding: EdgeInsets.only(top: 10)),
         ],
       ),
     );

@@ -102,6 +102,7 @@ class _TripContactPageState extends State<TripContactPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Padding(padding: EdgeInsets.only(top: 10)),
             fPrintHeadingText(TripContactPage.Title),
             Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),

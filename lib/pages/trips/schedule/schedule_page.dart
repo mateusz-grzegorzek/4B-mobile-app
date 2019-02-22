@@ -98,14 +98,15 @@ class _SchedulePageState extends State<SchedulePage>
 
   Widget fBuildBody() {
     return Container(
-      margin: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          fPrintHeadingText("Agenda wyjazdu"),
-          Padding(padding: EdgeInsets.all(5)),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          fPrintHeadingText(SchedulePage.Title),
+          Padding(padding: EdgeInsets.only(top: 10)),
           ExpandAllTilesWidget(mExpansionTileList),
-          Padding(padding: EdgeInsets.all(5)),
+          Padding(padding: EdgeInsets.only(top: 10)),
           fBuildDayTiles(),
           Padding(padding: EdgeInsets.only(top: 20)),
         ],

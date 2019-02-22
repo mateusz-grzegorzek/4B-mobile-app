@@ -28,7 +28,7 @@ class _ImportantInfoPageState extends State<ImportantInfoPage> {
 
   Widget fBuildBody() {
     return Container(
-      margin: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: importantInfoWidget.fBuild()),

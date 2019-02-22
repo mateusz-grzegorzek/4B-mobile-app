@@ -73,6 +73,7 @@ class _MainContactPageState extends State<MainContactPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Padding(padding: EdgeInsets.only(top: 10)),
             fPrintHeadingText(MainContactPage.Title),
             fBuildSocialMediaRow(),
             fBuildAddressWidget(),

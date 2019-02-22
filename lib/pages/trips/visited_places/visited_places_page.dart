@@ -34,10 +34,12 @@ class _VisitedPlacesPageState extends State<VisitedPlacesPage> {
 
   Widget fBuildBody(BuildContext context) {
     List<Widget> items = [];
-    items.addAll([
-      fPrintHeadingText(" Odwiedzane miejsca"),
-      Padding(padding: EdgeInsets.only(top: 10)),
-    ]);
+    items.add(
+      Padding(
+        padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
+        child: fPrintHeadingText(VisitedPlacesPage.Title),
+      )
+    );
     items.addAll(places);
     items.addAll([
       Padding(padding: EdgeInsets.only(top: 10)),

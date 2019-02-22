@@ -83,10 +83,11 @@ abstract class ImportantInfoWidget {
 
   List<Widget> fBuild() {
     return <Widget>[
-      fPrintHeadingText(" Ważne informacje"),
-      Padding(padding: EdgeInsets.all(5)),
+      Padding(padding: EdgeInsets.only(top: 10)),
+      fPrintHeadingText("Ważne informacje"),
+      Padding(padding: EdgeInsets.only(top: 10)),
       ExpandAllTilesWidget(mExpansionTileKeyList),
-      Padding(padding: EdgeInsets.all(5)),
+      Padding(padding: EdgeInsets.all(10)),
       fBuildInfoTiles(),
       Padding(padding: EdgeInsets.only(top: 20)),
     ];

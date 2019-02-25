@@ -103,12 +103,12 @@ class _LoginPageState extends State<LoginPage> {
                 fPrintText("Nazwa:", gMenuItemTextStyle),
                 Padding(padding: EdgeInsets.only(top: 5)),
                 fBuildTextField(
-                    mUserNameTextEditingController, 'Proszę, wprowadź nazwę'),
+                    mUserNameTextEditingController, 'Proszę wprowadzić nazwę'),
                 Padding(padding: EdgeInsets.only(top: 10)),
                 fPrintText("Hasło:", gMenuItemTextStyle),
                 Padding(padding: EdgeInsets.only(top: 5)),
                 fBuildTextField(
-                    mPasswordTextEditingController, 'Proszę, wprowadź hasło',
+                    mPasswordTextEditingController, 'Proszę wprowadzić hasło',
                     aObscureText: true),
                 mWrongCredentialsWindow,
                 Padding(padding: EdgeInsets.only(top: 20)),

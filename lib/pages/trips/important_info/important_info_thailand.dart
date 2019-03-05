@@ -1,11 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:business_mobile_app/pages/trips/important_info/important_info.dart';
+import 'package:business_mobile_app/pages/trips/trips_page.dart';
+import 'package:business_mobile_app/utils/print.dart';
+import 'package:business_mobile_app/utils/fonts.dart';
 
-const List<String> gAirConnectionBodyContent = [
-  "24.02.2019 Warszawa – Dubaj 13:25-22:05           Dubaj – Bangkok 03:05-12:05 (+1)",
-  "03.03.2019 Bangkok – Dubaj 02:00-06:00 	        Dubaj – Warszawa 08:05-11:20"
+const List<String> gImportantInfoGroups = [
+  "Essilor1",
+  "Essilor2",
 ];
-const String gAirLineBody = "Emirates Airline";
+
+const List<List<String>> gAirConnectionBody = [
+  gAirConnectionBodyContent1,
+  gAirConnectionBodyContent2,
+];
+const List<String> gAirConnectionBodyContent1 = [
+  "EK 180 09MAR WAW-DXB 13:25-22:05",
+  "EK 384 10MAR DXB-BKK 03:05-12:05",
+  "EK 379 17MAR HKT-DXB 02:00-05:35",
+  "EK 179 17MAR DXB-WAW 08:05-11:20"
+];
+const List<String> gAirConnectionBodyContent2 = [
+  "QR 0260 09MAR WAW-DOH 15:50-23:30",
+  "QR 0834 10MAR DOH-BKK 01:45-12:30",
+  "QR 0841 16MAR HKT-DOH 19:40-23:00",
+  "QR 0263 17MAR DOH-WAW 01:45-05:45"
+];
+const List<String> gAirLineBody = ["Emirates Airline", "Qatar Airways"];
+
+const List<String> gSemiAirConnectionBodyContent = [
+  "FD 3005 12MAR DMK-HKT 12:45-14:10",
+  "FD 3025 12MAR DMK-HKT 13:30-15:00"
+];
+const String gSemiAirLineBody = "AirAsia";
 
 const String gTravelLuggageTitle = "Limity bagażowe";
 const List<String> gTravelLuggageBody = [
@@ -110,22 +136,7 @@ class ImportantInfoThailandWidget extends ImportantInfoWidget {
 
   List<Widget> fBuildAccommodationTile() {
     return List<Widget>.from(gAccommodationBody.map((hotel) {
-      return Row(
-        children: <Widget>[
-          Expanded(
-              child: RichText(
-            text: TextSpan(
-                style: TextStyle(fontSize: 20, color: Colors.black),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: hotel.split(":")[0],
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: ":"),
-                  TextSpan(text: hotel.split(":")[1])
-                ]),
-          ))
-        ],
-      );
+      return fBuildBoldNormalText(hotel.split(":")[0], hotel.split(":")[1]);
     }));
   }
 
@@ -136,12 +147,47 @@ class ImportantInfoThailandWidget extends ImportantInfoWidget {
     return items;
   }
 
+  List<Widget> fBuildAirConnection(List<String> flights, String airLine, List<String> luggage, [bool divider=true]) {
+    List<Widget> items = [];
+    items.add(Row(children: <Widget>[fPrintBoldText("Loty:")]));
+    items.addAll(fBuildListOfItemsTile(flights));
+    items.add(fBuildBoldNormalText("Linia lotnicza", airLine));
+    items.add(Row(children: <Widget>[fPrintBoldText("Limity bagażowe:")]));
+    items.addAll(fBuildListOfItemsTile(luggage));
+    if (divider == true) {
+      items.add(Padding(
+        padding: EdgeInsets.all(10),
+        child: Container(color: gBrownColor, height: 1)));
+    }
+    return items;
+  }
+
+  List<Widget> fBuildAirConnectionsTile(int groupIndex) {
+    List<Widget> items = [];
+    items.addAll(fBuildAirConnection(
+      gAirConnectionBody[groupIndex],
+      gAirLineBody[groupIndex],
+      gTravelLuggageBody
+    ));
+    items.addAll(fBuildAirConnection(
+      [gSemiAirConnectionBodyContent[groupIndex]],
+      gSemiAirLineBody,
+      gTravelLuggageBody,
+      false
+    ));
+    return items;
+  }
+
   Column fBuildInfoTiles() {
     mExpansionTileKeyList.clear();
 
-    fAddExpansionTileToList(gAirConnectionTitle, fBuildListOfItemsTile(gAirConnectionBodyContent));
-    fAddExpansionTileToList(gAirLineTitle, fBuildSimpleTextTile(gAirLineBody));
-    fAddExpansionTileToList(gTravelLuggageTitle, fBuildListOfItemsTile(gTravelLuggageBody));
+    int groupIndex =
+      gImportantInfoGroups.indexOf(gTripsList[gCurrentTripIndex].mUserName);
+    if (groupIndex == -1) {
+      groupIndex = 0;
+    }
+
+    fAddExpansionTileToList(gAirConnectionTitle, fBuildAirConnectionsTile(groupIndex));
     fAddExpansionTileToList(gAccommodationTitle, fBuildAccommodationTile());
     fAddExpansionTileToList(gWisaTitle, fBuildSimpleTextTile(gWisaBody));
     fAddExpansionTileToList(gWelcomeTitle, fBuildListOfItemsTile(gWelcomeBody));
@@ -163,5 +209,24 @@ class ImportantInfoThailandWidget extends ImportantInfoWidget {
     fAddExpansionTileToList(gAmbassyTitle, fBuildSimpleTextTile(gAmbassyBody));
 
     return Column(children: mExpansionTileList);
+  }
+
+  Row fBuildBoldNormalText(String bold, String normal) {
+    return Row(
+        children: <Widget>[
+          Expanded(
+              child: RichText(
+            text: TextSpan(
+                style: TextStyle(fontSize: 20, color: Colors.black),
+                children: <TextSpan>[
+                  TextSpan(
+                      text: bold,
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(text: ": "),
+                  TextSpan(text: normal)
+                ]),
+          ))
+        ],
+      );
   }
 }

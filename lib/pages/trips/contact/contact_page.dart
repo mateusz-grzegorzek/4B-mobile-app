@@ -67,7 +67,7 @@ class _TripContactPageState extends State<TripContactPage> {
         GestureDetector(
           child: Row(
             children: <Widget>[
-              Expanded(child: fPrintText("Bangkok: Hotel Amara 5*"))
+              Expanded(child: fPrintText("Bangkok: Hotel Amara 4*"))
             ],
           ),
           onTap: () => launch("https://goo.gl/maps/EdaeRZKBddL2"),
@@ -80,10 +80,10 @@ class _TripContactPageState extends State<TripContactPage> {
             children: <Widget>[
               Expanded(
                   child: fPrintText(
-                      "Pattaya: Hotel Ravindra Beach Resort & Spa 4*"))
+                      "Phuket: Hotel Katathani Phuket Beach Resort 5*"))
             ],
           ),
-          onTap: () => launch("https://goo.gl/maps/AV65aivaFtz"),
+          onTap: () => launch("https://goo.gl/maps/nF7uB9XFDFQ2"),
         ),
       ]);
     }
@@ -130,8 +130,7 @@ class _TripContactPageState extends State<TripContactPage> {
     if (isLasVegasTrip()) {
       appBarImageAssetPath = "assets/images/appbars/trip_contacts.png";
     } else if (isThailandTrip()) {
-      appBarImageAssetPath =
-          "assets/images/trips/thailand/appbar.jpg";
+      appBarImageAssetPath = "assets/images/trips/thailand/appbar.jpg";
     }
     return fBuildSilverPage(
         appBarImageAssetPath, fBuildBody(), TripsPage.drawer);

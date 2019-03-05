@@ -9,7 +9,9 @@ bool isLasVegasTrip() {
 }
 
 bool isThailandTrip() {
-  if (gTripsList[gCurrentTripIndex].mUserName == "Mitsubishi") {
+  if (gTripsList[gCurrentTripIndex].mUserName == "Mitsubishi" ||
+      gTripsList[gCurrentTripIndex].mUserName == "Essilor1" ||
+      gTripsList[gCurrentTripIndex].mUserName == "Essilor2") {
     return true;
   } else {
     return false;

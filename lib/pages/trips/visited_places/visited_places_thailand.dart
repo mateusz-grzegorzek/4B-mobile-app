@@ -24,9 +24,16 @@ final place3 = VisitedPlace(
     "assets/images/trips/thailand/places/khao_san_road.jpg");
 
 final place4 = VisitedPlace(
+    "Phuket",
+    "Phuket to największa wyspa Tajlandii położona na Morzu Andamańskim, u zachodnich wybrzeży kraju. Od stałego lądu dzieli ją niewielka cieśnina Chong Pak Phra. Ten popularny turystycznie kierunek ma wszystko, czego potrzeba do beztroskiego wypoczynku: słońce i piaszczyste plaże, wspaniałe widoki oraz różnorodną bazę noclegową. Są tu też dziesiątki restauracji, dyskotek i nocnych klubów – szczególnie w mocno rozrywkowym Patong.",
+    "assets/images/trips/thailand/places/phuket.jpg");
+
+/*
+final place4 = VisitedPlace(
     "Pattaya",
     "Słynna Pattaya leży na wschodnim wybrzeżu Zatoki Tajlandzkiej. Jeszcze w latach 60. XX w. była się tu jedynie mała wioska rybacka. Dziś to nowoczesne i duże, bo ponad 100 tysięczne miasto, jest jednym z najsłynniejszych miejsc wypoczynkowych w Azji. Cieszy się niesłabnącą popularnością wśród podróżników i turystów z całego świata - zarówno tych szukających kulturowej odmienności i nowych wrażeń, jak i tych pragnących po prostu odpocząć na egzotycznej plaży. Pattaya oferuje szeroką gamę atrakcji sportowych, wspaniałych restauracji, hoteli, pubów, dyskotek oraz klubów nocnych.",
     "assets/images/trips/thailand/places/pattaya.jpg");
+*/
 
 final place5 = VisitedPlace(
     "Koh Larn",

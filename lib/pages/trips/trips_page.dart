@@ -135,7 +135,7 @@ class TripsPage extends StatelessWidget {
     if (isLasVegasTrip()) {
       return AssetImage("assets/images/trips/las_vegas/background.png");
     } else if (isThailandTrip()) {
-      return AssetImage("assets/images/trips/thailand/background_generic.png");
+      return AssetImage("assets/images/trips/thailand/background_essilor.png");
     }
   }
 

@@ -67,7 +67,9 @@ class _TripContactPageState extends State<TripContactPage> {
         GestureDetector(
           child: Row(
             children: <Widget>[
-              Expanded(child: fPrintText("Bangkok: Hotel Amara 4*"))
+              Expanded(
+                  child: fPrintText(
+                      "Bangkok: Hotel Amara 4* \nAdres: 180/1 Thanon Surawong, Khwaeng Si Phraya, Khet Bang Rak, Krung Thep Maha Nakhon 10500, Thailand"))
             ],
           ),
           onTap: () => launch("https://goo.gl/maps/EdaeRZKBddL2"),
@@ -80,7 +82,7 @@ class _TripContactPageState extends State<TripContactPage> {
             children: <Widget>[
               Expanded(
                   child: fPrintText(
-                      "Phuket: Hotel Katathani Phuket Beach Resort 5*"))
+                      "Phuket: Hotel Katathani Phuket Beach Resort 5* \nAdres: Kata Noi Road, Karon, Muang, Phuket 83100, Thailand*"))
             ],
           ),
           onTap: () => launch("https://goo.gl/maps/nF7uB9XFDFQ2"),

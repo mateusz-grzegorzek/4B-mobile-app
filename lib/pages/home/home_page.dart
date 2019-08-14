@@ -1,4 +1,6 @@
+import 'package:business_mobile_app/utils/print.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'offer/offer_page.dart';
 import 'about_us/about_us_page.dart';
@@ -8,6 +10,9 @@ import 'contact/contact_page.dart';
 import '../../utils/widgets/app_bar.dart';
 import '../../utils/widgets/menu_bar.dart';
 import '../../utils/fonts.dart';
+
+const String gPrivacyPolicyLink = ""
+    "https://firebasestorage.googleapis.com/v0/b/business-mobile-app-afe2b.appspot.com/o/4business_mobile_app_privacy_policy.html?alt=media&token=6beccc50-53bf-4f79-b78f-f358bcae86b9";
 
 void fChangePage(BuildContext aContext, String aPageId) {
   Navigator.pop(aContext);
@@ -47,6 +52,11 @@ class HomePage extends StatelessWidget {
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold),
           ),
+          Expanded(
+              child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: fBuildButton(() => launch(gPrivacyPolicyLink),
+                      "Zobacz politykę prywatności."))),
         ],
       ),
     );
